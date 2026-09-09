@@ -6,13 +6,14 @@ only in what the LLM receives (see modes.py).
 from __future__ import annotations
 
 import asyncio
+import os
 import time
 from dataclasses import asdict
 
 from llm_client import make_backend
 from modes import MODES, PERSONAS, build_naive_grounded, build_pipeline_grounded, build_ungrounded
 
-MAX_TOKENS = 900
+MAX_TOKENS = int(os.getenv("LLM_MAX_TOKENS", "20000"))   # adaptive thinking counts against this; answers are capped by prompt at ~250 words
 NAIVE_CHAR_BUDGET = 600_000       # ~150k tokens of records — as much as the context window comfortably allows; stated in the trace
 NAIVE_MAX_RECORDS = 400
 

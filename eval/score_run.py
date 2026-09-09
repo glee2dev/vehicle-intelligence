@@ -33,9 +33,13 @@ def scoreboard(scored: list[dict]) -> dict:
         unans = [s for s in S if s["unanswerable_expected"]]
         board[m] = {
             "n_queries": len(S),
+            "answered": sum(1 for s in S if s["answer_status"] == "answered"),
+            "declined_no_numbers": sum(1 for s in S if s["answer_status"] == "declined"),
+            "empty_truncated": sum(1 for s in S if s["answer_status"] == "empty"),
+            "hit_max_tokens": sum(1 for o in O if o.get("stop_reason") == "max_tokens"),
             "claims_total": sum(s["n_claims"] for s in S),
             "verified": sum(s["n_verified"] for s in S),
-            "derived": sum(s["n_derived"] for s in S),
+            "derived_or_raw": sum(s["n_derived"] for s in S),
             "unverified": sum(s["n_unverified"] for s in S),
             "grounding_rate_pooled": round(sum(s["n_verified"] + s["n_derived"] for s in S) / max(1, sum(s["n_claims"] for s in S)), 3),
             "grounding_rate_mean": mean([s["grounding_rate"] for s in S]),
@@ -74,7 +78,15 @@ def main():
                     records_by_id = {x["owner_id"]: x for x in json.load(open(args.data))}
                 sample = sample_truth(records_by_id, ids, r["spec"])
                 entry.setdefault("sample_stats", {})[mode] = sample
-            entry["scores"][mode] = score_output(out["text"], mode, r["stats"], sample).__dict__
+            given = None
+            if mode == "naive_grounded":
+                rm = r.get("records_meta", {})
+                given = {"n_records_given": out["context_meta"].get("records"), "n_segment_matched": rm.get("n_matched"),
+                         "n_survey_total": rm.get("n_total")}
+                for i, seg in enumerate(rm.get("segments", [])):
+                    given[f"segment_{i}_matched"] = seg.get("n_matched")
+            raw = {i: records_by_id[i] for i in ids if i in records_by_id} if (mode == "naive_grounded" and ids) else None
+            entry["scores"][mode] = score_output(out["text"], mode, r["stats"], sample, given, raw).__dict__
         scored.append(entry)
 
     board = scoreboard(scored)
@@ -83,7 +95,7 @@ def main():
                "scoreboard": board, "scored": scored}, open(out_path, "w"), indent=1)
 
     print(f"\nSCOREBOARD  backend={run['backend']} model={run['model']} persona={run['persona']}\n")
-    keys = ["claims_total", "verified", "derived", "unverified", "grounding_rate_pooled", "queries_fully_grounded",
+    keys = ["answered", "declined_no_numbers", "empty_truncated", "hit_max_tokens", "claims_total", "verified", "derived_or_raw", "unverified", "grounding_rate_pooled", "queries_fully_grounded",
             "external_flags", "queries_with_external", "pct_with_denominator_mean", "unanswerable_refused",
             "fabricated_on_unanswerable", "input_tokens_mean", "output_tokens_mean", "latency_ms_mean", "errors"]
     modes = list(board)
@@ -92,7 +104,10 @@ def main():
         print(f"{k:<28}" + "".join(f"{str(board[m][k]):>20}" for m in modes))
     print(f"\nper query (unverified / claims):")
     for e in scored:
-        print(f"  {e['id']}  " + "  ".join(f"{m[:6]}={e['scores'][m]['n_unverified']}/{e['scores'][m]['n_claims']}" for m in modes if m in e["scores"])
+        def cell(m):
+            sc = e["scores"][m]
+            return f"{m[:6]}={'EMPTY' if sc['answer_status'] == 'empty' else 'decl.' if sc['answer_status'] == 'declined' else str(sc['n_unverified']) + '/' + str(sc['n_claims'])}"
+        print(f"  {e['id']}  " + "  ".join(cell(m) for m in modes if m in e["scores"])
               + ("   [unanswerable]" if not e["stats"].get("answerable", True) else ""))
     print(f"\nwrote {out_path}")
 

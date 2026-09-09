@@ -16,6 +16,7 @@ def test_extraction_kinds_and_skips():
     assert not any(c.value == 2024 for c in cs)          # year skipped
     assert not any(c.value == 3 for c in cs)             # small bare int skipped
     assert any(c.value == 1817 for c in cs)
+    assert not any(c.value in (40, 50) for c in extract_claims("the 40s cluster vs the 50s cluster over a 3-year window"))
 
 
 def test_matching_tolerance_and_kinds():
@@ -30,6 +31,13 @@ def test_derived_difference():
     truth = flatten_truth(STATS)
     cs = match_claims(extract_claims("a gap of 12.3 percentage points; 1,697 more households"), truth)
     assert cs[0].status == "derived" and cs[1].status == "derived"   # 29.1-16.8 ; 1817-120
+
+
+def test_complement_and_group_share():
+    stats = {"answerable": True, "n_total": 10000, "groups": {"all": {"n_purchases": 898, "share_pct": 64.9, "body_type": {"compact": 508, "sedan": 292}}}}
+    cs = match_claims(extract_claims("Compact: 508 of 898 purchases (56.6%); 35.1% of events did not increase; 9,102 other households"), flatten_truth(stats))
+    st = {c.text: c.status for c in cs}
+    assert st["56.6%"] == "derived" and st["35.1%"] == "derived" and st["9,102"] == "derived"
 
 
 def test_external_and_refusal():

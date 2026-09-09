@@ -37,7 +37,7 @@
      "share_of_events_with_increase_pct": 64.9
     }
    },
-   "processing_ms": 37.0
+   "processing_ms": 36.2
   }
  },
  "Q02": {
@@ -148,7 +148,7 @@
      ]
     }
    },
-   "processing_ms": 291.4
+   "processing_ms": 254.5
   }
  },
  "Q03": {
@@ -211,7 +211,7 @@
      }
     }
    },
-   "processing_ms": 46.2
+   "processing_ms": 41.3
   }
  },
  "Q04": {
@@ -284,11 +284,11 @@
      }
     }
    },
-   "processing_ms": 57.5
+   "processing_ms": 56.5
   }
  },
  "Q05": {
-  "question": "Why is the 40s spending cluster higher than the 50s cluster for empty nesters?",
+  "question": "For empty nesters, why was their vehicle spending higher during their 40s than during their 50s?",
   "exposes": "cross-timeline explanation \u2014 requires correlating decade spend with what happened in that decade; ungrounded mode invents a story, naive mode can't align decades across households",
   "result": {
    "metric": "decade_explain",
@@ -388,7 +388,7 @@
      }
     }
    },
-   "processing_ms": 24.5
+   "processing_ms": 23.6
   }
  },
  "Q06": {
@@ -454,7 +454,7 @@
      "mean_lifetime_spend_usd": 368809.0
     }
    },
-   "processing_ms": 27.9
+   "processing_ms": 28.2
   }
  },
  "Q07": {
@@ -486,7 +486,7 @@
      "share_of_total_pct": 61.3
     }
    },
-   "processing_ms": 31.1
+   "processing_ms": 31.0
   }
  },
  "Q08": {
@@ -540,7 +540,7 @@
      "mean_price_usd": 9526.0
     }
    },
-   "processing_ms": 29.9
+   "processing_ms": 29.0
   }
  },
  "Q09": {
@@ -585,7 +585,7 @@
      }
     }
    },
-   "processing_ms": 14.7
+   "processing_ms": 13.0
   }
  },
  "Q10": {
@@ -692,7 +692,7 @@
      }
     }
    },
-   "processing_ms": 23.9
+   "processing_ms": 22.0
   }
  }
 }

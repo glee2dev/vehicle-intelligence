@@ -14,6 +14,8 @@ import os
 import time
 from dataclasses import dataclass, field
 
+import re
+
 import httpx
 from dotenv import load_dotenv
 
@@ -53,12 +55,22 @@ class MockBackend:
                          latency_ms=round((time.perf_counter() - t0) * 1000, 1), stop_reason="end_turn")
 
 
+_NO_SAMPLING = re.compile(r"claude-(?:sonnet-(?:[5-9]|\d{2})|opus-(?:4-(?:[7-9]|\d{2})|[5-9]|\d{2})|fable|mythos)")
+
+
+def supports_sampling(model: str) -> bool:
+    """Sonnet 5+ and Opus 4.7+ reject non-default temperature/top_p/top_k (400)."""
+    return not _NO_SAMPLING.search(model)
+
+
 class AnthropicBackend:
     name = "anthropic"
 
     def __init__(self):
         self.api_key = os.getenv("ANTHROPIC_API_KEY", "")
         self.model = os.getenv("LLM_MODEL", "claude-sonnet-5")
+        self.thinking = os.getenv("LLM_THINKING", "adaptive")          # adaptive (model default) | disabled
+        self.effort = os.getenv("LLM_EFFORT", "")                       # optional: low|medium|high|xhigh|max
         self.url = os.getenv("ANTHROPIC_BASE_URL", "https://api.anthropic.com").rstrip("/") + "/v1/messages"
         if not self.api_key:
             raise ValueError("ANTHROPIC_API_KEY must be set for LLM_BACKEND=anthropic")
@@ -66,8 +78,16 @@ class AnthropicBackend:
                          "content-type": "application/json"}
 
     async def generate(self, system: str, user: str, temperature: float, max_tokens: int, **_) -> LLMResult:
-        payload = {"model": self.model, "max_tokens": max_tokens, "temperature": temperature,
+        payload = {"model": self.model, "max_tokens": max_tokens,
                    "system": system, "messages": [{"role": "user", "content": user}]}
+        sampling_applied = False
+        if supports_sampling(self.model):
+            payload["temperature"] = temperature; sampling_applied = True
+        if self.thinking == "disabled":
+            payload["thinking"] = {"type": "disabled"}
+        if self.effort:
+            payload["output_config"] = {"effort": self.effort}
+        meta = {"sampling_applied": sampling_applied, "thinking": self.thinking, "effort": self.effort or "default"}
         t0 = time.perf_counter()
         try:
             async with httpx.AsyncClient(timeout=180.0) as client:
@@ -83,9 +103,11 @@ class AnthropicBackend:
                              latency_ms=round((time.perf_counter() - t0) * 1000, 1), error=str(e))
         text = "".join(b.get("text", "") for b in d.get("content", []) if b.get("type") == "text")
         usage = d.get("usage", {})
+        meta["thinking_blocks"] = sum(1 for b in d.get("content", []) if b.get("type") == "thinking")
         return LLMResult(text=text, model=d.get("model", self.model), backend=self.name,
                          input_tokens=usage.get("input_tokens", 0), output_tokens=usage.get("output_tokens", 0),
-                         latency_ms=round((time.perf_counter() - t0) * 1000, 1), stop_reason=d.get("stop_reason"))
+                         latency_ms=round((time.perf_counter() - t0) * 1000, 1), stop_reason=d.get("stop_reason"),
+                         meta=meta)
 
 
 def make_backend(name: str | None = None):
