@@ -1,0 +1,7 @@
+.env
+pipeline/data/households.json
+eval/runs/
+__pycache__/
+*.pyc
+venv/
+logs/
