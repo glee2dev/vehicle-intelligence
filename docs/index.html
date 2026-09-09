@@ -134,7 +134,7 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
   <h2>Raw records never reach the model</h2>
   <p>A question becomes a structured query. The pipeline filters and aggregates deterministically and returns statistics with explicit denominators, or an explicit "not answerable" with the reason. The model sees only that. The verifier then extracts every number the model wrote and matches it back to the pipeline output.</p>
   <div class="diagram" id="diagram"></div>
-  <p class="small muted" style="margin-top:14px">Two servers: a data pipeline that never calls a model, and an orchestrator that never touches raw data. The same architecture was built in production against a home-appliance customer panel; this is a rebuild on synthetic data with the argument made measurable.</p>
+  <p class="small muted" style="margin-top:14px">Two servers: a data pipeline that never calls a model, and an orchestrator that never touches raw data. The pattern comes from analytics work I have done on real customer panels; this is an independent build from scratch, on synthetic data, with the argument made measurable.</p>
 </div></section>
 
 <section id="scoreboard"><div class="wrap">
