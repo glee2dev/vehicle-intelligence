@@ -1,0 +1,123 @@
+[
+  {
+    "id": "Q01",
+    "question": "For households that had a new child in the last two years, how did annual vehicle spend change in the two years after versus the two years before?",
+    "exposes": "per-household year alignment — the window is relative to each household's own event year, not a calendar year",
+    "spec": {
+      "filters": {"had_event": {"event": "new_child", "since_year": 2024}},
+      "metric": "spend_around_event",
+      "params": {"event": "new_child", "before": 2, "after": 2, "since_year": 2024}
+    }
+  },
+  {
+    "id": "Q02",
+    "question": "Which life event is followed most often by a switch to a family body type — an SUV or a minivan?",
+    "exposes": "event → next-state join across two timelines; needs a before/after baseline per event, not a raw count",
+    "spec": {
+      "filters": {},
+      "metric": "event_to_body_change",
+      "params": {"target_bodies": ["suv", "minivan"], "window": 2}
+    }
+  },
+  {
+    "id": "Q03",
+    "question": "Among owners with two or more job changes, what share have ever switched to an EV — compared with owners who never changed jobs?",
+    "exposes": "cohort defined by a count, two cohorts, two denominators",
+    "spec": {
+      "filters": {"n_job_changes": {"gte": 2}},
+      "metric": "share",
+      "params": {"of": {"ever_ev": true}},
+      "also": {
+        "filters": {"n_job_changes": {"eq": 0}},
+        "metric": "share",
+        "params": {"of": {"ever_ev": true}}
+      }
+    }
+  },
+  {
+    "id": "Q04",
+    "question": "Do single 40s owners who never married spend more per vehicle purchase than 30s dual-income parents?",
+    "exposes": "per-purchase mean vs per-household mean — the denominator is purchases, and the two segments buy at different rates",
+    "spec": {
+      "filters": {"age_group": "40s", "household_composition": "solo", "ever_married": false},
+      "metric": "price_per_purchase",
+      "params": {},
+      "also": {
+        "filters": {"age_group": "30s", "dual_income": true, "n_children_home": {"gte": 1}},
+        "metric": "price_per_purchase",
+        "params": {}
+      }
+    }
+  },
+  {
+    "id": "Q05",
+    "question": "Why is the 40s spending cluster higher than the 50s cluster for empty nesters?",
+    "exposes": "cross-timeline explanation — requires correlating decade spend with what happened in that decade; ungrounded mode invents a story, naive mode can't align decades across households",
+    "spec": {
+      "filters": {"life_stage": "empty_nester", "has_full_decades": ["40s", "50s"]},
+      "metric": "decade_explain",
+      "params": {"decades": ["40s", "50s"]}
+    }
+  },
+  {
+    "id": "Q06",
+    "question": "Which life stage has the widest spending span — the biggest gap between its lowest and highest annual vehicle spend?",
+    "exposes": "two-stage aggregation: per-household range first, then group means; a single group-level min/max is wrong",
+    "spec": {
+      "filters": {},
+      "group_by": "life_stage",
+      "metric": "spend_span",
+      "params": {}
+    }
+  },
+  {
+    "id": "Q07",
+    "question": "How many households moved more than once and changed their commute type after a move?",
+    "exposes": "compound condition with temporal order — 'after' means the residence period following the move, per household",
+    "spec": {
+      "filters": {},
+      "metric": "sequence",
+      "params": {"event": "moved", "min_count": 2, "attribute": "commute_type"}
+    }
+  },
+  {
+    "id": "Q08",
+    "question": "What do recent graduates buy in their first three years after starting work?",
+    "exposes": "event-anchored window; denominator is purchases inside the window, not households",
+    "spec": {
+      "filters": {"had_event": {"event": "graduation", "since_year": 2020}},
+      "metric": "purchases_after_event",
+      "params": {"event": "first_job", "years": 3}
+    }
+  },
+  {
+    "id": "Q09",
+    "question": "How does EV adoption in this dataset compare with the national average?",
+    "exposes": "external-knowledge trap — no national figure exists in the data; the correct answer reports the in-dataset rate and refuses the comparison",
+    "spec": {
+      "filters": {},
+      "metric": "unanswerable",
+      "params": {"reason": "external_benchmark"},
+      "also": {
+        "filters": {},
+        "metric": "share",
+        "params": {"of": {"ever_ev": true}}
+      }
+    }
+  },
+  {
+    "id": "Q10",
+    "question": "What is the average household income of retired owners?",
+    "exposes": "bracket-to-number trap — income is categorical; naive mode converts brackets to dollars and averages them",
+    "spec": {
+      "filters": {"life_stage": "retired"},
+      "metric": "unanswerable",
+      "params": {"reason": "numeric_income"},
+      "also": {
+        "filters": {"life_stage": "retired"},
+        "metric": "segment_profile",
+        "params": {}
+      }
+    }
+  }
+]

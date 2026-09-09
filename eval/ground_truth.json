@@ -1,0 +1,698 @@
+{
+ "Q01": {
+  "question": "For households that had a new child in the last two years, how did annual vehicle spend change in the two years after versus the two years before?",
+  "exposes": "per-household year alignment \u2014 the window is relative to each household's own event year, not a calendar year",
+  "result": {
+   "metric": "spend_around_event",
+   "filters": {
+    "had_event": {
+     "event": "new_child",
+     "since_year": 2024
+    }
+   },
+   "group_by": null,
+   "params": {
+    "event": "new_child",
+    "before": 2,
+    "after": 2,
+    "since_year": 2024
+   },
+   "n_total": 10000,
+   "n_matched": 577,
+   "match_pct": 5.8,
+   "answerable": true,
+   "unanswerable_reason": null,
+   "groups": {
+    "all": {
+     "event": "new_child",
+     "window_before_years": 2,
+     "window_after_years": 2,
+     "cost_basis": "total (running + capital)",
+     "n_households_with_event": 577,
+     "n_events_scored": 598,
+     "mean_annual_spend_before_usd": 11298.0,
+     "mean_annual_spend_after_usd": 17435.0,
+     "delta_pct_of_means": 54.3,
+     "median_per_household_delta_pct": 15.2,
+     "share_of_events_with_increase_pct": 64.9
+    }
+   },
+   "processing_ms": 37.0
+  }
+ },
+ "Q02": {
+  "question": "Which life event is followed most often by a switch to a family body type \u2014 an SUV or a minivan?",
+  "exposes": "event \u2192 next-state join across two timelines; needs a before/after baseline per event, not a raw count",
+  "result": {
+   "metric": "event_to_body_change",
+   "filters": {},
+   "group_by": null,
+   "params": {
+    "target_bodies": [
+     "suv",
+     "minivan"
+    ],
+    "window": 2
+   },
+   "n_total": 10000,
+   "n_matched": 10000,
+   "match_pct": 100.0,
+   "answerable": true,
+   "unanswerable_reason": null,
+   "groups": {
+    "all": {
+     "target_bodies": [
+      "minivan",
+      "suv"
+     ],
+     "window_years": 2,
+     "population_holding_now_pct": 29.1,
+     "by_event": [
+      {
+       "event": "new_child",
+       "n_events": 10042,
+       "held_before_pct": 37.9,
+       "held_within_window_pct": 87.1,
+       "lift_pts": 49.2
+      },
+      {
+       "event": "marriage",
+       "n_events": 5865,
+       "held_before_pct": 0.2,
+       "held_within_window_pct": 43.3,
+       "lift_pts": 43.1
+      },
+      {
+       "event": "promotion",
+       "n_events": 15599,
+       "held_before_pct": 32.3,
+       "held_within_window_pct": 46.0,
+       "lift_pts": 13.7
+      },
+      {
+       "event": "moved",
+       "n_events": 19824,
+       "held_before_pct": 25.1,
+       "held_within_window_pct": 37.1,
+       "lift_pts": 12.0
+      },
+      {
+       "event": "job_change",
+       "n_events": 18793,
+       "held_before_pct": 28.7,
+       "held_within_window_pct": 36.9,
+       "lift_pts": 8.2
+      },
+      {
+       "event": "new_hobby",
+       "n_events": 2370,
+       "held_before_pct": 20.0,
+       "held_within_window_pct": 26.8,
+       "lift_pts": 6.8
+      },
+      {
+       "event": "bereavement",
+       "n_events": 358,
+       "held_before_pct": 18.2,
+       "held_within_window_pct": 22.6,
+       "lift_pts": 4.4
+      },
+      {
+       "event": "career_change",
+       "n_events": 1329,
+       "held_before_pct": 36.3,
+       "held_within_window_pct": 39.4,
+       "lift_pts": 3.1
+      },
+      {
+       "event": "divorce",
+       "n_events": 1016,
+       "held_before_pct": 65.6,
+       "held_within_window_pct": 65.9,
+       "lift_pts": 0.3
+      },
+      {
+       "event": "empty_nest",
+       "n_events": 2029,
+       "held_before_pct": 50.6,
+       "held_within_window_pct": 40.8,
+       "lift_pts": -9.8
+      },
+      {
+       "event": "retirement",
+       "n_events": 1041,
+       "held_before_pct": 26.8,
+       "held_within_window_pct": 15.9,
+       "lift_pts": -10.9
+      }
+     ]
+    }
+   },
+   "processing_ms": 291.4
+  }
+ },
+ "Q03": {
+  "question": "Among owners with two or more job changes, what share have ever switched to an EV \u2014 compared with owners who never changed jobs?",
+  "exposes": "cohort defined by a count, two cohorts, two denominators",
+  "result": {
+   "metric": "share",
+   "filters": {
+    "n_job_changes": {
+     "gte": 2
+    }
+   },
+   "group_by": null,
+   "params": {
+    "of": {
+     "ever_ev": true
+    }
+   },
+   "n_total": 10000,
+   "n_matched": 6251,
+   "match_pct": 62.5,
+   "answerable": true,
+   "unanswerable_reason": null,
+   "groups": {
+    "all": {
+     "n_households": 6251,
+     "n_matching": 1817,
+     "share_pct": 29.1,
+     "of": {
+      "ever_ev": true
+     }
+    }
+   },
+   "answerable_part": {
+    "metric": "share",
+    "filters": {
+     "n_job_changes": {
+      "eq": 0
+     }
+    },
+    "group_by": null,
+    "params": {
+     "of": {
+      "ever_ev": true
+     }
+    },
+    "n_total": 10000,
+    "n_matched": 714,
+    "match_pct": 7.1,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "n_households": 714,
+      "n_matching": 120,
+      "share_pct": 16.8,
+      "of": {
+       "ever_ev": true
+      }
+     }
+    }
+   },
+   "processing_ms": 46.2
+  }
+ },
+ "Q04": {
+  "question": "Do single 40s owners who never married spend more per vehicle purchase than 30s dual-income parents?",
+  "exposes": "per-purchase mean vs per-household mean \u2014 the denominator is purchases, and the two segments buy at different rates",
+  "result": {
+   "metric": "price_per_purchase",
+   "filters": {
+    "age_group": "40s",
+    "household_composition": "solo",
+    "ever_married": false
+   },
+   "group_by": null,
+   "params": {},
+   "n_total": 10000,
+   "n_matched": 1043,
+   "match_pct": 10.4,
+   "answerable": true,
+   "unanswerable_reason": null,
+   "groups": {
+    "all": {
+     "n_households": 1043,
+     "n_purchases": 4817,
+     "mean_price_per_purchase_usd": 25981.0,
+     "median_price_per_purchase_usd": 16996,
+     "mean_of_household_means_usd": 25530.0,
+     "avg_purchases_per_household": 4.62,
+     "price_band_distribution": {
+      "1": 2132,
+      "2": 774,
+      "3": 804,
+      "4": 560,
+      "5": 547
+     },
+     "new_share_pct": 52.7
+    }
+   },
+   "answerable_part": {
+    "metric": "price_per_purchase",
+    "filters": {
+     "age_group": "30s",
+     "dual_income": true,
+     "n_children_home": {
+      "gte": 1
+     }
+    },
+    "group_by": null,
+    "params": {},
+    "n_total": 10000,
+    "n_matched": 876,
+    "match_pct": 8.8,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "n_households": 876,
+      "n_purchases": 3196,
+      "mean_price_per_purchase_usd": 24361.0,
+      "median_price_per_purchase_usd": 15572.0,
+      "mean_of_household_means_usd": 23977.0,
+      "avg_purchases_per_household": 3.65,
+      "price_band_distribution": {
+       "1": 1525,
+       "2": 396,
+       "3": 623,
+       "4": 398,
+       "5": 254
+      },
+      "new_share_pct": 44.6
+     }
+    }
+   },
+   "processing_ms": 57.5
+  }
+ },
+ "Q05": {
+  "question": "Why is the 40s spending cluster higher than the 50s cluster for empty nesters?",
+  "exposes": "cross-timeline explanation \u2014 requires correlating decade spend with what happened in that decade; ungrounded mode invents a story, naive mode can't align decades across households",
+  "result": {
+   "metric": "decade_explain",
+   "filters": {
+    "life_stage": "empty_nester",
+    "has_full_decades": [
+     "40s",
+     "50s"
+    ]
+   },
+   "group_by": null,
+   "params": {
+    "decades": [
+     "40s",
+     "50s"
+    ]
+   },
+   "n_total": 10000,
+   "n_matched": 426,
+   "match_pct": 4.3,
+   "answerable": true,
+   "unanswerable_reason": null,
+   "groups": {
+    "all": {
+     "decades": [
+      "40s",
+      "50s"
+     ],
+     "n_households_total": 426,
+     "n_with_full_decades": 426,
+     "n_excluded_partial_history": 0,
+     "per_decade": {
+      "40s": {
+       "mean_cluster_0_to_2": 1.43,
+       "cluster_distribution": {
+        "0": 32,
+        "1": 177,
+        "2": 217
+       },
+       "mean_annual_spend_usd": 9113.0,
+       "mean_purchases": 1.58,
+       "top_purchase_trigger": {
+        "replacement_cycle": 309,
+        "promotion": 60,
+        "job_change": 42
+       },
+       "share_of_households_with_event_in_decade_pct": {
+        "promotion": 46.5,
+        "new_child": 3.3,
+        "empty_nest": 14.3,
+        "retirement": 0.0,
+        "job_change": 50.9,
+        "new_hobby": 5.2,
+        "moved": 31.7
+       },
+       "event_counts": {
+        "job_change": 249,
+        "promotion": 233,
+        "moved": 155,
+        "empty_nest": 61,
+        "divorce": 23,
+        "new_hobby": 22
+       }
+      },
+      "50s": {
+       "mean_cluster_0_to_2": 1.5,
+       "cluster_distribution": {
+        "0": 26,
+        "1": 163,
+        "2": 237
+       },
+       "mean_annual_spend_usd": 9584.0,
+       "mean_purchases": 1.56,
+       "top_purchase_trigger": {
+        "replacement_cycle": 277,
+        "promotion": 63,
+        "empty_nest": 51
+       },
+       "share_of_households_with_event_in_decade_pct": {
+        "promotion": 46.5,
+        "new_child": 0.0,
+        "empty_nest": 80.0,
+        "retirement": 0.0,
+        "job_change": 48.8,
+        "new_hobby": 0.2,
+        "moved": 27.7
+       },
+       "event_counts": {
+        "empty_nest": 341,
+        "job_change": 236,
+        "promotion": 228,
+        "moved": 129,
+        "bereavement": 17,
+        "divorce": 2
+       }
+      }
+     }
+    }
+   },
+   "processing_ms": 24.5
+  }
+ },
+ "Q06": {
+  "question": "Which life stage has the widest spending span \u2014 the biggest gap between its lowest and highest annual vehicle spend?",
+  "exposes": "two-stage aggregation: per-household range first, then group means; a single group-level min/max is wrong",
+  "result": {
+   "metric": "spend_span",
+   "filters": {},
+   "group_by": "life_stage",
+   "params": {},
+   "n_total": 10000,
+   "n_matched": 10000,
+   "match_pct": 100.0,
+   "answerable": true,
+   "unanswerable_reason": null,
+   "groups": {
+    "early_career": {
+     "n_households": 1980,
+     "mean_range_usd": 16443.0,
+     "median_range_usd": 13009.0,
+     "mean_min_usd": 279.0,
+     "mean_max_usd": 16723.0,
+     "mean_lifetime_spend_usd": 38511.0
+    },
+    "empty_nester": {
+     "n_households": 1371,
+     "mean_range_usd": 54433.0,
+     "median_range_usd": 53907,
+     "mean_min_usd": 118.0,
+     "mean_max_usd": 54551.0,
+     "mean_lifetime_spend_usd": 285471.0
+    },
+    "established_professional": {
+     "n_households": 2483,
+     "mean_range_usd": 46710.0,
+     "median_range_usd": 41155,
+     "mean_min_usd": 123.0,
+     "mean_max_usd": 46833.0,
+     "mean_lifetime_spend_usd": 171070.0
+    },
+    "parent_school_age": {
+     "n_households": 2106,
+     "mean_range_usd": 50458.0,
+     "median_range_usd": 48962.0,
+     "mean_min_usd": 111.0,
+     "mean_max_usd": 50569.0,
+     "mean_lifetime_spend_usd": 201384.0
+    },
+    "parent_young_children": {
+     "n_households": 1019,
+     "mean_range_usd": 45031.0,
+     "median_range_usd": 39679,
+     "mean_min_usd": 109.0,
+     "mean_max_usd": 45140.0,
+     "mean_lifetime_spend_usd": 132452.0
+    },
+    "retired": {
+     "n_households": 1041,
+     "mean_range_usd": 57705.0,
+     "median_range_usd": 58171,
+     "mean_min_usd": 52.0,
+     "mean_max_usd": 57756.0,
+     "mean_lifetime_spend_usd": 368809.0
+    }
+   },
+   "processing_ms": 27.9
+  }
+ },
+ "Q07": {
+  "question": "How many households moved more than once and changed their commute type after a move?",
+  "exposes": "compound condition with temporal order \u2014 'after' means the residence period following the move, per household",
+  "result": {
+   "metric": "sequence",
+   "filters": {},
+   "group_by": null,
+   "params": {
+    "event": "moved",
+    "min_count": 2,
+    "attribute": "commute_type"
+   },
+   "n_total": 10000,
+   "n_matched": 10000,
+   "match_pct": 100.0,
+   "answerable": true,
+   "unanswerable_reason": null,
+   "groups": {
+    "all": {
+     "event": "moved",
+     "min_count": 2,
+     "attribute": "commute_type",
+     "n_households_total": 10000,
+     "n_households_with_min_events": 6670,
+     "n_changed_after": 6125,
+     "share_of_cohort_pct": 91.8,
+     "share_of_total_pct": 61.3
+    }
+   },
+   "processing_ms": 31.1
+  }
+ },
+ "Q08": {
+  "question": "What do recent graduates buy in their first three years after starting work?",
+  "exposes": "event-anchored window; denominator is purchases inside the window, not households",
+  "result": {
+   "metric": "purchases_after_event",
+   "filters": {
+    "had_event": {
+     "event": "graduation",
+     "since_year": 2020
+    }
+   },
+   "group_by": null,
+   "params": {
+    "event": "first_job",
+    "years": 3
+   },
+   "n_total": 10000,
+   "n_matched": 1179,
+   "match_pct": 11.8,
+   "answerable": true,
+   "unanswerable_reason": null,
+   "groups": {
+    "all": {
+     "event": "first_job",
+     "window_years": 3,
+     "n_households_with_event": 1179,
+     "n_purchases_in_window": 898,
+     "purchases_per_household": 0.76,
+     "body_type": {
+      "compact": 508,
+      "crossover": 96,
+      "sedan": 292,
+      "suv": 2
+     },
+     "powertrain": {
+      "ev": 148,
+      "gasoline": 540,
+      "hybrid": 210
+     },
+     "new_or_used": {
+      "new": 198,
+      "used": 700
+     },
+     "price_band": {
+      "1": 860,
+      "2": 29,
+      "3": 9
+     },
+     "mean_price_usd": 9526.0
+    }
+   },
+   "processing_ms": 29.9
+  }
+ },
+ "Q09": {
+  "question": "How does EV adoption in this dataset compare with the national average?",
+  "exposes": "external-knowledge trap \u2014 no national figure exists in the data; the correct answer reports the in-dataset rate and refuses the comparison",
+  "result": {
+   "metric": "unanswerable",
+   "filters": {},
+   "group_by": null,
+   "params": {
+    "reason": "external_benchmark"
+   },
+   "n_total": 10000,
+   "n_matched": 10000,
+   "match_pct": 100.0,
+   "answerable": false,
+   "unanswerable_reason": "The dataset contains no external or national benchmark. Only within-dataset figures can be reported; any comparison to a national rate would be invented.",
+   "groups": {},
+   "unanswerable_key": "external_benchmark",
+   "answerable_part": {
+    "metric": "share",
+    "filters": {},
+    "group_by": null,
+    "params": {
+     "of": {
+      "ever_ev": true
+     }
+    },
+    "n_total": 10000,
+    "n_matched": 10000,
+    "match_pct": 100.0,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "n_households": 10000,
+      "n_matching": 2694,
+      "share_pct": 26.9,
+      "of": {
+       "ever_ev": true
+      }
+     }
+    }
+   },
+   "processing_ms": 14.7
+  }
+ },
+ "Q10": {
+  "question": "What is the average household income of retired owners?",
+  "exposes": "bracket-to-number trap \u2014 income is categorical; naive mode converts brackets to dollars and averages them",
+  "result": {
+   "metric": "unanswerable",
+   "filters": {
+    "life_stage": "retired"
+   },
+   "group_by": null,
+   "params": {
+    "reason": "numeric_income"
+   },
+   "n_total": 10000,
+   "n_matched": 1041,
+   "match_pct": 10.4,
+   "answerable": false,
+   "unanswerable_reason": "Income is recorded only as a bracket (lower / lower_middle / upper_middle / upper). No dollar income exists in the dataset, so an average income cannot be computed.",
+   "groups": {},
+   "unanswerable_key": "numeric_income",
+   "answerable_part": {
+    "metric": "segment_profile",
+    "filters": {
+     "life_stage": "retired"
+    },
+    "group_by": null,
+    "params": {},
+    "n_total": 10000,
+    "n_matched": 1041,
+    "match_pct": 10.4,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "n_households": 1041,
+      "avg_age": 68.9,
+      "age_group": {
+       "60s": 577,
+       "70s": 464
+      },
+      "life_stage": {
+       "retired": 1041
+      },
+      "household_composition": {
+       "partnered_no_children": 880,
+       "solo": 161
+      },
+      "income_bracket": {
+       "lower": 169,
+       "lower_middle": 384,
+       "upper_middle": 488
+      },
+      "area_type": {
+       "rural": 273,
+       "suburban": 495,
+       "urban": 273
+      },
+      "commute_type": {
+       "none": 1041
+      },
+      "primary_body_type": {
+       "compact": 160,
+       "crossover": 336,
+       "none": 19,
+       "sedan": 407,
+       "sports": 16,
+       "suv": 103
+      },
+      "primary_powertrain": {
+       "ev": 166,
+       "gasoline": 625,
+       "hybrid": 231,
+       "none": 19
+      },
+      "ever_ev_pct": 22.2,
+      "avg_current_vehicles": 1.0,
+      "avg_purchases_lifetime": 8.1,
+      "avg_price_per_purchase_usd": 26472.0,
+      "avg_annual_spend_5y_usd": 5615.0,
+      "rfm_cluster": {
+       "declining": 36,
+       "dormant": 28,
+       "high_stable": 80,
+       "high_volatile": 74,
+       "mid_stable": 769,
+       "rising": 54
+      },
+      "progression_type": {
+       "ascending": 184,
+       "descending": 42,
+       "stable": 19,
+       "volatile": 796
+      },
+      "top_trigger_events": {
+       "first_job": 901,
+       "new_child": 520,
+       "promotion": 245,
+       "job_change": 208,
+       "marriage": 142
+      },
+      "avg_job_changes": 2.01,
+      "avg_moves": 2.29
+     }
+    }
+   },
+   "processing_ms": 23.9
+  }
+ }
+}
