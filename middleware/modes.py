@@ -75,12 +75,12 @@ def _slim(rec: dict) -> dict:
 
 def build_naive_grounded(question: str, records_payload: dict, char_budget: int = 220_000) -> ModeContext:
     """records_payload is the pipeline /records response. Records are packed until char_budget."""
-    packed, chars, n_used = [], 0, 0
+    packed, chars, n_used, ids = [], 0, 0, []
     for r in records_payload["records"]:
         s = json.dumps(_slim(r), separators=(",", ":"))
         if chars + len(s) > char_budget:
             break
-        packed.append(s); chars += len(s); n_used += 1
+        packed.append(s); chars += len(s); n_used += 1; ids.append(r["owner_id"])
     n_matched = records_payload["n_matched"]
     sample_note = (f"You are given {n_used} of {n_matched:,} households that match the question's segment "
                    f"(the segment filter was applied deterministically before sampling; this is a uniform random sample). "
@@ -93,7 +93,8 @@ def build_naive_grounded(question: str, records_payload: dict, char_budget: int 
             f"Schema:\n{SCHEMA_SUMMARY}\n\nRecords (one JSON object per line):\n" + "\n".join(packed) +
             f"\n\nQuestion: {question}")
     return ModeContext("naive_grounded", system, user, len(system) + len(user),
-                       {"records": n_used, "n_matched": n_matched, "truncated": n_used < n_matched, "stats": False})
+                       {"records": n_used, "n_matched": n_matched, "truncated": n_used < n_matched, "stats": False,
+                        "owner_ids": ids})
 
 
 # ── Mode 3: pipeline grounded ─────────────────────────────────────────────────
