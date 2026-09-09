@@ -1,0 +1,3290 @@
+{
+ "backend": "anthropic",
+ "model": "claude-sonnet-5",
+ "persona": "market_strategist",
+ "created": "2026-09-09T01:56:22.975665",
+ "scoreboard": {
+  "pipeline_grounded": {
+   "n_queries": 10,
+   "answered": 10,
+   "declined_no_numbers": 0,
+   "empty_truncated": 0,
+   "hit_max_tokens": 0,
+   "claims_total": 171,
+   "verified": 147,
+   "derived_or_raw": 20,
+   "unverified": 4,
+   "grounding_rate_pooled": 0.977,
+   "grounding_rate_mean": 0.974,
+   "queries_fully_grounded": 8,
+   "external_flags": 0,
+   "queries_with_external": 0,
+   "pct_with_denominator_mean": 0.768,
+   "unanswerable_refused": "2/2",
+   "fabricated_on_unanswerable": 0,
+   "input_tokens_mean": 1117,
+   "output_tokens_mean": 580.0,
+   "latency_ms_mean": 7380.0,
+   "errors": 0
+  }
+ },
+ "scored": [
+  {
+   "id": "Q01",
+   "question": "For households that had a new child in the last two years, how did annual vehicle spend change in the two years after versus the two years before?",
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "**Segment size & why it matters:** 577 households (5.8% of 10,000 total) experienced a new child event since 2024, generating 598 scored events. This is a meaningful cohort for targeting life-stage-driven vehicle purchases, particularly around safety and capacity upgrades.\n\n**Opportunity 1 \u2014 Overall spend lift:** Mean annual vehicle spend rose from $11,298 to $17,435 across the before/after windows \u2014 a 54.3% increase (delta_pct_of_means). This is a strong signal that new-child households are a high-value segment for dealers and lenders to target with proactive outreach in the two years following the event.\n\n**Opportunity 2 \u2014 Majority act, but with variance:** 64.9% of the 598 scored events (388 events, an inference derived from applying the percentage to the event count) show an increase in spend, meaning roughly one-third do not increase. This suggests segmenting further \u2014 e.g., identifying which sub-groups are non-responders \u2014 could sharpen marketing efficiency, though the JSON does not provide that breakdown.\n\n**Opportunity 3 \u2014 Typical household lift is more modest:** The median per-household delta is 15.2%, notably lower than the 54.3% mean-based figure, implying the mean is pulled up by a subset of large spenders (inference). This suggests a tiered product strategy: premium offerings for high-spend responders and value-tier financing for the median household.\n\n**Strengthening the case:** Additional data on vehicle type/body style chosen post-event, household income, urban/rural location, and whether the spend increase was running vs. capital cost would sharpen segmentation and campaign targeting. None of this is available in the current JSON.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 871,
+     "output_tokens": 550,
+     "latency_ms": 8020.9,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 2348,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "stats": {
+    "metric": "spend_around_event",
+    "filters": {
+     "had_event": {
+      "event": "new_child",
+      "since_year": 2024
+     }
+    },
+    "group_by": null,
+    "params": {
+     "event": "new_child",
+     "before": 2,
+     "after": 2,
+     "since_year": 2024
+    },
+    "n_total": 10000,
+    "n_matched": 577,
+    "match_pct": 5.8,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "event": "new_child",
+      "window_before_years": 2,
+      "window_after_years": 2,
+      "cost_basis": "total (running + capital)",
+      "n_households_with_event": 577,
+      "n_events_scored": 598,
+      "mean_annual_spend_before_usd": 11298.0,
+      "mean_annual_spend_after_usd": 17435.0,
+      "delta_pct_of_means": 54.3,
+      "median_per_household_delta_pct": 15.2,
+      "share_of_events_with_increase_pct": 64.9
+     }
+    }
+   },
+   "scores": {
+    "pipeline_grounded": {
+     "mode": "pipeline_grounded",
+     "n_claims": 12,
+     "n_verified": 11,
+     "n_derived": 0,
+     "n_unverified": 1,
+     "grounding_rate": 0.917,
+     "unverified_rate": 0.083,
+     "n_external_flags": 0,
+     "pct_claims": 5,
+     "pct_with_denominator": 0.4,
+     "unanswerable_expected": false,
+     "refusal_detected": null,
+     "fabricated_on_unanswerable": null,
+     "truth_basis": "population",
+     "answer_status": "answered",
+     "claims": [
+      {
+       "text": "577",
+       "value": 577.0,
+       "kind": "count",
+       "start": 35,
+       "end": 38,
+       "context": "**Segment size & why it matters:** 577 households (5.8% of 10,000 total) experienced a new child e",
+       "status": "verified",
+       "matched_path": "n_matched",
+       "matched_value": 577.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "5.8%",
+       "value": 5.8,
+       "kind": "pct",
+       "start": 51,
+       "end": 55,
+       "context": "**Segment size & why it matters:** 577 households (5.8% of 10,000 total) experienced a new child event since 2024, ",
+       "status": "verified",
+       "matched_path": "match_pct",
+       "matched_value": 5.8,
+       "denominator_stated": true
+      },
+      {
+       "text": "10,000",
+       "value": 10000.0,
+       "kind": "plain",
+       "start": 59,
+       "end": 65,
+       "context": "**Segment size & why it matters:** 577 households (5.8% of 10,000 total) experienced a new child event since 2024, generating",
+       "status": "verified",
+       "matched_path": "n_total",
+       "matched_value": 10000.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "598",
+       "value": 598.0,
+       "kind": "plain",
+       "start": 126,
+       "end": 129,
+       "context": "total) experienced a new child event since 2024, generating 598 scored events. This is a meaningful cohort for targeting li",
+       "status": "verified",
+       "matched_path": "groups.all.n_events_scored",
+       "matched_value": 598.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$11,298",
+       "value": 11298.0,
+       "kind": "usd",
+       "start": 351,
+       "end": 358,
+       "context": "\u2014 Overall spend lift:** Mean annual vehicle spend rose from $11,298 to $17,435 across the before/after windows \u2014 a 54.3% increas",
+       "status": "verified",
+       "matched_path": "groups.all.mean_annual_spend_before_usd",
+       "matched_value": 11298.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$17,435",
+       "value": 17435.0,
+       "kind": "usd",
+       "start": 362,
+       "end": 369,
+       "context": "pend lift:** Mean annual vehicle spend rose from $11,298 to $17,435 across the before/after windows \u2014 a 54.3% increase (delta_pc",
+       "status": "verified",
+       "matched_path": "groups.all.mean_annual_spend_after_usd",
+       "matched_value": 17435.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "54.3%",
+       "value": 54.3,
+       "kind": "pct",
+       "start": 406,
+       "end": 411,
+       "context": "from $11,298 to $17,435 across the before/after windows \u2014 a 54.3% increase (delta_pct_of_means). This is a strong signal that",
+       "status": "verified",
+       "matched_path": "groups.all.delta_pct_of_means",
+       "matched_value": 54.3,
+       "denominator_stated": false
+      },
+      {
+       "text": "64.9%",
+       "value": 64.9,
+       "kind": "pct",
+       "start": 668,
+       "end": 673,
+       "context": "vent.  **Opportunity 2 \u2014 Majority act, but with variance:** 64.9% of the 598 scored events (388 events, an inference derived ",
+       "status": "verified",
+       "matched_path": "groups.all.share_of_events_with_increase_pct",
+       "matched_value": 64.9,
+       "denominator_stated": true
+      },
+      {
+       "text": "598",
+       "value": 598.0,
+       "kind": "plain",
+       "start": 681,
+       "end": 684,
+       "context": "rtunity 2 \u2014 Majority act, but with variance:** 64.9% of the 598 scored events (388 events, an inference derived from applyi",
+       "status": "verified",
+       "matched_path": "groups.all.n_events_scored",
+       "matched_value": 598.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "388",
+       "value": 388.0,
+       "kind": "count",
+       "start": 700,
+       "end": 703,
+       "context": "y act, but with variance:** 64.9% of the 598 scored events (388 events, an inference derived from applying the percentage t",
+       "status": "unverified",
+       "matched_path": null,
+       "matched_value": null,
+       "denominator_stated": null
+      },
+      {
+       "text": "15.2%",
+       "value": 15.2,
+       "kind": "pct",
+       "start": 1122,
+       "end": 1127,
+       "context": "ld lift is more modest:** The median per-household delta is 15.2%, notably lower than the 54.3% mean-based figure, implying t",
+       "status": "verified",
+       "matched_path": "groups.all.median_per_household_delta_pct",
+       "matched_value": 15.2,
+       "denominator_stated": false
+      },
+      {
+       "text": "54.3%",
+       "value": 54.3,
+       "kind": "pct",
+       "start": 1152,
+       "end": 1157,
+       "context": "median per-household delta is 15.2%, notably lower than the 54.3% mean-based figure, implying the mean is pulled up by a subs",
+       "status": "verified",
+       "matched_path": "groups.all.delta_pct_of_means",
+       "matched_value": 54.3,
+       "denominator_stated": false
+      }
+     ],
+     "external_flags": [],
+     "negated_mentions": []
+    }
+   }
+  },
+  {
+   "id": "Q02",
+   "question": "Which life event is followed most often by a switch to a family body type \u2014 an SUV or a minivan?",
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "**Segment size & why it matters:** Across 10,000 households in this dataset, 29.1% currently hold a family body type (SUV or minivan) \u2014 a sizable base for cross-sell and retention strategies tied to life-stage transitions.\n\n**Top opportunity \u2014 new_child events (10,042 events):** Within 2 years of a new_child event, 87.1% of associated households hold an SUV/minivan, up from 37.9% held_before \u2014 a 49.2 percentage-point lift, the largest of any event tracked. This is the single strongest trigger for family-body-type conversion and represents the clearest opportunity for targeted marketing timed to parenthood.\n\n**Second opportunity \u2014 marriage events (5,865 events):** Post-marriage, 43.3% of associated households hold a family body type versus just 0.2% held_before \u2014 a 43.1-point lift, nearly matching new_child in magnitude. This suggests (inference) that marriage-linked messaging/promotions could capture a nearly untapped pre-marriage base.\n\n**Third opportunity \u2014 promotion events (15,599 events):** Only a 13.7-point lift (32.3% before vs. 46.0% within window), but the largest event volume in the dataset, meaning even modest lift-per-household could translate into a large absolute number of conversions (inference \u2014 absolute counts not directly given).\n\n**Bottom line:** new_child is the life event most often followed by a switch to SUV/minivan ownership, both by lift (49.2 pts) and by high post-event penetration (87.1% of 10,042 events).\n\n**Data that would strengthen this case:** Household income or vehicle price data at time of event, geographic/regional breakdowns, and confirmation of purchase timing (immediate vs. gradual within the 2-year window) are not available in this dataset.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 1509,
+     "output_tokens": 583,
+     "latency_ms": 7921.2,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 3634,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "stats": {
+    "metric": "event_to_body_change",
+    "filters": {},
+    "group_by": null,
+    "params": {
+     "target_bodies": [
+      "suv",
+      "minivan"
+     ],
+     "window": 2
+    },
+    "n_total": 10000,
+    "n_matched": 10000,
+    "match_pct": 100.0,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "target_bodies": [
+       "minivan",
+       "suv"
+      ],
+      "window_years": 2,
+      "population_holding_now_pct": 29.1,
+      "by_event": [
+       {
+        "event": "new_child",
+        "n_events": 10042,
+        "held_before_pct": 37.9,
+        "held_within_window_pct": 87.1,
+        "lift_pts": 49.2
+       },
+       {
+        "event": "marriage",
+        "n_events": 5865,
+        "held_before_pct": 0.2,
+        "held_within_window_pct": 43.3,
+        "lift_pts": 43.1
+       },
+       {
+        "event": "promotion",
+        "n_events": 15599,
+        "held_before_pct": 32.3,
+        "held_within_window_pct": 46.0,
+        "lift_pts": 13.7
+       },
+       {
+        "event": "moved",
+        "n_events": 19824,
+        "held_before_pct": 25.1,
+        "held_within_window_pct": 37.1,
+        "lift_pts": 12.0
+       },
+       {
+        "event": "job_change",
+        "n_events": 18793,
+        "held_before_pct": 28.7,
+        "held_within_window_pct": 36.9,
+        "lift_pts": 8.2
+       },
+       {
+        "event": "new_hobby",
+        "n_events": 2370,
+        "held_before_pct": 20.0,
+        "held_within_window_pct": 26.8,
+        "lift_pts": 6.8
+       },
+       {
+        "event": "bereavement",
+        "n_events": 358,
+        "held_before_pct": 18.2,
+        "held_within_window_pct": 22.6,
+        "lift_pts": 4.4
+       },
+       {
+        "event": "career_change",
+        "n_events": 1329,
+        "held_before_pct": 36.3,
+        "held_within_window_pct": 39.4,
+        "lift_pts": 3.1
+       },
+       {
+        "event": "divorce",
+        "n_events": 1016,
+        "held_before_pct": 65.6,
+        "held_within_window_pct": 65.9,
+        "lift_pts": 0.3
+       },
+       {
+        "event": "empty_nest",
+        "n_events": 2029,
+        "held_before_pct": 50.6,
+        "held_within_window_pct": 40.8,
+        "lift_pts": -9.8
+       },
+       {
+        "event": "retirement",
+        "n_events": 1041,
+        "held_before_pct": 26.8,
+        "held_within_window_pct": 15.9,
+        "lift_pts": -10.9
+       }
+      ]
+     }
+    }
+   },
+   "scores": {
+    "pipeline_grounded": {
+     "mode": "pipeline_grounded",
+     "n_claims": 17,
+     "n_verified": 15,
+     "n_derived": 2,
+     "n_unverified": 0,
+     "grounding_rate": 1.0,
+     "unverified_rate": 0.0,
+     "n_external_flags": 0,
+     "pct_claims": 9,
+     "pct_with_denominator": 0.667,
+     "unanswerable_expected": false,
+     "refusal_detected": null,
+     "fabricated_on_unanswerable": null,
+     "truth_basis": "population",
+     "answer_status": "answered",
+     "claims": [
+      {
+       "text": "10,000",
+       "value": 10000.0,
+       "kind": "count",
+       "start": 42,
+       "end": 48,
+       "context": "**Segment size & why it matters:** Across 10,000 households in this dataset, 29.1% currently hold a family b",
+       "status": "verified",
+       "matched_path": "n_total",
+       "matched_value": 10000.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "29.1%",
+       "value": 29.1,
+       "kind": "pct",
+       "start": 77,
+       "end": 82,
+       "context": "why it matters:** Across 10,000 households in this dataset, 29.1% currently hold a family body type (SUV or minivan) \u2014 a siza",
+       "status": "verified",
+       "matched_path": "groups.all.population_holding_now_pct",
+       "matched_value": 29.1,
+       "denominator_stated": false
+      },
+      {
+       "text": "10,042",
+       "value": 10042.0,
+       "kind": "count",
+       "start": 262,
+       "end": 268,
+       "context": "e-stage transitions.  **Top opportunity \u2014 new_child events (10,042 events):** Within 2 years of a new_child event, 87.1% of as",
+       "status": "verified",
+       "matched_path": "groups.all.by_event[0].n_events",
+       "matched_value": 10042.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "87.1%",
+       "value": 87.1,
+       "kind": "pct",
+       "start": 317,
+       "end": 322,
+       "context": "nts (10,042 events):** Within 2 years of a new_child event, 87.1% of associated households hold an SUV/minivan, up from 37.9%",
+       "status": "verified",
+       "matched_path": "groups.all.by_event[0].held_within_window_pct",
+       "matched_value": 87.1,
+       "denominator_stated": true
+      },
+      {
+       "text": "37.9%",
+       "value": 37.9,
+       "kind": "pct",
+       "start": 377,
+       "end": 382,
+       "context": "87.1% of associated households hold an SUV/minivan, up from 37.9% held_before \u2014 a 49.2 percentage-point lift, the largest of ",
+       "status": "verified",
+       "matched_path": "groups.all.by_event[0].held_before_pct",
+       "matched_value": 37.9,
+       "denominator_stated": true
+      },
+      {
+       "text": "49.2 percentage",
+       "value": 49.2,
+       "kind": "pct",
+       "start": 399,
+       "end": 414,
+       "context": "useholds hold an SUV/minivan, up from 37.9% held_before \u2014 a 49.2 percentage-point lift, the largest of any event tracked. This is the s",
+       "status": "derived",
+       "matched_path": "|groups.all.by_event[0].held_before_pct - groups.all.by_event[0].held_within_window_pct|",
+       "matched_value": 49.2,
+       "denominator_stated": true
+      },
+      {
+       "text": "5,865",
+       "value": 5865.0,
+       "kind": "count",
+       "start": 655,
+       "end": 660,
+       "context": "med to parenthood.  **Second opportunity \u2014 marriage events (5,865 events):** Post-marriage, 43.3% of associated households ho",
+       "status": "verified",
+       "matched_path": "groups.all.by_event[1].n_events",
+       "matched_value": 5865.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "43.3%",
+       "value": 43.3,
+       "kind": "pct",
+       "start": 687,
+       "end": 692,
+       "context": "ortunity \u2014 marriage events (5,865 events):** Post-marriage, 43.3% of associated households hold a family body type versus jus",
+       "status": "verified",
+       "matched_path": "groups.all.by_event[1].held_within_window_pct",
+       "matched_value": 43.3,
+       "denominator_stated": true
+      },
+      {
+       "text": "0.2%",
+       "value": 0.2,
+       "kind": "pct",
+       "start": 754,
+       "end": 758,
+       "context": "f associated households hold a family body type versus just 0.2% held_before \u2014 a 43.1-point lift, nearly matching new_child ",
+       "status": "verified",
+       "matched_path": "groups.all.by_event[1].held_before_pct",
+       "matched_value": 0.2,
+       "denominator_stated": true
+      },
+      {
+       "text": "43.1",
+       "value": 43.1,
+       "kind": "plain",
+       "start": 775,
+       "end": 779,
+       "context": "ds hold a family body type versus just 0.2% held_before \u2014 a 43.1-point lift, nearly matching new_child in magnitude. This su",
+       "status": "verified",
+       "matched_path": "groups.all.by_event[1].lift_pts",
+       "matched_value": 43.1,
+       "denominator_stated": null
+      },
+      {
+       "text": "15,599",
+       "value": 15599.0,
+       "kind": "count",
+       "start": 992,
+       "end": 998,
+       "context": "pre-marriage base.  **Third opportunity \u2014 promotion events (15,599 events):** Only a 13.7-point lift (32.3% before vs. 46.0% w",
+       "status": "verified",
+       "matched_path": "groups.all.by_event[2].n_events",
+       "matched_value": 15599.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "13.7",
+       "value": 13.7,
+       "kind": "plain",
+       "start": 1017,
+       "end": 1021,
+       "context": "rd opportunity \u2014 promotion events (15,599 events):** Only a 13.7-point lift (32.3% before vs. 46.0% within window), but the ",
+       "status": "verified",
+       "matched_path": "groups.all.by_event[2].lift_pts",
+       "matched_value": 13.7,
+       "denominator_stated": null
+      },
+      {
+       "text": "32.3%",
+       "value": 32.3,
+       "kind": "pct",
+       "start": 1034,
+       "end": 1039,
+       "context": "promotion events (15,599 events):** Only a 13.7-point lift (32.3% before vs. 46.0% within window), but the largest event volu",
+       "status": "verified",
+       "matched_path": "groups.all.by_event[2].held_before_pct",
+       "matched_value": 32.3,
+       "denominator_stated": false
+      },
+      {
+       "text": "46.0%",
+       "value": 46.0,
+       "kind": "pct",
+       "start": 1051,
+       "end": 1056,
+       "context": "(15,599 events):** Only a 13.7-point lift (32.3% before vs. 46.0% within window), but the largest event volume in the dataset",
+       "status": "verified",
+       "matched_path": "groups.all.by_event[2].held_within_window_pct",
+       "matched_value": 46.0,
+       "denominator_stated": false
+      },
+      {
+       "text": "49.2 pts",
+       "value": 49.2,
+       "kind": "pts",
+       "start": 1385,
+       "end": 1393,
+       "context": "ollowed by a switch to SUV/minivan ownership, both by lift (49.2 pts) and by high post-event penetration (87.1% of 10,042 events",
+       "status": "derived",
+       "matched_path": "|groups.all.by_event[0].held_before_pct - groups.all.by_event[0].held_within_window_pct|",
+       "matched_value": 49.2,
+       "denominator_stated": null
+      },
+      {
+       "text": "87.1%",
+       "value": 87.1,
+       "kind": "pct",
+       "start": 1431,
+       "end": 1436,
+       "context": "both by lift (49.2 pts) and by high post-event penetration (87.1% of 10,042 events).  **Data that would strengthen this case:",
+       "status": "verified",
+       "matched_path": "groups.all.by_event[0].held_within_window_pct",
+       "matched_value": 87.1,
+       "denominator_stated": true
+      },
+      {
+       "text": "10,042",
+       "value": 10042.0,
+       "kind": "count",
+       "start": 1440,
+       "end": 1446,
+       "context": "ift (49.2 pts) and by high post-event penetration (87.1% of 10,042 events).  **Data that would strengthen this case:** Househo",
+       "status": "verified",
+       "matched_path": "groups.all.by_event[0].n_events",
+       "matched_value": 10042.0,
+       "denominator_stated": null
+      }
+     ],
+     "external_flags": [],
+     "negated_mentions": []
+    }
+   }
+  },
+  {
+   "id": "Q03",
+   "question": "Among owners with two or more job changes, what share have ever switched to an EV \u2014 compared with owners who never changed jobs?",
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "**Segment size:** Households with 2+ job changes number 6,251 out of 10,000 total households (62.5%) \u2014 a majority segment, making it a core group for EV strategy.\n\n**Opportunity 1 \u2014 Higher EV adoption among job-mobile households.** Among these 6,251 high-job-change households, 1,817 have ever switched to an EV, a 29.1% share (denominator: 6,251 households). This compares to only 120 out of 714 households with zero job changes (16.8% share, denominator: 714 households) who have ever switched to an EV. The gap \u2014 29.1% vs. 16.8% \u2014 suggests (inference) that career/income mobility may correlate with EV willingness, making job-changers a higher-value target segment.\n\n**Opportunity 2 \u2014 Scale advantage.** Because the 2+ job-change segment is nearly 9x larger in raw count (6,251 vs. 714 households), even modest share gains here translate into far more EV conversions in absolute terms than equivalent gains in the no-job-change segment. This is an inference about relative marketing ROI, not a stated figure in the data.\n\n**Opportunity 3 \u2014 Untapped majority.** Despite higher relative adoption, 70.9% of the 6,251 job-changing households (4,434 households, a trivial subtraction from 6,251 \u2212 1,817) have not yet gone EV \u2014 indicating substantial headroom in this larger, more receptive segment.\n\n**Data to strengthen the case:** Income levels, job-change reasons (e.g., promotions vs. relocations), timing between job change and EV purchase, and geographic/urban-rural splits are not available in this dataset but would clarify causal drivers behind the adoption gap.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 934,
+     "output_tokens": 556,
+     "latency_ms": 7352.2,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 2396,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "stats": {
+    "metric": "share",
+    "filters": {
+     "n_job_changes": {
+      "gte": 2
+     }
+    },
+    "group_by": null,
+    "params": {
+     "of": {
+      "ever_ev": true
+     }
+    },
+    "n_total": 10000,
+    "n_matched": 6251,
+    "match_pct": 62.5,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "n_households": 6251,
+      "n_matching": 1817,
+      "share_pct": 29.1,
+      "of": {
+       "ever_ev": true
+      }
+     }
+    },
+    "answerable_part": {
+     "metric": "share",
+     "filters": {
+      "n_job_changes": {
+       "eq": 0
+      }
+     },
+     "group_by": null,
+     "params": {
+      "of": {
+       "ever_ev": true
+      }
+     },
+     "n_total": 10000,
+     "n_matched": 714,
+     "match_pct": 7.1,
+     "answerable": true,
+     "unanswerable_reason": null,
+     "groups": {
+      "all": {
+       "n_households": 714,
+       "n_matching": 120,
+       "share_pct": 16.8,
+       "of": {
+        "ever_ev": true
+       }
+      }
+     }
+    }
+   },
+   "scores": {
+    "pipeline_grounded": {
+     "mode": "pipeline_grounded",
+     "n_claims": 20,
+     "n_verified": 18,
+     "n_derived": 2,
+     "n_unverified": 0,
+     "grounding_rate": 1.0,
+     "unverified_rate": 0.0,
+     "n_external_flags": 0,
+     "pct_claims": 6,
+     "pct_with_denominator": 0.667,
+     "unanswerable_expected": false,
+     "refusal_detected": null,
+     "fabricated_on_unanswerable": null,
+     "truth_basis": "population",
+     "answer_status": "answered",
+     "claims": [
+      {
+       "text": "6,251",
+       "value": 6251.0,
+       "kind": "plain",
+       "start": 56,
+       "end": 61,
+       "context": "**Segment size:** Households with 2+ job changes number 6,251 out of 10,000 total households (62.5%) \u2014 a majority segment",
+       "status": "verified",
+       "matched_path": "n_matched",
+       "matched_value": 6251.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "10,000",
+       "value": 10000.0,
+       "kind": "plain",
+       "start": 69,
+       "end": 75,
+       "context": " size:** Households with 2+ job changes number 6,251 out of 10,000 total households (62.5%) \u2014 a majority segment, making it a ",
+       "status": "verified",
+       "matched_path": "n_total",
+       "matched_value": 10000.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "62.5%",
+       "value": 62.5,
+       "kind": "pct",
+       "start": 94,
+       "end": 99,
+       "context": "2+ job changes number 6,251 out of 10,000 total households (62.5%) \u2014 a majority segment, making it a core group for EV strate",
+       "status": "verified",
+       "matched_path": "match_pct",
+       "matched_value": 62.5,
+       "denominator_stated": true
+      },
+      {
+       "text": "6,251",
+       "value": 6251.0,
+       "kind": "plain",
+       "start": 244,
+       "end": 249,
+       "context": "gher EV adoption among job-mobile households.** Among these 6,251 high-job-change households, 1,817 have ever switched to an ",
+       "status": "verified",
+       "matched_path": "n_matched",
+       "matched_value": 6251.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "1,817",
+       "value": 1817.0,
+       "kind": "plain",
+       "start": 278,
+       "end": 283,
+       "context": "households.** Among these 6,251 high-job-change households, 1,817 have ever switched to an EV, a 29.1% share (denominator: 6,",
+       "status": "verified",
+       "matched_path": "groups.all.n_matching",
+       "matched_value": 1817.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "29.1%",
+       "value": 29.1,
+       "kind": "pct",
+       "start": 315,
+       "end": 320,
+       "context": "job-change households, 1,817 have ever switched to an EV, a 29.1% share (denominator: 6,251 households). This compares to onl",
+       "status": "verified",
+       "matched_path": "groups.all.share_pct",
+       "matched_value": 29.1,
+       "denominator_stated": true
+      },
+      {
+       "text": "6,251",
+       "value": 6251.0,
+       "kind": "count",
+       "start": 341,
+       "end": 346,
+       "context": "17 have ever switched to an EV, a 29.1% share (denominator: 6,251 households). This compares to only 120 out of 714 household",
+       "status": "verified",
+       "matched_path": "n_matched",
+       "matched_value": 6251.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "120",
+       "value": 120.0,
+       "kind": "plain",
+       "start": 382,
+       "end": 385,
+       "context": "hare (denominator: 6,251 households). This compares to only 120 out of 714 households with zero job changes (16.8% share, d",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.n_matching",
+       "matched_value": 120.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "714",
+       "value": 714.0,
+       "kind": "count",
+       "start": 393,
+       "end": 396,
+       "context": "inator: 6,251 households). This compares to only 120 out of 714 households with zero job changes (16.8% share, denominator:",
+       "status": "verified",
+       "matched_path": "answerable_part.n_matched",
+       "matched_value": 714.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "16.8%",
+       "value": 16.8,
+       "kind": "pct",
+       "start": 431,
+       "end": 436,
+       "context": "es to only 120 out of 714 households with zero job changes (16.8% share, denominator: 714 households) who have ever switched ",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.share_pct",
+       "matched_value": 16.8,
+       "denominator_stated": true
+      },
+      {
+       "text": "714",
+       "value": 714.0,
+       "kind": "count",
+       "start": 457,
+       "end": 460,
+       "context": "households with zero job changes (16.8% share, denominator: 714 households) who have ever switched to an EV. The gap \u2014 29.1",
+       "status": "verified",
+       "matched_path": "answerable_part.n_matched",
+       "matched_value": 714.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "29.1%",
+       "value": 29.1,
+       "kind": "pct",
+       "start": 516,
+       "end": 521,
+       "context": " 714 households) who have ever switched to an EV. The gap \u2014 29.1% vs. 16.8% \u2014 suggests (inference) that career/income mobilit",
+       "status": "verified",
+       "matched_path": "groups.all.share_pct",
+       "matched_value": 29.1,
+       "denominator_stated": false
+      },
+      {
+       "text": "16.8%",
+       "value": 16.8,
+       "kind": "pct",
+       "start": 526,
+       "end": 531,
+       "context": "holds) who have ever switched to an EV. The gap \u2014 29.1% vs. 16.8% \u2014 suggests (inference) that career/income mobility may corr",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.share_pct",
+       "matched_value": 16.8,
+       "denominator_stated": false
+      },
+      {
+       "text": "6,251",
+       "value": 6251.0,
+       "kind": "plain",
+       "start": 775,
+       "end": 780,
+       "context": "the 2+ job-change segment is nearly 9x larger in raw count (6,251 vs. 714 households), even modest share gains here translate",
+       "status": "verified",
+       "matched_path": "n_matched",
+       "matched_value": 6251.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "714",
+       "value": 714.0,
+       "kind": "count",
+       "start": 785,
+       "end": 788,
+       "context": "-change segment is nearly 9x larger in raw count (6,251 vs. 714 households), even modest share gains here translate into fa",
+       "status": "verified",
+       "matched_path": "answerable_part.n_matched",
+       "matched_value": 714.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "70.9%",
+       "value": 70.9,
+       "kind": "pct",
+       "start": 1098,
+       "end": 1103,
+       "context": " 3 \u2014 Untapped majority.** Despite higher relative adoption, 70.9% of the 6,251 job-changing households (4,434 households, a t",
+       "status": "derived",
+       "matched_path": "100 - groups.all.share_pct",
+       "matched_value": 70.9,
+       "denominator_stated": true
+      },
+      {
+       "text": "6,251",
+       "value": 6251.0,
+       "kind": "plain",
+       "start": 1111,
+       "end": 1116,
+       "context": " majority.** Despite higher relative adoption, 70.9% of the 6,251 job-changing households (4,434 households, a trivial subtra",
+       "status": "verified",
+       "matched_path": "n_matched",
+       "matched_value": 6251.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "4,434",
+       "value": 4434.0,
+       "kind": "count",
+       "start": 1142,
+       "end": 1147,
+       "context": "ative adoption, 70.9% of the 6,251 job-changing households (4,434 households, a trivial subtraction from 6,251 \u2212 1,817) have ",
+       "status": "derived",
+       "matched_path": "|n_matched - groups.all.n_matching|",
+       "matched_value": 4434.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "6,251",
+       "value": 6251.0,
+       "kind": "plain",
+       "start": 1187,
+       "end": 1192,
+       "context": "ng households (4,434 households, a trivial subtraction from 6,251 \u2212 1,817) have not yet gone EV \u2014 indicating substantial head",
+       "status": "verified",
+       "matched_path": "n_matched",
+       "matched_value": 6251.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "1,817",
+       "value": 1817.0,
+       "kind": "plain",
+       "start": 1195,
+       "end": 1200,
+       "context": "holds (4,434 households, a trivial subtraction from 6,251 \u2212 1,817) have not yet gone EV \u2014 indicating substantial headroom in ",
+       "status": "verified",
+       "matched_path": "groups.all.n_matching",
+       "matched_value": 1817.0,
+       "denominator_stated": null
+      }
+     ],
+     "external_flags": [],
+     "negated_mentions": []
+    }
+   }
+  },
+  {
+   "id": "Q04",
+   "question": "Do single 40s owners who never married spend more per vehicle purchase than 30s dual-income parents?",
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "**Segment size:** Single, never-married 40s owners number 1,043 households (10.4% of 10,000 total households), generating 4,817 purchases. This is a meaningful segment worth benchmarking against 30s dual-income parents (876 households, 8.8% of total, 3,196 purchases).\n\n**Yes \u2014 this segment spends more per vehicle purchase.** Mean price per purchase for single 40s never-married owners is $25,981, versus $24,361 for 30s dual-income parents \u2014 a difference of $1,620 per purchase (trivial subtraction). Median price tells the same story: $16,996 vs. $15,572, a $1,424 gap.\n\n**Three opportunities, each backed by a figure:**\n1. **Higher-margin single buyers:** With mean spend of $25,981 across 4,817 purchases, this segment represents a larger transaction base than the parent segment (3,196 purchases) \u2014 an opportunity to target higher-ticket inventory toward this group.\n2. **New-vehicle share gap:** Single 40s owners have a new-share of 52.7% of their purchases, compared to 44.6% for dual-income parents (denominator: purchases in each group). This ~8-point gap (inference: may signal stronger preference or capacity for new vehicles among singles) suggests upselling new models to this segment.\n3. **Purchase frequency:** Single 40s owners average 4.62 purchases/household vs. 3.65 for parents \u2014 inference: higher lifetime value per household, worth deeper engagement.\n\n**Data needed to strengthen the case:** Income levels, financing/loan data, vehicle type/segment breakdown, and geographic distribution are not available in this dataset and would clarify why spend differs.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 1175,
+     "output_tokens": 565,
+     "latency_ms": 6660.2,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 2915,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "stats": {
+    "metric": "price_per_purchase",
+    "filters": {
+     "age_group": "40s",
+     "household_composition": "solo",
+     "ever_married": false
+    },
+    "group_by": null,
+    "params": {},
+    "n_total": 10000,
+    "n_matched": 1043,
+    "match_pct": 10.4,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "n_households": 1043,
+      "n_purchases": 4817,
+      "mean_price_per_purchase_usd": 25981.0,
+      "median_price_per_purchase_usd": 16996,
+      "mean_of_household_means_usd": 25530.0,
+      "avg_purchases_per_household": 4.62,
+      "price_band_distribution": {
+       "1": 2132,
+       "2": 774,
+       "3": 804,
+       "4": 560,
+       "5": 547
+      },
+      "new_share_pct": 52.7
+     }
+    },
+    "answerable_part": {
+     "metric": "price_per_purchase",
+     "filters": {
+      "age_group": "30s",
+      "dual_income": true,
+      "n_children_home": {
+       "gte": 1
+      }
+     },
+     "group_by": null,
+     "params": {},
+     "n_total": 10000,
+     "n_matched": 876,
+     "match_pct": 8.8,
+     "answerable": true,
+     "unanswerable_reason": null,
+     "groups": {
+      "all": {
+       "n_households": 876,
+       "n_purchases": 3196,
+       "mean_price_per_purchase_usd": 24361.0,
+       "median_price_per_purchase_usd": 15572.0,
+       "mean_of_household_means_usd": 23977.0,
+       "avg_purchases_per_household": 3.65,
+       "price_band_distribution": {
+        "1": 1525,
+        "2": 396,
+        "3": 623,
+        "4": 398,
+        "5": 254
+       },
+       "new_share_pct": 44.6
+      }
+     }
+    }
+   },
+   "scores": {
+    "pipeline_grounded": {
+     "mode": "pipeline_grounded",
+     "n_claims": 20,
+     "n_verified": 18,
+     "n_derived": 2,
+     "n_unverified": 0,
+     "grounding_rate": 1.0,
+     "unverified_rate": 0.0,
+     "n_external_flags": 0,
+     "pct_claims": 4,
+     "pct_with_denominator": 1.0,
+     "unanswerable_expected": false,
+     "refusal_detected": null,
+     "fabricated_on_unanswerable": null,
+     "truth_basis": "population",
+     "answer_status": "answered",
+     "claims": [
+      {
+       "text": "1,043",
+       "value": 1043.0,
+       "kind": "count",
+       "start": 58,
+       "end": 63,
+       "context": "**Segment size:** Single, never-married 40s owners number 1,043 households (10.4% of 10,000 total households), generating 4",
+       "status": "verified",
+       "matched_path": "n_matched",
+       "matched_value": 1043.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "10.4%",
+       "value": 10.4,
+       "kind": "pct",
+       "start": 76,
+       "end": 81,
+       "context": "* Single, never-married 40s owners number 1,043 households (10.4% of 10,000 total households), generating 4,817 purchases. Th",
+       "status": "verified",
+       "matched_path": "match_pct",
+       "matched_value": 10.4,
+       "denominator_stated": true
+      },
+      {
+       "text": "10,000",
+       "value": 10000.0,
+       "kind": "plain",
+       "start": 85,
+       "end": 91,
+       "context": " never-married 40s owners number 1,043 households (10.4% of 10,000 total households), generating 4,817 purchases. This is a me",
+       "status": "verified",
+       "matched_path": "n_total",
+       "matched_value": 10000.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "4,817",
+       "value": 4817.0,
+       "kind": "count",
+       "start": 122,
+       "end": 127,
+       "context": "3 households (10.4% of 10,000 total households), generating 4,817 purchases. This is a meaningful segment worth benchmarking ",
+       "status": "verified",
+       "matched_path": "groups.all.n_purchases",
+       "matched_value": 4817.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "876",
+       "value": 876.0,
+       "kind": "count",
+       "start": 220,
+       "end": 223,
+       "context": "segment worth benchmarking against 30s dual-income parents (876 households, 8.8% of total, 3,196 purchases).  **Yes \u2014 this ",
+       "status": "verified",
+       "matched_path": "answerable_part.n_matched",
+       "matched_value": 876.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "8.8%",
+       "value": 8.8,
+       "kind": "pct",
+       "start": 236,
+       "end": 240,
+       "context": "nchmarking against 30s dual-income parents (876 households, 8.8% of total, 3,196 purchases).  **Yes \u2014 this segment spends mo",
+       "status": "verified",
+       "matched_path": "answerable_part.match_pct",
+       "matched_value": 8.8,
+       "denominator_stated": true
+      },
+      {
+       "text": "3,196",
+       "value": 3196.0,
+       "kind": "count",
+       "start": 251,
+       "end": 256,
+       "context": "nst 30s dual-income parents (876 households, 8.8% of total, 3,196 purchases).  **Yes \u2014 this segment spends more per vehicle p",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.n_purchases",
+       "matched_value": 3196.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$25,981",
+       "value": 25981.0,
+       "kind": "usd",
+       "start": 390,
+       "end": 397,
+       "context": "n price per purchase for single 40s never-married owners is $25,981, versus $24,361 for 30s dual-income parents \u2014 a difference ",
+       "status": "verified",
+       "matched_path": "groups.all.mean_price_per_purchase_usd",
+       "matched_value": 25981.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$24,361",
+       "value": 24361.0,
+       "kind": "usd",
+       "start": 406,
+       "end": 413,
+       "context": "hase for single 40s never-married owners is $25,981, versus $24,361 for 30s dual-income parents \u2014 a difference of $1,620 per pur",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.mean_price_per_purchase_usd",
+       "matched_value": 24361.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$1,620",
+       "value": 1620.0,
+       "kind": "usd",
+       "start": 460,
+       "end": 466,
+       "context": "ersus $24,361 for 30s dual-income parents \u2014 a difference of $1,620 per purchase (trivial subtraction). Median price tells the s",
+       "status": "derived",
+       "matched_path": "|groups.all.mean_price_per_purchase_usd - answerable_part.groups.all.mean_price_per_purchase_usd|",
+       "matched_value": 1620.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$16,996",
+       "value": 16996.0,
+       "kind": "usd",
+       "start": 538,
+       "end": 545,
+       "context": "e (trivial subtraction). Median price tells the same story: $16,996 vs. $15,572, a $1,424 gap.  **Three opportunities, each back",
+       "status": "verified",
+       "matched_path": "groups.all.median_price_per_purchase_usd",
+       "matched_value": 16996.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$15,572",
+       "value": 15572.0,
+       "kind": "usd",
+       "start": 550,
+       "end": 557,
+       "context": "ubtraction). Median price tells the same story: $16,996 vs. $15,572, a $1,424 gap.  **Three opportunities, each backed by a fig",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.median_price_per_purchase_usd",
+       "matched_value": 15572.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$1,424",
+       "value": 1424.0,
+       "kind": "usd",
+       "start": 561,
+       "end": 567,
+       "context": ". Median price tells the same story: $16,996 vs. $15,572, a $1,424 gap.  **Three opportunities, each backed by a figure:** 1. *",
+       "status": "derived",
+       "matched_path": "|groups.all.median_price_per_purchase_usd - answerable_part.groups.all.median_price_per_purchase_usd|",
+       "matched_value": 1424.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$25,981",
+       "value": 25981.0,
+       "kind": "usd",
+       "start": 679,
+       "end": 686,
+       "context": "e:** 1. **Higher-margin single buyers:** With mean spend of $25,981 across 4,817 purchases, this segment represents a larger tra",
+       "status": "verified",
+       "matched_path": "groups.all.mean_price_per_purchase_usd",
+       "matched_value": 25981.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "4,817",
+       "value": 4817.0,
+       "kind": "count",
+       "start": 694,
+       "end": 699,
+       "context": "r-margin single buyers:** With mean spend of $25,981 across 4,817 purchases, this segment represents a larger transaction bas",
+       "status": "verified",
+       "matched_path": "groups.all.n_purchases",
+       "matched_value": 4817.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "3,196",
+       "value": 3196.0,
+       "kind": "count",
+       "start": 786,
+       "end": 791,
+       "context": "presents a larger transaction base than the parent segment (3,196 purchases) \u2014 an opportunity to target higher-ticket invento",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.n_purchases",
+       "matched_value": 3196.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "52.7%",
+       "value": 52.7,
+       "kind": "pct",
+       "start": 941,
+       "end": 946,
+       "context": "-vehicle share gap:** Single 40s owners have a new-share of 52.7% of their purchases, compared to 44.6% for dual-income paren",
+       "status": "verified",
+       "matched_path": "groups.all.new_share_pct",
+       "matched_value": 52.7,
+       "denominator_stated": true
+      },
+      {
+       "text": "44.6%",
+       "value": 44.6,
+       "kind": "pct",
+       "start": 979,
+       "end": 984,
+       "context": "s have a new-share of 52.7% of their purchases, compared to 44.6% for dual-income parents (denominator: purchases in each gro",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.new_share_pct",
+       "matched_value": 44.6,
+       "denominator_stated": true
+      },
+      {
+       "text": "4.62",
+       "value": 4.62,
+       "kind": "count",
+       "start": 1254,
+       "end": 1258,
+       "context": "gment. 3. **Purchase frequency:** Single 40s owners average 4.62 purchases/household vs. 3.65 for parents \u2014 inference: highe",
+       "status": "verified",
+       "matched_path": "groups.all.avg_purchases_per_household",
+       "matched_value": 4.62,
+       "denominator_stated": null
+      },
+      {
+       "text": "3.65",
+       "value": 3.65,
+       "kind": "plain",
+       "start": 1283,
+       "end": 1287,
+       "context": "y:** Single 40s owners average 4.62 purchases/household vs. 3.65 for parents \u2014 inference: higher lifetime value per househol",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.avg_purchases_per_household",
+       "matched_value": 3.65,
+       "denominator_stated": null
+      }
+     ],
+     "external_flags": [],
+     "negated_mentions": []
+    }
+   }
+  },
+  {
+   "id": "Q05",
+   "question": "For empty nesters, why was their vehicle spending higher during their 40s than during their 50s?",
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "**Correction of premise:** In this dataset, mean annual vehicle spend for empty-nester households was actually *lower* in the 40s ($9,113) than in the 50s ($9,584) \u2014 a difference of $471 (trivial subtraction of the two given figures). So the question's premise does not hold for this segment.\n\n**Segment size:** This cohort represents 426 households (4.3% of the 10,000 households surveyed) \u2014 a small but trackable niche for targeted lifecycle marketing.\n\n**Opportunities (with figures):**\n1. **Empty-nest transition as a spend trigger** \u2014 80.0% of these 426 households recorded an \"empty_nest\" event during their 50s (vs. 14.3% in their 40s), coinciding with the higher $9,584 spend. Inference: the empty-nest milestone itself may be driving incremental purchases in the 50s, worth targeting with post-transition offers.\n2. **Replacement-cycle dominance** \u2014 \"replacement_cycle\" was the top purchase trigger in both decades (309 of purchases in 40s; 277 in 50s), suggesting a durable, non-life-event revenue base to build maintenance/upgrade campaigns around.\n3. **Job-change/promotion overlap** \u2014 Job-change events affected 50.9% of households (event share) in the 40s vs. 48.8% in the 50s, and promotion events were identical at 46.5% both decades \u2014 indicating career-stage marketing could work similarly across both age bands.\n\n**Data needed to strengthen this case:** Purchase-level price/vehicle-type breakdowns per decade, and event-level spend attribution (e.g., spend specifically tied to empty_nest vs. replacement_cycle events) are not available in this dataset but would clarify causal drivers behind the $471 spend gap.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 1438,
+     "output_tokens": 779,
+     "latency_ms": 9102.2,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 1
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 3481,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "stats": {
+    "metric": "decade_explain",
+    "filters": {
+     "life_stage": "empty_nester",
+     "has_full_decades": [
+      "40s",
+      "50s"
+     ]
+    },
+    "group_by": null,
+    "params": {
+     "decades": [
+      "40s",
+      "50s"
+     ]
+    },
+    "n_total": 10000,
+    "n_matched": 426,
+    "match_pct": 4.3,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "decades": [
+       "40s",
+       "50s"
+      ],
+      "n_households_total": 426,
+      "n_with_full_decades": 426,
+      "n_excluded_partial_history": 0,
+      "per_decade": {
+       "40s": {
+        "mean_cluster_0_to_2": 1.43,
+        "cluster_distribution": {
+         "0": 32,
+         "1": 177,
+         "2": 217
+        },
+        "mean_annual_spend_usd": 9113.0,
+        "mean_purchases": 1.58,
+        "top_purchase_trigger": {
+         "replacement_cycle": 309,
+         "promotion": 60,
+         "job_change": 42
+        },
+        "share_of_households_with_event_in_decade_pct": {
+         "promotion": 46.5,
+         "new_child": 3.3,
+         "empty_nest": 14.3,
+         "retirement": 0.0,
+         "job_change": 50.9,
+         "new_hobby": 5.2,
+         "moved": 31.7
+        },
+        "event_counts": {
+         "job_change": 249,
+         "promotion": 233,
+         "moved": 155,
+         "empty_nest": 61,
+         "divorce": 23,
+         "new_hobby": 22
+        }
+       },
+       "50s": {
+        "mean_cluster_0_to_2": 1.5,
+        "cluster_distribution": {
+         "0": 26,
+         "1": 163,
+         "2": 237
+        },
+        "mean_annual_spend_usd": 9584.0,
+        "mean_purchases": 1.56,
+        "top_purchase_trigger": {
+         "replacement_cycle": 277,
+         "promotion": 63,
+         "empty_nest": 51
+        },
+        "share_of_households_with_event_in_decade_pct": {
+         "promotion": 46.5,
+         "new_child": 0.0,
+         "empty_nest": 80.0,
+         "retirement": 0.0,
+         "job_change": 48.8,
+         "new_hobby": 0.2,
+         "moved": 27.7
+        },
+        "event_counts": {
+         "empty_nest": 341,
+         "job_change": 236,
+         "promotion": 228,
+         "moved": 129,
+         "bereavement": 17,
+         "divorce": 2
+        }
+       }
+      }
+     }
+    }
+   },
+   "scores": {
+    "pipeline_grounded": {
+     "mode": "pipeline_grounded",
+     "n_claims": 16,
+     "n_verified": 14,
+     "n_derived": 2,
+     "n_unverified": 0,
+     "grounding_rate": 1.0,
+     "unverified_rate": 0.0,
+     "n_external_flags": 0,
+     "pct_claims": 6,
+     "pct_with_denominator": 0.833,
+     "unanswerable_expected": false,
+     "refusal_detected": null,
+     "fabricated_on_unanswerable": null,
+     "truth_basis": "population",
+     "answer_status": "answered",
+     "claims": [
+      {
+       "text": "$9,113",
+       "value": 9113.0,
+       "kind": "usd",
+       "start": 131,
+       "end": 137,
+       "context": "or empty-nester households was actually *lower* in the 40s ($9,113) than in the 50s ($9,584) \u2014 a difference of $471 (trivial s",
+       "status": "verified",
+       "matched_path": "groups.all.per_decade.40s.mean_annual_spend_usd",
+       "matched_value": 9113.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$9,584",
+       "value": 9584.0,
+       "kind": "usd",
+       "start": 156,
+       "end": 162,
+       "context": "s was actually *lower* in the 40s ($9,113) than in the 50s ($9,584) \u2014 a difference of $471 (trivial subtraction of the two giv",
+       "status": "verified",
+       "matched_path": "groups.all.per_decade.50s.mean_annual_spend_usd",
+       "matched_value": 9584.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$471",
+       "value": 471.0,
+       "kind": "usd",
+       "start": 182,
+       "end": 186,
+       "context": "the 40s ($9,113) than in the 50s ($9,584) \u2014 a difference of $471 (trivial subtraction of the two given figures). So the quest",
+       "status": "derived",
+       "matched_path": "|groups.all.per_decade.40s.mean_annual_spend_usd - groups.all.per_decade.50s.mean_annual_spend_usd|",
+       "matched_value": 471.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "426",
+       "value": 426.0,
+       "kind": "count",
+       "start": 335,
+       "end": 338,
+       "context": "for this segment.  **Segment size:** This cohort represents 426 households (4.3% of the 10,000 households surveyed) \u2014 a sma",
+       "status": "verified",
+       "matched_path": "n_matched",
+       "matched_value": 426.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "4.3%",
+       "value": 4.3,
+       "kind": "pct",
+       "start": 351,
+       "end": 355,
+       "context": ".  **Segment size:** This cohort represents 426 households (4.3% of the 10,000 households surveyed) \u2014 a small but trackable ",
+       "status": "verified",
+       "matched_path": "match_pct",
+       "matched_value": 4.3,
+       "denominator_stated": true
+      },
+      {
+       "text": "10,000",
+       "value": 10000.0,
+       "kind": "count",
+       "start": 363,
+       "end": 369,
+       "context": " size:** This cohort represents 426 households (4.3% of the 10,000 households surveyed) \u2014 a small but trackable niche for targ",
+       "status": "verified",
+       "matched_path": "n_total",
+       "matched_value": 10000.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "80.0%",
+       "value": 80.0,
+       "kind": "pct",
+       "start": 540,
+       "end": 545,
+       "context": "gures):** 1. **Empty-nest transition as a spend trigger** \u2014 80.0% of these 426 households recorded an \"empty_nest\" event duri",
+       "status": "verified",
+       "matched_path": "groups.all.per_decade.50s.share_of_households_with_event_in_decade_pct.empty_nest",
+       "matched_value": 80.0,
+       "denominator_stated": true
+      },
+      {
+       "text": "426",
+       "value": 426.0,
+       "kind": "count",
+       "start": 555,
+       "end": 558,
+       "context": "Empty-nest transition as a spend trigger** \u2014 80.0% of these 426 households recorded an \"empty_nest\" event during their 50s ",
+       "status": "verified",
+       "matched_path": "n_matched",
+       "matched_value": 426.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "14.3%",
+       "value": 14.3,
+       "kind": "pct",
+       "start": 623,
+       "end": 628,
+       "context": "eholds recorded an \"empty_nest\" event during their 50s (vs. 14.3% in their 40s), coinciding with the higher $9,584 spend. Inf",
+       "status": "verified",
+       "matched_path": "groups.all.per_decade.40s.share_of_households_with_event_in_decade_pct.empty_nest",
+       "matched_value": 14.3,
+       "denominator_stated": false
+      },
+      {
+       "text": "$9,584",
+       "value": 9584.0,
+       "kind": "usd",
+       "start": 671,
+       "end": 677,
+       "context": "ir 50s (vs. 14.3% in their 40s), coinciding with the higher $9,584 spend. Inference: the empty-nest milestone itself may be dri",
+       "status": "verified",
+       "matched_path": "groups.all.per_decade.50s.mean_annual_spend_usd",
+       "matched_value": 9584.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "309",
+       "value": 309.0,
+       "kind": "plain",
+       "start": 925,
+       "end": 928,
+       "context": "cement_cycle\" was the top purchase trigger in both decades (309 of purchases in 40s; 277 in 50s), suggesting a durable, non",
+       "status": "verified",
+       "matched_path": "groups.all.per_decade.40s.top_purchase_trigger.replacement_cycle",
+       "matched_value": 309.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "277",
+       "value": 277.0,
+       "kind": "plain",
+       "start": 950,
+       "end": 953,
+       "context": " purchase trigger in both decades (309 of purchases in 40s; 277 in 50s), suggesting a durable, non-life-event revenue base ",
+       "status": "verified",
+       "matched_path": "groups.all.per_decade.50s.top_purchase_trigger.replacement_cycle",
+       "matched_value": 277.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "50.9%",
+       "value": 50.9,
+       "kind": "pct",
+       "start": 1125,
+       "end": 1130,
+       "context": "Job-change/promotion overlap** \u2014 Job-change events affected 50.9% of households (event share) in the 40s vs. 48.8% in the 50s",
+       "status": "verified",
+       "matched_path": "groups.all.per_decade.40s.share_of_households_with_event_in_decade_pct.job_change",
+       "matched_value": 50.9,
+       "denominator_stated": true
+      },
+      {
+       "text": "48.8%",
+       "value": 48.8,
+       "kind": "pct",
+       "start": 1174,
+       "end": 1179,
+       "context": "s affected 50.9% of households (event share) in the 40s vs. 48.8% in the 50s, and promotion events were identical at 46.5% bo",
+       "status": "verified",
+       "matched_path": "groups.all.per_decade.50s.share_of_households_with_event_in_decade_pct.job_change",
+       "matched_value": 48.8,
+       "denominator_stated": true
+      },
+      {
+       "text": "46.5%",
+       "value": 46.5,
+       "kind": "pct",
+       "start": 1231,
+       "end": 1236,
+       "context": "s. 48.8% in the 50s, and promotion events were identical at 46.5% both decades \u2014 indicating career-stage marketing could work",
+       "status": "verified",
+       "matched_path": "groups.all.per_decade.40s.share_of_households_with_event_in_decade_pct.promotion",
+       "matched_value": 46.5,
+       "denominator_stated": true
+      },
+      {
+       "text": "$471",
+       "value": 471.0,
+       "kind": "usd",
+       "start": 1616,
+       "end": 1620,
+       "context": "in this dataset but would clarify causal drivers behind the $471 spend gap.",
+       "status": "derived",
+       "matched_path": "|groups.all.per_decade.40s.mean_annual_spend_usd - groups.all.per_decade.50s.mean_annual_spend_usd|",
+       "matched_value": 471.0,
+       "denominator_stated": null
+      }
+     ],
+     "external_flags": [],
+     "negated_mentions": []
+    }
+   }
+  },
+  {
+   "id": "Q06",
+   "question": "Which life stage has the widest spending span \u2014 the biggest gap between its lowest and highest annual vehicle spend?",
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "**Segment size & relevance:** Among 10,000 households, \"retired\" life-stage households (n=1,041) show the widest spending span, with a mean annual range of $57,705 (mean min $52 \u2192 mean max $57,756). This is notably larger than \"empty_nester\" ($54,433 mean range, n=1,371 households) and \"parent_school_age\" ($50,458 mean range, n=2,106 households). The retired segment also carries the highest mean lifetime spend of $368,809 per household \u2014 the largest of any group in this dataset.\n\n**Opportunities:**\n1. **High-ticket flexibility in retirement.** With a $57,705 mean spend range (retired group, n=1,041), this segment appears to swing between very low and very high annual outlays. Inference: this could suggest occasional large discretionary purchases (e.g., RVs, upgrades) worth targeting with premium or seasonal offers \u2014 though the dataset does not specify vehicle type or purchase timing.\n2. **Empty nesters as a secondary high-range segment.** Mean range of $54,433 (n=1,371 households) and mean lifetime spend of $285,471 suggest a household group with capacity for high-value transactions, second only to retirees in lifetime spend.\n3. **Established professionals as a volume opportunity.** With 2,483 households (the largest single group) and a mean range of $46,710, this segment offers scale, even though its span is narrower than retired or empty_nester groups.\n\n**Data to strengthen the case:** Purchase-level timing/frequency, vehicle type/price tier, and income data are not available in this JSON and would clarify what drives the wide spans in retired and empty_nester households.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 1270,
+     "output_tokens": 547,
+     "latency_ms": 7087.8,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 3005,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "stats": {
+    "metric": "spend_span",
+    "filters": {},
+    "group_by": "life_stage",
+    "params": {},
+    "n_total": 10000,
+    "n_matched": 10000,
+    "match_pct": 100.0,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "early_career": {
+      "n_households": 1980,
+      "mean_range_usd": 16443.0,
+      "median_range_usd": 13009.0,
+      "mean_min_usd": 279.0,
+      "mean_max_usd": 16723.0,
+      "mean_lifetime_spend_usd": 38511.0
+     },
+     "empty_nester": {
+      "n_households": 1371,
+      "mean_range_usd": 54433.0,
+      "median_range_usd": 53907,
+      "mean_min_usd": 118.0,
+      "mean_max_usd": 54551.0,
+      "mean_lifetime_spend_usd": 285471.0
+     },
+     "established_professional": {
+      "n_households": 2483,
+      "mean_range_usd": 46710.0,
+      "median_range_usd": 41155,
+      "mean_min_usd": 123.0,
+      "mean_max_usd": 46833.0,
+      "mean_lifetime_spend_usd": 171070.0
+     },
+     "parent_school_age": {
+      "n_households": 2106,
+      "mean_range_usd": 50458.0,
+      "median_range_usd": 48962.0,
+      "mean_min_usd": 111.0,
+      "mean_max_usd": 50569.0,
+      "mean_lifetime_spend_usd": 201384.0
+     },
+     "parent_young_children": {
+      "n_households": 1019,
+      "mean_range_usd": 45031.0,
+      "median_range_usd": 39679,
+      "mean_min_usd": 109.0,
+      "mean_max_usd": 45140.0,
+      "mean_lifetime_spend_usd": 132452.0
+     },
+     "retired": {
+      "n_households": 1041,
+      "mean_range_usd": 57705.0,
+      "median_range_usd": 58171,
+      "mean_min_usd": 52.0,
+      "mean_max_usd": 57756.0,
+      "mean_lifetime_spend_usd": 368809.0
+     }
+    }
+   },
+   "scores": {
+    "pipeline_grounded": {
+     "mode": "pipeline_grounded",
+     "n_claims": 17,
+     "n_verified": 14,
+     "n_derived": 0,
+     "n_unverified": 3,
+     "grounding_rate": 0.824,
+     "unverified_rate": 0.176,
+     "n_external_flags": 0,
+     "pct_claims": 0,
+     "pct_with_denominator": null,
+     "unanswerable_expected": false,
+     "refusal_detected": null,
+     "fabricated_on_unanswerable": null,
+     "truth_basis": "population",
+     "answer_status": "answered",
+     "claims": [
+      {
+       "text": "10,000",
+       "value": 10000.0,
+       "kind": "count",
+       "start": 36,
+       "end": 42,
+       "context": "**Segment size & relevance:** Among 10,000 households, \"retired\" life-stage households (n=1,041) show ",
+       "status": "verified",
+       "matched_path": "n_total",
+       "matched_value": 10000.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "1,041",
+       "value": 1041.0,
+       "kind": "plain",
+       "start": 90,
+       "end": 95,
+       "context": "Among 10,000 households, \"retired\" life-stage households (n=1,041) show the widest spending span, with a mean annual range of",
+       "status": "verified",
+       "matched_path": "groups.retired.n_households",
+       "matched_value": 1041.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$57,705",
+       "value": 57705.0,
+       "kind": "usd",
+       "start": 156,
+       "end": 163,
+       "context": " show the widest spending span, with a mean annual range of $57,705 (mean min $52 \u2192 mean max $57,756). This is notably larger th",
+       "status": "verified",
+       "matched_path": "groups.retired.mean_range_usd",
+       "matched_value": 57705.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$52",
+       "value": 52.0,
+       "kind": "usd",
+       "start": 174,
+       "end": 177,
+       "context": "pending span, with a mean annual range of $57,705 (mean min $52 \u2192 mean max $57,756). This is notably larger than \"empty_nest",
+       "status": "verified",
+       "matched_path": "groups.retired.mean_min_usd",
+       "matched_value": 52.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$57,756",
+       "value": 57756.0,
+       "kind": "usd",
+       "start": 189,
+       "end": 196,
+       "context": "ith a mean annual range of $57,705 (mean min $52 \u2192 mean max $57,756). This is notably larger than \"empty_nester\" ($54,433 mean ",
+       "status": "verified",
+       "matched_path": "groups.retired.mean_max_usd",
+       "matched_value": 57756.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$54,433 m",
+       "value": 54433000000.0,
+       "kind": "usd",
+       "start": 243,
+       "end": 252,
+       "context": "n max $57,756). This is notably larger than \"empty_nester\" ($54,433 mean range, n=1,371 households) and \"parent_school_age\" ($50,",
+       "status": "unverified",
+       "matched_path": null,
+       "matched_value": null,
+       "denominator_stated": null
+      },
+      {
+       "text": "1,371",
+       "value": 1371.0,
+       "kind": "count",
+       "start": 265,
+       "end": 270,
+       "context": "s notably larger than \"empty_nester\" ($54,433 mean range, n=1,371 households) and \"parent_school_age\" ($50,458 mean range, n=",
+       "status": "verified",
+       "matched_path": "groups.empty_nester.n_households",
+       "matched_value": 1371.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$50,458 m",
+       "value": 50458000000.0,
+       "kind": "usd",
+       "start": 308,
+       "end": 317,
+       "context": "33 mean range, n=1,371 households) and \"parent_school_age\" ($50,458 mean range, n=2,106 households). The retired segment also car",
+       "status": "unverified",
+       "matched_path": null,
+       "matched_value": null,
+       "denominator_stated": null
+      },
+      {
+       "text": "2,106",
+       "value": 2106.0,
+       "kind": "count",
+       "start": 330,
+       "end": 335,
+       "context": " households) and \"parent_school_age\" ($50,458 mean range, n=2,106 households). The retired segment also carries the highest m",
+       "status": "verified",
+       "matched_path": "groups.parent_school_age.n_households",
+       "matched_value": 2106.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$368,809",
+       "value": 368809.0,
+       "kind": "usd",
+       "start": 417,
+       "end": 425,
+       "context": "red segment also carries the highest mean lifetime spend of $368,809 per household \u2014 the largest of any group in this dataset.  *",
+       "status": "verified",
+       "matched_path": "groups.retired.mean_lifetime_spend_usd",
+       "matched_value": 368809.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$57,705 m",
+       "value": 57705000000.0,
+       "kind": "usd",
+       "start": 557,
+       "end": 566,
+       "context": "ies:** 1. **High-ticket flexibility in retirement.** With a $57,705 mean spend range (retired group, n=1,041), this segment appea",
+       "status": "unverified",
+       "matched_path": null,
+       "matched_value": null,
+       "denominator_stated": null
+      },
+      {
+       "text": "1,041",
+       "value": 1041.0,
+       "kind": "plain",
+       "start": 600,
+       "end": 605,
+       "context": "rement.** With a $57,705 mean spend range (retired group, n=1,041), this segment appears to swing between very low and very h",
+       "status": "verified",
+       "matched_path": "groups.retired.n_households",
+       "matched_value": 1041.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$54,433",
+       "value": 54433.0,
+       "kind": "usd",
+       "start": 967,
+       "end": 974,
+       "context": " nesters as a secondary high-range segment.** Mean range of $54,433 (n=1,371 households) and mean lifetime spend of $285,471 sug",
+       "status": "verified",
+       "matched_path": "groups.empty_nester.mean_range_usd",
+       "matched_value": 54433.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "1,371",
+       "value": 1371.0,
+       "kind": "count",
+       "start": 978,
+       "end": 983,
+       "context": " a secondary high-range segment.** Mean range of $54,433 (n=1,371 households) and mean lifetime spend of $285,471 suggest a h",
+       "status": "verified",
+       "matched_path": "groups.empty_nester.n_households",
+       "matched_value": 1371.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$285,471",
+       "value": 285471.0,
+       "kind": "usd",
+       "start": 1023,
+       "end": 1031,
+       "context": " of $54,433 (n=1,371 households) and mean lifetime spend of $285,471 suggest a household group with capacity for high-value trans",
+       "status": "verified",
+       "matched_path": "groups.empty_nester.mean_lifetime_spend_usd",
+       "matched_value": 285471.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "2,483",
+       "value": 2483.0,
+       "kind": "count",
+       "start": 1207,
+       "end": 1212,
+       "context": "**Established professionals as a volume opportunity.** With 2,483 households (the largest single group) and a mean range of $",
+       "status": "verified",
+       "matched_path": "groups.established_professional.n_households",
+       "matched_value": 2483.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "$46,710",
+       "value": 46710.0,
+       "kind": "usd",
+       "start": 1271,
+       "end": 1278,
+       "context": "3 households (the largest single group) and a mean range of $46,710, this segment offers scale, even though its span is narrowe",
+       "status": "verified",
+       "matched_path": "groups.established_professional.mean_range_usd",
+       "matched_value": 46710.0,
+       "denominator_stated": null
+      }
+     ],
+     "external_flags": [],
+     "negated_mentions": []
+    }
+   }
+  },
+  {
+   "id": "Q07",
+   "question": "How many households moved more than once and changed their commute type after a move?",
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "**Segment size:** Among all 10,000 households in this dataset, 6,670 households moved 2 or more times, and of those, 6,125 households changed commute type after a move \u2014 representing 61.3% of all 10,000 households, and 91.8% of the 6,670 households that moved more than once. This is a large, high-relevance segment: nearly two-thirds of the entire household base has demonstrated both mobility and a behavioral shift in commute mode following that mobility.\n\n**Opportunity 1 \u2014 Mobility-triggered commute conversion.** With 91.8% of repeat-movers (6,125 of 6,670 households) changing commute type after a move, moving events are strong behavioral triggers. Inference: targeting messaging or offers around the moment of a move could capture this near-universal propensity to reconsider commute mode.\n\n**Opportunity 2 \u2014 Scale of addressable base.** 6,125 households represent 61.3% of the total 10,000-household dataset, meaning a majority-share audience already exhibits the exact behavior (move + commute change) that a mobility-linked product or service would target. Inference: this suggests a sizable addressable market for relocation-linked vehicle or commute-related offerings, though actual purchase intent isn't confirmed by this metric alone.\n\n**Opportunity 3 \u2014 High conversion rate within movers.** The 91.8% share_of_cohort_pct (6,125 of 6,670) indicates change-after-move is close to the norm within this cohort, not an edge case, strengthening confidence in the reliability of the trigger.\n\n**What would strengthen this case:** Data on which commute types households moved from/to, timing lag between move and change, and whether these changes correlate with vehicle purchases would sharpen targeting and quantify downstream revenue impact.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 742,
+     "output_tokens": 580,
+     "latency_ms": 7184.9,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 2044,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "stats": {
+    "metric": "sequence",
+    "filters": {},
+    "group_by": null,
+    "params": {
+     "event": "moved",
+     "min_count": 2,
+     "attribute": "commute_type"
+    },
+    "n_total": 10000,
+    "n_matched": 10000,
+    "match_pct": 100.0,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "event": "moved",
+      "min_count": 2,
+      "attribute": "commute_type",
+      "n_households_total": 10000,
+      "n_households_with_min_events": 6670,
+      "n_changed_after": 6125,
+      "share_of_cohort_pct": 91.8,
+      "share_of_total_pct": 61.3
+     }
+    }
+   },
+   "scores": {
+    "pipeline_grounded": {
+     "mode": "pipeline_grounded",
+     "n_claims": 16,
+     "n_verified": 16,
+     "n_derived": 0,
+     "n_unverified": 0,
+     "grounding_rate": 1.0,
+     "unverified_rate": 0.0,
+     "n_external_flags": 0,
+     "pct_claims": 5,
+     "pct_with_denominator": 0.8,
+     "unanswerable_expected": false,
+     "refusal_detected": null,
+     "fabricated_on_unanswerable": null,
+     "truth_basis": "population",
+     "answer_status": "answered",
+     "claims": [
+      {
+       "text": "10,000",
+       "value": 10000.0,
+       "kind": "count",
+       "start": 28,
+       "end": 34,
+       "context": "**Segment size:** Among all 10,000 households in this dataset, 6,670 households moved 2 or mor",
+       "status": "verified",
+       "matched_path": "n_total",
+       "matched_value": 10000.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "6,670",
+       "value": 6670.0,
+       "kind": "count",
+       "start": 63,
+       "end": 68,
+       "context": "egment size:** Among all 10,000 households in this dataset, 6,670 households moved 2 or more times, and of those, 6,125 house",
+       "status": "verified",
+       "matched_path": "groups.all.n_households_with_min_events",
+       "matched_value": 6670.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "6,125",
+       "value": 6125.0,
+       "kind": "count",
+       "start": 117,
+       "end": 122,
+       "context": "aset, 6,670 households moved 2 or more times, and of those, 6,125 households changed commute type after a move \u2014 representing",
+       "status": "verified",
+       "matched_path": "groups.all.n_changed_after",
+       "matched_value": 6125.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "61.3%",
+       "value": 61.3,
+       "kind": "pct",
+       "start": 183,
+       "end": 188,
+       "context": "households changed commute type after a move \u2014 representing 61.3% of all 10,000 households, and 91.8% of the 6,670 households",
+       "status": "verified",
+       "matched_path": "groups.all.share_of_total_pct",
+       "matched_value": 61.3,
+       "denominator_stated": true
+      },
+      {
+       "text": "10,000",
+       "value": 10000.0,
+       "kind": "count",
+       "start": 196,
+       "end": 202,
+       "context": "anged commute type after a move \u2014 representing 61.3% of all 10,000 households, and 91.8% of the 6,670 households that moved mo",
+       "status": "verified",
+       "matched_path": "n_total",
+       "matched_value": 10000.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "91.8%",
+       "value": 91.8,
+       "kind": "pct",
+       "start": 219,
+       "end": 224,
+       "context": "r a move \u2014 representing 61.3% of all 10,000 households, and 91.8% of the 6,670 households that moved more than once. This is ",
+       "status": "verified",
+       "matched_path": "groups.all.share_of_cohort_pct",
+       "matched_value": 91.8,
+       "denominator_stated": true
+      },
+      {
+       "text": "6,670",
+       "value": 6670.0,
+       "kind": "count",
+       "start": 232,
+       "end": 237,
+       "context": "presenting 61.3% of all 10,000 households, and 91.8% of the 6,670 households that moved more than once. This is a large, high",
+       "status": "verified",
+       "matched_path": "groups.all.n_households_with_min_events",
+       "matched_value": 6670.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "91.8%",
+       "value": 91.8,
+       "kind": "pct",
+       "start": 524,
+       "end": 529,
+       "context": "portunity 1 \u2014 Mobility-triggered commute conversion.** With 91.8% of repeat-movers (6,125 of 6,670 households) changing commu",
+       "status": "verified",
+       "matched_path": "groups.all.share_of_cohort_pct",
+       "matched_value": 91.8,
+       "denominator_stated": true
+      },
+      {
+       "text": "6,125",
+       "value": 6125.0,
+       "kind": "plain",
+       "start": 548,
+       "end": 553,
+       "context": "riggered commute conversion.** With 91.8% of repeat-movers (6,125 of 6,670 households) changing commute type after a move, mo",
+       "status": "verified",
+       "matched_path": "groups.all.n_changed_after",
+       "matched_value": 6125.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "6,670",
+       "value": 6670.0,
+       "kind": "count",
+       "start": 557,
+       "end": 562,
+       "context": "commute conversion.** With 91.8% of repeat-movers (6,125 of 6,670 households) changing commute type after a move, moving even",
+       "status": "verified",
+       "matched_path": "groups.all.n_households_with_min_events",
+       "matched_value": 6670.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "6,125",
+       "value": 6125.0,
+       "kind": "count",
+       "start": 847,
+       "end": 852,
+       "context": "mmute mode.  **Opportunity 2 \u2014 Scale of addressable base.** 6,125 households represent 61.3% of the total 10,000-household da",
+       "status": "verified",
+       "matched_path": "groups.all.n_changed_after",
+       "matched_value": 6125.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "61.3%",
+       "value": 61.3,
+       "kind": "pct",
+       "start": 874,
+       "end": 879,
+       "context": "2 \u2014 Scale of addressable base.** 6,125 households represent 61.3% of the total 10,000-household dataset, meaning a majority-s",
+       "status": "verified",
+       "matched_path": "groups.all.share_of_total_pct",
+       "matched_value": 61.3,
+       "denominator_stated": true
+      },
+      {
+       "text": "10,000",
+       "value": 10000.0,
+       "kind": "plain",
+       "start": 893,
+       "end": 899,
+       "context": "sable base.** 6,125 households represent 61.3% of the total 10,000-household dataset, meaning a majority-share audience alread",
+       "status": "verified",
+       "matched_path": "n_total",
+       "matched_value": 10000.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "91.8%",
+       "value": 91.8,
+       "kind": "pct",
+       "start": 1312,
+       "end": 1317,
+       "context": "**Opportunity 3 \u2014 High conversion rate within movers.** The 91.8% share_of_cohort_pct (6,125 of 6,670) indicates change-after",
+       "status": "verified",
+       "matched_path": "groups.all.share_of_cohort_pct",
+       "matched_value": 91.8,
+       "denominator_stated": false
+      },
+      {
+       "text": "6,125",
+       "value": 6125.0,
+       "kind": "plain",
+       "start": 1339,
+       "end": 1344,
+       "context": "ersion rate within movers.** The 91.8% share_of_cohort_pct (6,125 of 6,670) indicates change-after-move is close to the norm ",
+       "status": "verified",
+       "matched_path": "groups.all.n_changed_after",
+       "matched_value": 6125.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "6,670",
+       "value": 6670.0,
+       "kind": "plain",
+       "start": 1348,
+       "end": 1353,
+       "context": "te within movers.** The 91.8% share_of_cohort_pct (6,125 of 6,670) indicates change-after-move is close to the norm within th",
+       "status": "verified",
+       "matched_path": "groups.all.n_households_with_min_events",
+       "matched_value": 6670.0,
+       "denominator_stated": null
+      }
+     ],
+     "external_flags": [],
+     "negated_mentions": []
+    }
+   }
+  },
+  {
+   "id": "Q08",
+   "question": "What do recent graduates buy in their first three years after starting work?",
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "**Segment size:** 1,179 households (11.8% of 10,000 total) experienced a \"first_job\" event following graduation since 2020 \u2014 a meaningful segment for early-career acquisition strategies. Within their first three years post-job, these households made 898 total purchases (0.76 purchases per household).\n\n**Opportunity 1 \u2014 Compact vehicles dominate:** Of 898 purchases, 508 (56.6% of purchases) were compact body types, versus only 292 (32.5% of purchases) sedans and 96 (10.7% of purchases) crossovers. This signals compacts as the primary product-market fit for this segment; inventory and marketing investment could concentrate here.\n\n**Opportunity 2 \u2014 Used-vehicle channel is dominant:** 700 of 898 purchases (77.9% of purchases) were used vehicles, versus 198 (22.0% of purchases) new. This suggests (inference) affordability-driven demand \u2014 an opportunity for used-vehicle financing or certified pre-owned programs targeted at recent grads.\n\n**Opportunity 3 \u2014 Entry-level pricing with EV upside:** Mean price was $9,526 across purchases, and price band \"1\" (lowest) accounted for 860 of 898 purchases (95.8% of purchases). Notably, 148 of 898 purchases (16.5% of purchases) were EVs \u2014 a nontrivial share suggesting (inference) latent EV interest even at entry-level budgets, worth testing with low-cost EV offerings.\n\n**Data to strengthen the case:** Price-band dollar ranges (currently only labeled 1/2/3), income or credit data, and geographic breakdowns would sharpen targeting precision.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 888,
+     "output_tokens": 557,
+     "latency_ms": 7153.9,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 2327,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "stats": {
+    "metric": "purchases_after_event",
+    "filters": {
+     "had_event": {
+      "event": "graduation",
+      "since_year": 2020
+     }
+    },
+    "group_by": null,
+    "params": {
+     "event": "first_job",
+     "years": 3
+    },
+    "n_total": 10000,
+    "n_matched": 1179,
+    "match_pct": 11.8,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "event": "first_job",
+      "window_years": 3,
+      "n_households_with_event": 1179,
+      "n_purchases_in_window": 898,
+      "purchases_per_household": 0.76,
+      "body_type": {
+       "compact": 508,
+       "crossover": 96,
+       "sedan": 292,
+       "suv": 2
+      },
+      "powertrain": {
+       "ev": 148,
+       "gasoline": 540,
+       "hybrid": 210
+      },
+      "new_or_used": {
+       "new": 198,
+       "used": 700
+      },
+      "price_band": {
+       "1": 860,
+       "2": 29,
+       "3": 9
+      },
+      "mean_price_usd": 9526.0
+     }
+    }
+   },
+   "scores": {
+    "pipeline_grounded": {
+     "mode": "pipeline_grounded",
+     "n_claims": 24,
+     "n_verified": 17,
+     "n_derived": 7,
+     "n_unverified": 0,
+     "grounding_rate": 1.0,
+     "unverified_rate": 0.0,
+     "n_external_flags": 0,
+     "pct_claims": 8,
+     "pct_with_denominator": 0.875,
+     "unanswerable_expected": false,
+     "refusal_detected": null,
+     "fabricated_on_unanswerable": null,
+     "truth_basis": "population",
+     "answer_status": "answered",
+     "claims": [
+      {
+       "text": "1,179",
+       "value": 1179.0,
+       "kind": "count",
+       "start": 18,
+       "end": 23,
+       "context": "**Segment size:** 1,179 households (11.8% of 10,000 total) experienced a \"first_job",
+       "status": "verified",
+       "matched_path": "n_matched",
+       "matched_value": 1179.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "11.8%",
+       "value": 11.8,
+       "kind": "pct",
+       "start": 36,
+       "end": 41,
+       "context": "**Segment size:** 1,179 households (11.8% of 10,000 total) experienced a \"first_job\" event following ",
+       "status": "verified",
+       "matched_path": "match_pct",
+       "matched_value": 11.8,
+       "denominator_stated": false
+      },
+      {
+       "text": "10,000",
+       "value": 10000.0,
+       "kind": "plain",
+       "start": 45,
+       "end": 51,
+       "context": "**Segment size:** 1,179 households (11.8% of 10,000 total) experienced a \"first_job\" event following graduation",
+       "status": "verified",
+       "matched_path": "n_total",
+       "matched_value": 10000.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "898",
+       "value": 898.0,
+       "kind": "plain",
+       "start": 250,
+       "end": 253,
+       "context": "hin their first three years post-job, these households made 898 total purchases (0.76 purchases per household).  **Opportun",
+       "status": "verified",
+       "matched_path": "groups.all.n_purchases_in_window",
+       "matched_value": 898.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "0.76",
+       "value": 0.76,
+       "kind": "count",
+       "start": 271,
+       "end": 275,
+       "context": " years post-job, these households made 898 total purchases (0.76 purchases per household).  **Opportunity 1 \u2014 Compact vehicl",
+       "status": "verified",
+       "matched_path": "groups.all.purchases_per_household",
+       "matched_value": 0.76,
+       "denominator_stated": null
+      },
+      {
+       "text": "898",
+       "value": 898.0,
+       "kind": "count",
+       "start": 353,
+       "end": 356,
+       "context": "sehold).  **Opportunity 1 \u2014 Compact vehicles dominate:** Of 898 purchases, 508 (56.6% of purchases) were compact body types",
+       "status": "verified",
+       "matched_path": "groups.all.n_purchases_in_window",
+       "matched_value": 898.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "508",
+       "value": 508.0,
+       "kind": "plain",
+       "start": 368,
+       "end": 371,
+       "context": "ortunity 1 \u2014 Compact vehicles dominate:** Of 898 purchases, 508 (56.6% of purchases) were compact body types, versus only 2",
+       "status": "verified",
+       "matched_path": "groups.all.body_type.compact",
+       "matched_value": 508.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "56.6%",
+       "value": 56.6,
+       "kind": "pct",
+       "start": 373,
+       "end": 378,
+       "context": "ity 1 \u2014 Compact vehicles dominate:** Of 898 purchases, 508 (56.6% of purchases) were compact body types, versus only 292 (32.",
+       "status": "derived",
+       "matched_path": "groups.all.body_type.compact / groups.all.n_purchases_in_window * 100",
+       "matched_value": 56.57,
+       "denominator_stated": true
+      },
+      {
+       "text": "292",
+       "value": 292.0,
+       "kind": "plain",
+       "start": 430,
+       "end": 433,
+       "context": "8 (56.6% of purchases) were compact body types, versus only 292 (32.5% of purchases) sedans and 96 (10.7% of purchases) cro",
+       "status": "verified",
+       "matched_path": "groups.all.body_type.sedan",
+       "matched_value": 292.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "32.5%",
+       "value": 32.5,
+       "kind": "pct",
+       "start": 435,
+       "end": 440,
+       "context": ".6% of purchases) were compact body types, versus only 292 (32.5% of purchases) sedans and 96 (10.7% of purchases) crossovers",
+       "status": "derived",
+       "matched_path": "groups.all.body_type.crossover / groups.all.body_type.sedan * 100",
+       "matched_value": 32.88,
+       "denominator_stated": true
+      },
+      {
+       "text": "96",
+       "value": 96.0,
+       "kind": "plain",
+       "start": 466,
+       "end": 468,
+       "context": "body types, versus only 292 (32.5% of purchases) sedans and 96 (10.7% of purchases) crossovers. This signals compacts as t",
+       "status": "verified",
+       "matched_path": "groups.all.body_type.crossover",
+       "matched_value": 96.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "10.7%",
+       "value": 10.7,
+       "kind": "pct",
+       "start": 470,
+       "end": 475,
+       "context": " types, versus only 292 (32.5% of purchases) sedans and 96 (10.7% of purchases) crossovers. This signals compacts as the prim",
+       "status": "derived",
+       "matched_path": "groups.all.body_type.crossover / groups.all.n_purchases_in_window * 100",
+       "matched_value": 10.69,
+       "denominator_stated": true
+      },
+      {
+       "text": "700",
+       "value": 700.0,
+       "kind": "plain",
+       "start": 690,
+       "end": 693,
+       "context": "ere.  **Opportunity 2 \u2014 Used-vehicle channel is dominant:** 700 of 898 purchases (77.9% of purchases) were used vehicles, v",
+       "status": "verified",
+       "matched_path": "groups.all.new_or_used.used",
+       "matched_value": 700.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "898",
+       "value": 898.0,
+       "kind": "count",
+       "start": 697,
+       "end": 700,
+       "context": "*Opportunity 2 \u2014 Used-vehicle channel is dominant:** 700 of 898 purchases (77.9% of purchases) were used vehicles, versus 1",
+       "status": "verified",
+       "matched_path": "groups.all.n_purchases_in_window",
+       "matched_value": 898.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "77.9%",
+       "value": 77.9,
+       "kind": "pct",
+       "start": 712,
+       "end": 717,
+       "context": "\u2014 Used-vehicle channel is dominant:** 700 of 898 purchases (77.9% of purchases) were used vehicles, versus 198 (22.0% of purc",
+       "status": "derived",
+       "matched_path": "groups.all.powertrain.gasoline / groups.all.new_or_used.used * 100",
+       "matched_value": 77.14,
+       "denominator_stated": true
+      },
+      {
+       "text": "198",
+       "value": 198.0,
+       "kind": "plain",
+       "start": 759,
+       "end": 762,
+       "context": "8 purchases (77.9% of purchases) were used vehicles, versus 198 (22.0% of purchases) new. This suggests (inference) afforda",
+       "status": "verified",
+       "matched_path": "groups.all.new_or_used.new",
+       "matched_value": 198.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "22.0%",
+       "value": 22.0,
+       "kind": "pct",
+       "start": 764,
+       "end": 769,
+       "context": "chases (77.9% of purchases) were used vehicles, versus 198 (22.0% of purchases) new. This suggests (inference) affordability-",
+       "status": "derived",
+       "matched_path": "groups.all.body_type.suv / groups.all.price_band.3 * 100",
+       "matched_value": 22.22,
+       "denominator_stated": true
+      },
+      {
+       "text": "$9,526",
+       "value": 9526.0,
+       "kind": "usd",
+       "start": 1017,
+       "end": 1023,
+       "context": "ty 3 \u2014 Entry-level pricing with EV upside:** Mean price was $9,526 across purchases, and price band \"1\" (lowest) accounted for ",
+       "status": "verified",
+       "matched_path": "groups.all.mean_price_usd",
+       "matched_value": 9526.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "860",
+       "value": 860.0,
+       "kind": "plain",
+       "start": 1084,
+       "end": 1087,
+       "context": "across purchases, and price band \"1\" (lowest) accounted for 860 of 898 purchases (95.8% of purchases). Notably, 148 of 898 ",
+       "status": "verified",
+       "matched_path": "groups.all.price_band.1",
+       "matched_value": 860.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "898",
+       "value": 898.0,
+       "kind": "count",
+       "start": 1091,
+       "end": 1094,
+       "context": "purchases, and price band \"1\" (lowest) accounted for 860 of 898 purchases (95.8% of purchases). Notably, 148 of 898 purchas",
+       "status": "verified",
+       "matched_path": "groups.all.n_purchases_in_window",
+       "matched_value": 898.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "95.8%",
+       "value": 95.8,
+       "kind": "pct",
+       "start": 1106,
+       "end": 1111,
+       "context": "price band \"1\" (lowest) accounted for 860 of 898 purchases (95.8% of purchases). Notably, 148 of 898 purchases (16.5% of purc",
+       "status": "derived",
+       "matched_path": "groups.all.price_band.1 / groups.all.n_purchases_in_window * 100",
+       "matched_value": 95.77,
+       "denominator_stated": true
+      },
+      {
+       "text": "148",
+       "value": 148.0,
+       "kind": "plain",
+       "start": 1136,
+       "end": 1139,
+       "context": "ted for 860 of 898 purchases (95.8% of purchases). Notably, 148 of 898 purchases (16.5% of purchases) were EVs \u2014 a nontrivi",
+       "status": "verified",
+       "matched_path": "groups.all.powertrain.ev",
+       "matched_value": 148.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "898",
+       "value": 898.0,
+       "kind": "count",
+       "start": 1143,
+       "end": 1146,
+       "context": " 860 of 898 purchases (95.8% of purchases). Notably, 148 of 898 purchases (16.5% of purchases) were EVs \u2014 a nontrivial shar",
+       "status": "verified",
+       "matched_path": "groups.all.n_purchases_in_window",
+       "matched_value": 898.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "16.5%",
+       "value": 16.5,
+       "kind": "pct",
+       "start": 1158,
+       "end": 1163,
+       "context": "chases (95.8% of purchases). Notably, 148 of 898 purchases (16.5% of purchases) were EVs \u2014 a nontrivial share suggesting (inf",
+       "status": "derived",
+       "matched_path": "groups.all.powertrain.ev / groups.all.n_purchases_in_window * 100",
+       "matched_value": 16.48,
+       "denominator_stated": true
+      }
+     ],
+     "external_flags": [],
+     "negated_mentions": []
+    }
+   }
+  },
+  {
+   "id": "Q09",
+   "question": "How does EV adoption in this dataset compare with the national average?",
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "This question cannot be answered as posed: the dataset contains no external or national benchmark, so any comparison to a national EV adoption rate would be invented. Reported reason: \"The dataset contains no external or national benchmark. Only within-dataset figures can be reported; any comparison to a national rate would be invented.\"\n\nWhat I can report: within this dataset, 2,694 of 10,000 households (26.9%) have ever owned an EV.\n\n**Opportunity read:**\n\n- **Segment size matters.** At 26.9% of households (2,694 of 10,000), EV-experienced households represent a substantial base already \u2014 over a quarter of the panel \u2014 making this a core segment rather than a niche one, worth prioritizing in product and marketing roadmaps.\n\n- **Opportunity 1 \u2014 Conversion/retention play.** With 2,694 households having EV experience, there's a sizeable pool for retention, trade-up, or accessory/service offers targeted at \"ever-EV\" owners, though the JSON does not break out *current* EV ownership vs. past-only ownership, so I can't size a retention-specific segment precisely.\n\n- **Opportunity 2 \u2014 Growth headroom (inference).** Since 73.1% of households (7,306 of 10,000) have never owned an EV, there is, *by inference*, a large non-adopter pool that could represent conversion potential \u2014 though the data doesn't tell us intent, interest, or barriers for this group.\n\n**To strengthen this case:** I'd want (1) a verified national EV adoption benchmark from an external source, (2) year-over-year EV share trends within the dataset, and (3) current (not just \"ever\") EV ownership status to distinguish active owners from past owners.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 866,
+     "output_tokens": 545,
+     "latency_ms": 6906.8,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 2346,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "stats": {
+    "metric": "unanswerable",
+    "filters": {},
+    "group_by": null,
+    "params": {
+     "reason": "external_benchmark"
+    },
+    "n_total": 10000,
+    "n_matched": 10000,
+    "match_pct": 100.0,
+    "answerable": false,
+    "unanswerable_reason": "The dataset contains no external or national benchmark. Only within-dataset figures can be reported; any comparison to a national rate would be invented.",
+    "groups": {},
+    "unanswerable_key": "external_benchmark",
+    "answerable_part": {
+     "metric": "share",
+     "filters": {},
+     "group_by": null,
+     "params": {
+      "of": {
+       "ever_ev": true
+      }
+     },
+     "n_total": 10000,
+     "n_matched": 10000,
+     "match_pct": 100.0,
+     "answerable": true,
+     "unanswerable_reason": null,
+     "groups": {
+      "all": {
+       "n_households": 10000,
+       "n_matching": 2694,
+       "share_pct": 26.9,
+       "of": {
+        "ever_ev": true
+       }
+      }
+     }
+    }
+   },
+   "scores": {
+    "pipeline_grounded": {
+     "mode": "pipeline_grounded",
+     "n_claims": 10,
+     "n_verified": 8,
+     "n_derived": 2,
+     "n_unverified": 0,
+     "grounding_rate": 1.0,
+     "unverified_rate": 0.0,
+     "n_external_flags": 0,
+     "pct_claims": 3,
+     "pct_with_denominator": 1.0,
+     "unanswerable_expected": true,
+     "refusal_detected": true,
+     "fabricated_on_unanswerable": 0,
+     "truth_basis": "population",
+     "answer_status": "answered",
+     "claims": [
+      {
+       "text": "2,694",
+       "value": 2694.0,
+       "kind": "plain",
+       "start": 381,
+       "end": 386,
+       "context": "ould be invented.\"  What I can report: within this dataset, 2,694 of 10,000 households (26.9%) have ever owned an EV.  **Oppo",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.n_matching",
+       "matched_value": 2694.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "10,000",
+       "value": 10000.0,
+       "kind": "count",
+       "start": 390,
+       "end": 396,
+       "context": "nvented.\"  What I can report: within this dataset, 2,694 of 10,000 households (26.9%) have ever owned an EV.  **Opportunity re",
+       "status": "verified",
+       "matched_path": "n_total",
+       "matched_value": 10000.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "26.9%",
+       "value": 26.9,
+       "kind": "pct",
+       "start": 409,
+       "end": 414,
+       "context": "an report: within this dataset, 2,694 of 10,000 households (26.9%) have ever owned an EV.  **Opportunity read:**  - **Segment",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.share_pct",
+       "matched_value": 26.9,
+       "denominator_stated": true
+      },
+      {
+       "text": "26.9%",
+       "value": 26.9,
+       "kind": "pct",
+       "start": 494,
+       "end": 499,
+       "context": " EV.  **Opportunity read:**  - **Segment size matters.** At 26.9% of households (2,694 of 10,000), EV-experienced households ",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.share_pct",
+       "matched_value": 26.9,
+       "denominator_stated": true
+      },
+      {
+       "text": "2,694",
+       "value": 2694.0,
+       "kind": "plain",
+       "start": 515,
+       "end": 520,
+       "context": "ead:**  - **Segment size matters.** At 26.9% of households (2,694 of 10,000), EV-experienced households represent a substanti",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.n_matching",
+       "matched_value": 2694.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "10,000",
+       "value": 10000.0,
+       "kind": "plain",
+       "start": 524,
+       "end": 530,
+       "context": " **Segment size matters.** At 26.9% of households (2,694 of 10,000), EV-experienced households represent a substantial base al",
+       "status": "verified",
+       "matched_path": "n_total",
+       "matched_value": 10000.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "2,694",
+       "value": 2694.0,
+       "kind": "count",
+       "start": 789,
+       "end": 794,
+       "context": "aps.  - **Opportunity 1 \u2014 Conversion/retention play.** With 2,694 households having EV experience, there's a sizeable pool fo",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.n_matching",
+       "matched_value": 2694.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "73.1%",
+       "value": 73.1,
+       "kind": "pct",
+       "start": 1132,
+       "end": 1137,
+       "context": ".  - **Opportunity 2 \u2014 Growth headroom (inference).** Since 73.1% of households (7,306 of 10,000) have never owned an EV, the",
+       "status": "derived",
+       "matched_path": "100 - answerable_part.groups.all.share_pct",
+       "matched_value": 73.1,
+       "denominator_stated": true
+      },
+      {
+       "text": "7,306",
+       "value": 7306.0,
+       "kind": "plain",
+       "start": 1153,
+       "end": 1158,
+       "context": "\u2014 Growth headroom (inference).** Since 73.1% of households (7,306 of 10,000) have never owned an EV, there is, *by inference*",
+       "status": "derived",
+       "matched_path": "|n_total - answerable_part.groups.all.n_matching|",
+       "matched_value": 7306.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "10,000",
+       "value": 10000.0,
+       "kind": "plain",
+       "start": 1162,
+       "end": 1168,
+       "context": "headroom (inference).** Since 73.1% of households (7,306 of 10,000) have never owned an EV, there is, *by inference*, a large ",
+       "status": "verified",
+       "matched_path": "n_total",
+       "matched_value": 10000.0,
+       "denominator_stated": null
+      }
+     ],
+     "external_flags": [],
+     "negated_mentions": [
+      {
+       "phrase": "benchmark",
+       "start": 88,
+       "end": 97,
+       "negated": true,
+       "context": "ered as posed: the dataset contains no external or national benchmark, so any comparison to a national EV adoption rate would be "
+      },
+      {
+       "phrase": "benchmark",
+       "start": 230,
+       "end": 239,
+       "negated": true,
+       "context": "orted reason: \"The dataset contains no external or national benchmark. Only within-dataset figures can be reported; any compariso"
+      },
+      {
+       "phrase": "national rate",
+       "start": 306,
+       "end": 319,
+       "negated": true,
+       "context": "within-dataset figures can be reported; any comparison to a national rate would be invented.\"  What I can report: within this dataset"
+      },
+      {
+       "phrase": "benchmark",
+       "start": 1442,
+       "end": 1451,
+       "negated": true,
+       "context": "n this case:** I'd want (1) a verified national EV adoption benchmark from an external source, (2) year-over-year EV share trends"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "Q10",
+   "question": "What is the average household income of retired owners?",
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "This question cannot be answered from this dataset. Reason: income is recorded only as a bracket (lower / lower_middle / upper_middle / upper), with no dollar-value income field, so an average cannot be computed.\n\n**What I can report instead (segment profile, retired households, n=1,041 of 10,000 total households, 10.4% of all households):**\n\nThis retired segment is sizable \u2014 1,041 households, or 10.4% of the 10,000-household sample \u2014 and warrants attention given its distinct income and vehicle-purchase behavior.\n\n**Opportunities (each figure from the retired subgroup of 1,041 households):**\n\n1. **Upper-middle income concentration**: 488 of 1,041 retired households (46.9%) fall in the upper_middle income bracket, versus only 169 (16.2%) in the lower bracket. Inference: this suggests retirees skew toward higher discretionary spending capacity, making them a viable target for premium offerings \u2014 though this is an inference since bracket data alone doesn't confirm spending intent.\n\n2. **EV adoption**: 166 of 1,041 retired households (16.0%) currently have EV as primary powertrain, and 22.2% (231 of 1,041, per ever_ev_pct) have ever owned an EV \u2014 an opportunity for EV-focused marketing to this segment.\n\n3. **High lifetime purchases**: Retired households average 8.1 lifetime purchases with an average price per purchase of $26,472, indicating repeat-purchase potential.\n\n**Data needed to strengthen this case:** Actual dollar-denominated income figures (not brackets) would allow precise income averages and correlation with purchase price/spend.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 1477,
+     "output_tokens": 542,
+     "latency_ms": 6413.7,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 3636,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "stats": {
+    "metric": "unanswerable",
+    "filters": {
+     "life_stage": "retired"
+    },
+    "group_by": null,
+    "params": {
+     "reason": "numeric_income"
+    },
+    "n_total": 10000,
+    "n_matched": 1041,
+    "match_pct": 10.4,
+    "answerable": false,
+    "unanswerable_reason": "Income is recorded only as a bracket (lower / lower_middle / upper_middle / upper). No dollar income exists in the dataset, so an average income cannot be computed.",
+    "groups": {},
+    "unanswerable_key": "numeric_income",
+    "answerable_part": {
+     "metric": "segment_profile",
+     "filters": {
+      "life_stage": "retired"
+     },
+     "group_by": null,
+     "params": {},
+     "n_total": 10000,
+     "n_matched": 1041,
+     "match_pct": 10.4,
+     "answerable": true,
+     "unanswerable_reason": null,
+     "groups": {
+      "all": {
+       "n_households": 1041,
+       "avg_age": 68.9,
+       "age_group": {
+        "60s": 577,
+        "70s": 464
+       },
+       "life_stage": {
+        "retired": 1041
+       },
+       "household_composition": {
+        "partnered_no_children": 880,
+        "solo": 161
+       },
+       "income_bracket": {
+        "lower": 169,
+        "lower_middle": 384,
+        "upper_middle": 488
+       },
+       "area_type": {
+        "rural": 273,
+        "suburban": 495,
+        "urban": 273
+       },
+       "commute_type": {
+        "none": 1041
+       },
+       "primary_body_type": {
+        "compact": 160,
+        "crossover": 336,
+        "none": 19,
+        "sedan": 407,
+        "sports": 16,
+        "suv": 103
+       },
+       "primary_powertrain": {
+        "ev": 166,
+        "gasoline": 625,
+        "hybrid": 231,
+        "none": 19
+       },
+       "ever_ev_pct": 22.2,
+       "avg_current_vehicles": 1.0,
+       "avg_purchases_lifetime": 8.1,
+       "avg_price_per_purchase_usd": 26472.0,
+       "avg_annual_spend_5y_usd": 5615.0,
+       "rfm_cluster": {
+        "declining": 36,
+        "dormant": 28,
+        "high_stable": 80,
+        "high_volatile": 74,
+        "mid_stable": 769,
+        "rising": 54
+       },
+       "progression_type": {
+        "ascending": 184,
+        "descending": 42,
+        "stable": 19,
+        "volatile": 796
+       },
+       "top_trigger_events": {
+        "first_job": 901,
+        "new_child": 520,
+        "promotion": 245,
+        "job_change": 208,
+        "marriage": 142
+       },
+       "avg_job_changes": 2.01,
+       "avg_moves": 2.29
+      }
+     }
+    }
+   },
+   "scores": {
+    "pipeline_grounded": {
+     "mode": "pipeline_grounded",
+     "n_claims": 19,
+     "n_verified": 16,
+     "n_derived": 3,
+     "n_unverified": 0,
+     "grounding_rate": 1.0,
+     "unverified_rate": 0.0,
+     "n_external_flags": 0,
+     "pct_claims": 6,
+     "pct_with_denominator": 0.667,
+     "unanswerable_expected": true,
+     "refusal_detected": true,
+     "fabricated_on_unanswerable": 0,
+     "truth_basis": "population",
+     "answer_status": "answered",
+     "claims": [
+      {
+       "text": "1,041",
+       "value": 1041.0,
+       "kind": "plain",
+       "start": 282,
+       "end": 287,
+       "context": " can report instead (segment profile, retired households, n=1,041 of 10,000 total households, 10.4% of all households):**  Th",
+       "status": "verified",
+       "matched_path": "n_matched",
+       "matched_value": 1041.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "10,000",
+       "value": 10000.0,
+       "kind": "plain",
+       "start": 291,
+       "end": 297,
+       "context": "rt instead (segment profile, retired households, n=1,041 of 10,000 total households, 10.4% of all households):**  This retired",
+       "status": "verified",
+       "matched_path": "n_total",
+       "matched_value": 10000.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "10.4%",
+       "value": 10.4,
+       "kind": "pct",
+       "start": 316,
+       "end": 321,
+       "context": "le, retired households, n=1,041 of 10,000 total households, 10.4% of all households):**  This retired segment is sizable \u2014 1,",
+       "status": "verified",
+       "matched_path": "match_pct",
+       "matched_value": 10.4,
+       "denominator_stated": true
+      },
+      {
+       "text": "1,041",
+       "value": 1041.0,
+       "kind": "count",
+       "start": 379,
+       "end": 384,
+       "context": "4% of all households):**  This retired segment is sizable \u2014 1,041 households, or 10.4% of the 10,000-household sample \u2014 and w",
+       "status": "verified",
+       "matched_path": "n_matched",
+       "matched_value": 1041.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "10.4%",
+       "value": 10.4,
+       "kind": "pct",
+       "start": 400,
+       "end": 405,
+       "context": ":**  This retired segment is sizable \u2014 1,041 households, or 10.4% of the 10,000-household sample \u2014 and warrants attention giv",
+       "status": "verified",
+       "matched_path": "match_pct",
+       "matched_value": 10.4,
+       "denominator_stated": true
+      },
+      {
+       "text": "10,000",
+       "value": 10000.0,
+       "kind": "plain",
+       "start": 413,
+       "end": 419,
+       "context": "ired segment is sizable \u2014 1,041 households, or 10.4% of the 10,000-household sample \u2014 and warrants attention given its distinc",
+       "status": "verified",
+       "matched_path": "n_total",
+       "matched_value": 10000.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "1,041",
+       "value": 1041.0,
+       "kind": "count",
+       "start": 578,
+       "end": 583,
+       "context": "  **Opportunities (each figure from the retired subgroup of 1,041 households):**  1. **Upper-middle income concentration**: 4",
+       "status": "verified",
+       "matched_path": "n_matched",
+       "matched_value": 1041.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "488",
+       "value": 488.0,
+       "kind": "plain",
+       "start": 642,
+       "end": 645,
+       "context": "1 households):**  1. **Upper-middle income concentration**: 488 of 1,041 retired households (46.9%) fall in the upper_middl",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.income_bracket.upper_middle",
+       "matched_value": 488.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "1,041",
+       "value": 1041.0,
+       "kind": "plain",
+       "start": 649,
+       "end": 654,
+       "context": "holds):**  1. **Upper-middle income concentration**: 488 of 1,041 retired households (46.9%) fall in the upper_middle income ",
+       "status": "verified",
+       "matched_path": "n_matched",
+       "matched_value": 1041.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "46.9%",
+       "value": 46.9,
+       "kind": "pct",
+       "start": 675,
+       "end": 680,
+       "context": "le income concentration**: 488 of 1,041 retired households (46.9%) fall in the upper_middle income bracket, versus only 169 (",
+       "status": "derived",
+       "matched_path": "answerable_part.groups.all.income_bracket.upper_middle / answerable_part.groups.all.n_households * 100",
+       "matched_value": 46.88,
+       "denominator_stated": true
+      },
+      {
+       "text": "169",
+       "value": 169.0,
+       "kind": "plain",
+       "start": 735,
+       "end": 738,
+       "context": "46.9%) fall in the upper_middle income bracket, versus only 169 (16.2%) in the lower bracket. Inference: this suggests reti",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.income_bracket.lower",
+       "matched_value": 169.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "16.2%",
+       "value": 16.2,
+       "kind": "pct",
+       "start": 740,
+       "end": 745,
+       "context": ") fall in the upper_middle income bracket, versus only 169 (16.2%) in the lower bracket. Inference: this suggests retirees sk",
+       "status": "derived",
+       "matched_path": "answerable_part.groups.all.income_bracket.lower / answerable_part.groups.all.n_households * 100",
+       "matched_value": 16.23,
+       "denominator_stated": false
+      },
+      {
+       "text": "166",
+       "value": 166.0,
+       "kind": "plain",
+       "start": 1014,
+       "end": 1017,
+       "context": "alone doesn't confirm spending intent.  2. **EV adoption**: 166 of 1,041 retired households (16.0%) currently have EV as pr",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.primary_powertrain.ev",
+       "matched_value": 166.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "1,041",
+       "value": 1041.0,
+       "kind": "plain",
+       "start": 1021,
+       "end": 1026,
+       "context": "oesn't confirm spending intent.  2. **EV adoption**: 166 of 1,041 retired households (16.0%) currently have EV as primary pow",
+       "status": "verified",
+       "matched_path": "n_matched",
+       "matched_value": 1041.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "16.0%",
+       "value": 16.0,
+       "kind": "pct",
+       "start": 1047,
+       "end": 1052,
+       "context": "tent.  2. **EV adoption**: 166 of 1,041 retired households (16.0%) currently have EV as primary powertrain, and 22.2% (231 of",
+       "status": "derived",
+       "matched_path": "answerable_part.groups.all.income_bracket.lower / answerable_part.groups.all.n_households * 100",
+       "matched_value": 16.23,
+       "denominator_stated": true
+      },
+      {
+       "text": "22.2%",
+       "value": 22.2,
+       "kind": "pct",
+       "start": 1099,
+       "end": 1104,
+       "context": "eholds (16.0%) currently have EV as primary powertrain, and 22.2% (231 of 1,041, per ever_ev_pct) have ever owned an EV \u2014 an ",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.ever_ev_pct",
+       "matched_value": 22.2,
+       "denominator_stated": false
+      },
+      {
+       "text": "231",
+       "value": 231.0,
+       "kind": "plain",
+       "start": 1106,
+       "end": 1109,
+       "context": "(16.0%) currently have EV as primary powertrain, and 22.2% (231 of 1,041, per ever_ev_pct) have ever owned an EV \u2014 an oppor",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.primary_powertrain.hybrid",
+       "matched_value": 231.0,
+       "denominator_stated": null
+      },
+      {
+       "text": "8.1",
+       "value": 8.1,
+       "kind": "plain",
+       "start": 1278,
+       "end": 1281,
+       "context": " 3. **High lifetime purchases**: Retired households average 8.1 lifetime purchases with an average price per purchase of $2",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.avg_purchases_lifetime",
+       "matched_value": 8.1,
+       "denominator_stated": null
+      },
+      {
+       "text": "$26,472",
+       "value": 26472.0,
+       "kind": "usd",
+       "start": 1339,
+       "end": 1346,
+       "context": ".1 lifetime purchases with an average price per purchase of $26,472, indicating repeat-purchase potential.  **Data needed to st",
+       "status": "verified",
+       "matched_path": "answerable_part.groups.all.avg_price_per_purchase_usd",
+       "matched_value": 26472.0,
+       "denominator_stated": null
+      }
+     ],
+     "external_flags": [],
+     "negated_mentions": []
+    }
+   }
+  }
+ ]
+}

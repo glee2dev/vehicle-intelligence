@@ -1,0 +1,1188 @@
+{
+ "backend": "anthropic",
+ "model": "claude-sonnet-5",
+ "persona": "market_strategist",
+ "queries_file": "/home/claude/vehicle-intelligence/eval/queries.json",
+ "created": "2026-09-09T01:56:22.975665",
+ "settings": {
+  "max_tokens": "20000",
+  "thinking": "adaptive",
+  "effort": "default"
+ },
+ "runs": [
+  {
+   "question": "For households that had a new child in the last two years, how did annual vehicle spend change in the two years after versus the two years before?",
+   "spec": {
+    "filters": {
+     "had_event": {
+      "event": "new_child",
+      "since_year": 2024
+     }
+    },
+    "metric": "spend_around_event",
+    "params": {
+     "event": "new_child",
+     "before": 2,
+     "after": 2,
+     "since_year": 2024
+    }
+   },
+   "persona": "market_strategist",
+   "backend": "anthropic",
+   "model": "claude-sonnet-5",
+   "temperature": 0.3,
+   "pipeline_ms": 38.3,
+   "total_ms": 8448.2,
+   "stats": {
+    "metric": "spend_around_event",
+    "filters": {
+     "had_event": {
+      "event": "new_child",
+      "since_year": 2024
+     }
+    },
+    "group_by": null,
+    "params": {
+     "event": "new_child",
+     "before": 2,
+     "after": 2,
+     "since_year": 2024
+    },
+    "n_total": 10000,
+    "n_matched": 577,
+    "match_pct": 5.8,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "event": "new_child",
+      "window_before_years": 2,
+      "window_after_years": 2,
+      "cost_basis": "total (running + capital)",
+      "n_households_with_event": 577,
+      "n_events_scored": 598,
+      "mean_annual_spend_before_usd": 11298.0,
+      "mean_annual_spend_after_usd": 17435.0,
+      "delta_pct_of_means": 54.3,
+      "median_per_household_delta_pct": 15.2,
+      "share_of_events_with_increase_pct": 64.9
+     }
+    }
+   },
+   "records_meta": {},
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "**Segment size & why it matters:** 577 households (5.8% of 10,000 total) experienced a new child event since 2024, generating 598 scored events. This is a meaningful cohort for targeting life-stage-driven vehicle purchases, particularly around safety and capacity upgrades.\n\n**Opportunity 1 \u2014 Overall spend lift:** Mean annual vehicle spend rose from $11,298 to $17,435 across the before/after windows \u2014 a 54.3% increase (delta_pct_of_means). This is a strong signal that new-child households are a high-value segment for dealers and lenders to target with proactive outreach in the two years following the event.\n\n**Opportunity 2 \u2014 Majority act, but with variance:** 64.9% of the 598 scored events (388 events, an inference derived from applying the percentage to the event count) show an increase in spend, meaning roughly one-third do not increase. This suggests segmenting further \u2014 e.g., identifying which sub-groups are non-responders \u2014 could sharpen marketing efficiency, though the JSON does not provide that breakdown.\n\n**Opportunity 3 \u2014 Typical household lift is more modest:** The median per-household delta is 15.2%, notably lower than the 54.3% mean-based figure, implying the mean is pulled up by a subset of large spenders (inference). This suggests a tiered product strategy: premium offerings for high-spend responders and value-tier financing for the median household.\n\n**Strengthening the case:** Additional data on vehicle type/body style chosen post-event, household income, urban/rural location, and whether the spend increase was running vs. capital cost would sharpen segmentation and campaign targeting. None of this is available in the current JSON.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 871,
+     "output_tokens": 550,
+     "latency_ms": 8020.9,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 2348,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "id": "Q01",
+   "exposes": "per-household year alignment \u2014 the window is relative to each household's own event year, not a calendar year"
+  },
+  {
+   "question": "Which life event is followed most often by a switch to a family body type \u2014 an SUV or a minivan?",
+   "spec": {
+    "filters": {},
+    "metric": "event_to_body_change",
+    "params": {
+     "target_bodies": [
+      "suv",
+      "minivan"
+     ],
+     "window": 2
+    }
+   },
+   "persona": "market_strategist",
+   "backend": "anthropic",
+   "model": "claude-sonnet-5",
+   "temperature": 0.3,
+   "pipeline_ms": 254.7,
+   "total_ms": 8691.3,
+   "stats": {
+    "metric": "event_to_body_change",
+    "filters": {},
+    "group_by": null,
+    "params": {
+     "target_bodies": [
+      "suv",
+      "minivan"
+     ],
+     "window": 2
+    },
+    "n_total": 10000,
+    "n_matched": 10000,
+    "match_pct": 100.0,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "target_bodies": [
+       "minivan",
+       "suv"
+      ],
+      "window_years": 2,
+      "population_holding_now_pct": 29.1,
+      "by_event": [
+       {
+        "event": "new_child",
+        "n_events": 10042,
+        "held_before_pct": 37.9,
+        "held_within_window_pct": 87.1,
+        "lift_pts": 49.2
+       },
+       {
+        "event": "marriage",
+        "n_events": 5865,
+        "held_before_pct": 0.2,
+        "held_within_window_pct": 43.3,
+        "lift_pts": 43.1
+       },
+       {
+        "event": "promotion",
+        "n_events": 15599,
+        "held_before_pct": 32.3,
+        "held_within_window_pct": 46.0,
+        "lift_pts": 13.7
+       },
+       {
+        "event": "moved",
+        "n_events": 19824,
+        "held_before_pct": 25.1,
+        "held_within_window_pct": 37.1,
+        "lift_pts": 12.0
+       },
+       {
+        "event": "job_change",
+        "n_events": 18793,
+        "held_before_pct": 28.7,
+        "held_within_window_pct": 36.9,
+        "lift_pts": 8.2
+       },
+       {
+        "event": "new_hobby",
+        "n_events": 2370,
+        "held_before_pct": 20.0,
+        "held_within_window_pct": 26.8,
+        "lift_pts": 6.8
+       },
+       {
+        "event": "bereavement",
+        "n_events": 358,
+        "held_before_pct": 18.2,
+        "held_within_window_pct": 22.6,
+        "lift_pts": 4.4
+       },
+       {
+        "event": "career_change",
+        "n_events": 1329,
+        "held_before_pct": 36.3,
+        "held_within_window_pct": 39.4,
+        "lift_pts": 3.1
+       },
+       {
+        "event": "divorce",
+        "n_events": 1016,
+        "held_before_pct": 65.6,
+        "held_within_window_pct": 65.9,
+        "lift_pts": 0.3
+       },
+       {
+        "event": "empty_nest",
+        "n_events": 2029,
+        "held_before_pct": 50.6,
+        "held_within_window_pct": 40.8,
+        "lift_pts": -9.8
+       },
+       {
+        "event": "retirement",
+        "n_events": 1041,
+        "held_before_pct": 26.8,
+        "held_within_window_pct": 15.9,
+        "lift_pts": -10.9
+       }
+      ]
+     }
+    }
+   },
+   "records_meta": {},
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "**Segment size & why it matters:** Across 10,000 households in this dataset, 29.1% currently hold a family body type (SUV or minivan) \u2014 a sizable base for cross-sell and retention strategies tied to life-stage transitions.\n\n**Top opportunity \u2014 new_child events (10,042 events):** Within 2 years of a new_child event, 87.1% of associated households hold an SUV/minivan, up from 37.9% held_before \u2014 a 49.2 percentage-point lift, the largest of any event tracked. This is the single strongest trigger for family-body-type conversion and represents the clearest opportunity for targeted marketing timed to parenthood.\n\n**Second opportunity \u2014 marriage events (5,865 events):** Post-marriage, 43.3% of associated households hold a family body type versus just 0.2% held_before \u2014 a 43.1-point lift, nearly matching new_child in magnitude. This suggests (inference) that marriage-linked messaging/promotions could capture a nearly untapped pre-marriage base.\n\n**Third opportunity \u2014 promotion events (15,599 events):** Only a 13.7-point lift (32.3% before vs. 46.0% within window), but the largest event volume in the dataset, meaning even modest lift-per-household could translate into a large absolute number of conversions (inference \u2014 absolute counts not directly given).\n\n**Bottom line:** new_child is the life event most often followed by a switch to SUV/minivan ownership, both by lift (49.2 pts) and by high post-event penetration (87.1% of 10,042 events).\n\n**Data that would strengthen this case:** Household income or vehicle price data at time of event, geographic/regional breakdowns, and confirmation of purchase timing (immediate vs. gradual within the 2-year window) are not available in this dataset.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 1509,
+     "output_tokens": 583,
+     "latency_ms": 7921.2,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 3634,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "id": "Q02",
+   "exposes": "event \u2192 next-state join across two timelines; needs a before/after baseline per event, not a raw count"
+  },
+  {
+   "question": "Among owners with two or more job changes, what share have ever switched to an EV \u2014 compared with owners who never changed jobs?",
+   "spec": {
+    "filters": {
+     "n_job_changes": {
+      "gte": 2
+     }
+    },
+    "metric": "share",
+    "params": {
+     "of": {
+      "ever_ev": true
+     }
+    },
+    "also": {
+     "filters": {
+      "n_job_changes": {
+       "eq": 0
+      }
+     },
+     "metric": "share",
+     "params": {
+      "of": {
+       "ever_ev": true
+      }
+     }
+    }
+   },
+   "persona": "market_strategist",
+   "backend": "anthropic",
+   "model": "claude-sonnet-5",
+   "temperature": 0.3,
+   "pipeline_ms": 48.7,
+   "total_ms": 7890.1,
+   "stats": {
+    "metric": "share",
+    "filters": {
+     "n_job_changes": {
+      "gte": 2
+     }
+    },
+    "group_by": null,
+    "params": {
+     "of": {
+      "ever_ev": true
+     }
+    },
+    "n_total": 10000,
+    "n_matched": 6251,
+    "match_pct": 62.5,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "n_households": 6251,
+      "n_matching": 1817,
+      "share_pct": 29.1,
+      "of": {
+       "ever_ev": true
+      }
+     }
+    },
+    "answerable_part": {
+     "metric": "share",
+     "filters": {
+      "n_job_changes": {
+       "eq": 0
+      }
+     },
+     "group_by": null,
+     "params": {
+      "of": {
+       "ever_ev": true
+      }
+     },
+     "n_total": 10000,
+     "n_matched": 714,
+     "match_pct": 7.1,
+     "answerable": true,
+     "unanswerable_reason": null,
+     "groups": {
+      "all": {
+       "n_households": 714,
+       "n_matching": 120,
+       "share_pct": 16.8,
+       "of": {
+        "ever_ev": true
+       }
+      }
+     }
+    }
+   },
+   "records_meta": {},
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "**Segment size:** Households with 2+ job changes number 6,251 out of 10,000 total households (62.5%) \u2014 a majority segment, making it a core group for EV strategy.\n\n**Opportunity 1 \u2014 Higher EV adoption among job-mobile households.** Among these 6,251 high-job-change households, 1,817 have ever switched to an EV, a 29.1% share (denominator: 6,251 households). This compares to only 120 out of 714 households with zero job changes (16.8% share, denominator: 714 households) who have ever switched to an EV. The gap \u2014 29.1% vs. 16.8% \u2014 suggests (inference) that career/income mobility may correlate with EV willingness, making job-changers a higher-value target segment.\n\n**Opportunity 2 \u2014 Scale advantage.** Because the 2+ job-change segment is nearly 9x larger in raw count (6,251 vs. 714 households), even modest share gains here translate into far more EV conversions in absolute terms than equivalent gains in the no-job-change segment. This is an inference about relative marketing ROI, not a stated figure in the data.\n\n**Opportunity 3 \u2014 Untapped majority.** Despite higher relative adoption, 70.9% of the 6,251 job-changing households (4,434 households, a trivial subtraction from 6,251 \u2212 1,817) have not yet gone EV \u2014 indicating substantial headroom in this larger, more receptive segment.\n\n**Data to strengthen the case:** Income levels, job-change reasons (e.g., promotions vs. relocations), timing between job change and EV purchase, and geographic/urban-rural splits are not available in this dataset but would clarify causal drivers behind the adoption gap.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 934,
+     "output_tokens": 556,
+     "latency_ms": 7352.2,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 2396,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "id": "Q03",
+   "exposes": "cohort defined by a count, two cohorts, two denominators"
+  },
+  {
+   "question": "Do single 40s owners who never married spend more per vehicle purchase than 30s dual-income parents?",
+   "spec": {
+    "filters": {
+     "age_group": "40s",
+     "household_composition": "solo",
+     "ever_married": false
+    },
+    "metric": "price_per_purchase",
+    "params": {},
+    "also": {
+     "filters": {
+      "age_group": "30s",
+      "dual_income": true,
+      "n_children_home": {
+       "gte": 1
+      }
+     },
+     "metric": "price_per_purchase",
+     "params": {}
+    }
+   },
+   "persona": "market_strategist",
+   "backend": "anthropic",
+   "model": "claude-sonnet-5",
+   "temperature": 0.3,
+   "pipeline_ms": 59.6,
+   "total_ms": 7173.0,
+   "stats": {
+    "metric": "price_per_purchase",
+    "filters": {
+     "age_group": "40s",
+     "household_composition": "solo",
+     "ever_married": false
+    },
+    "group_by": null,
+    "params": {},
+    "n_total": 10000,
+    "n_matched": 1043,
+    "match_pct": 10.4,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "n_households": 1043,
+      "n_purchases": 4817,
+      "mean_price_per_purchase_usd": 25981.0,
+      "median_price_per_purchase_usd": 16996,
+      "mean_of_household_means_usd": 25530.0,
+      "avg_purchases_per_household": 4.62,
+      "price_band_distribution": {
+       "1": 2132,
+       "2": 774,
+       "3": 804,
+       "4": 560,
+       "5": 547
+      },
+      "new_share_pct": 52.7
+     }
+    },
+    "answerable_part": {
+     "metric": "price_per_purchase",
+     "filters": {
+      "age_group": "30s",
+      "dual_income": true,
+      "n_children_home": {
+       "gte": 1
+      }
+     },
+     "group_by": null,
+     "params": {},
+     "n_total": 10000,
+     "n_matched": 876,
+     "match_pct": 8.8,
+     "answerable": true,
+     "unanswerable_reason": null,
+     "groups": {
+      "all": {
+       "n_households": 876,
+       "n_purchases": 3196,
+       "mean_price_per_purchase_usd": 24361.0,
+       "median_price_per_purchase_usd": 15572.0,
+       "mean_of_household_means_usd": 23977.0,
+       "avg_purchases_per_household": 3.65,
+       "price_band_distribution": {
+        "1": 1525,
+        "2": 396,
+        "3": 623,
+        "4": 398,
+        "5": 254
+       },
+       "new_share_pct": 44.6
+      }
+     }
+    }
+   },
+   "records_meta": {},
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "**Segment size:** Single, never-married 40s owners number 1,043 households (10.4% of 10,000 total households), generating 4,817 purchases. This is a meaningful segment worth benchmarking against 30s dual-income parents (876 households, 8.8% of total, 3,196 purchases).\n\n**Yes \u2014 this segment spends more per vehicle purchase.** Mean price per purchase for single 40s never-married owners is $25,981, versus $24,361 for 30s dual-income parents \u2014 a difference of $1,620 per purchase (trivial subtraction). Median price tells the same story: $16,996 vs. $15,572, a $1,424 gap.\n\n**Three opportunities, each backed by a figure:**\n1. **Higher-margin single buyers:** With mean spend of $25,981 across 4,817 purchases, this segment represents a larger transaction base than the parent segment (3,196 purchases) \u2014 an opportunity to target higher-ticket inventory toward this group.\n2. **New-vehicle share gap:** Single 40s owners have a new-share of 52.7% of their purchases, compared to 44.6% for dual-income parents (denominator: purchases in each group). This ~8-point gap (inference: may signal stronger preference or capacity for new vehicles among singles) suggests upselling new models to this segment.\n3. **Purchase frequency:** Single 40s owners average 4.62 purchases/household vs. 3.65 for parents \u2014 inference: higher lifetime value per household, worth deeper engagement.\n\n**Data needed to strengthen the case:** Income levels, financing/loan data, vehicle type/segment breakdown, and geographic distribution are not available in this dataset and would clarify why spend differs.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 1175,
+     "output_tokens": 565,
+     "latency_ms": 6660.2,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 2915,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "id": "Q04",
+   "exposes": "per-purchase mean vs per-household mean \u2014 the denominator is purchases, and the two segments buy at different rates"
+  },
+  {
+   "question": "For empty nesters, why was their vehicle spending higher during their 40s than during their 50s?",
+   "spec": {
+    "filters": {
+     "life_stage": "empty_nester",
+     "has_full_decades": [
+      "40s",
+      "50s"
+     ]
+    },
+    "metric": "decade_explain",
+    "params": {
+     "decades": [
+      "40s",
+      "50s"
+     ]
+    }
+   },
+   "persona": "market_strategist",
+   "backend": "anthropic",
+   "model": "claude-sonnet-5",
+   "temperature": 0.3,
+   "pipeline_ms": 24.6,
+   "total_ms": 9578.8,
+   "stats": {
+    "metric": "decade_explain",
+    "filters": {
+     "life_stage": "empty_nester",
+     "has_full_decades": [
+      "40s",
+      "50s"
+     ]
+    },
+    "group_by": null,
+    "params": {
+     "decades": [
+      "40s",
+      "50s"
+     ]
+    },
+    "n_total": 10000,
+    "n_matched": 426,
+    "match_pct": 4.3,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "decades": [
+       "40s",
+       "50s"
+      ],
+      "n_households_total": 426,
+      "n_with_full_decades": 426,
+      "n_excluded_partial_history": 0,
+      "per_decade": {
+       "40s": {
+        "mean_cluster_0_to_2": 1.43,
+        "cluster_distribution": {
+         "0": 32,
+         "1": 177,
+         "2": 217
+        },
+        "mean_annual_spend_usd": 9113.0,
+        "mean_purchases": 1.58,
+        "top_purchase_trigger": {
+         "replacement_cycle": 309,
+         "promotion": 60,
+         "job_change": 42
+        },
+        "share_of_households_with_event_in_decade_pct": {
+         "promotion": 46.5,
+         "new_child": 3.3,
+         "empty_nest": 14.3,
+         "retirement": 0.0,
+         "job_change": 50.9,
+         "new_hobby": 5.2,
+         "moved": 31.7
+        },
+        "event_counts": {
+         "job_change": 249,
+         "promotion": 233,
+         "moved": 155,
+         "empty_nest": 61,
+         "divorce": 23,
+         "new_hobby": 22
+        }
+       },
+       "50s": {
+        "mean_cluster_0_to_2": 1.5,
+        "cluster_distribution": {
+         "0": 26,
+         "1": 163,
+         "2": 237
+        },
+        "mean_annual_spend_usd": 9584.0,
+        "mean_purchases": 1.56,
+        "top_purchase_trigger": {
+         "replacement_cycle": 277,
+         "promotion": 63,
+         "empty_nest": 51
+        },
+        "share_of_households_with_event_in_decade_pct": {
+         "promotion": 46.5,
+         "new_child": 0.0,
+         "empty_nest": 80.0,
+         "retirement": 0.0,
+         "job_change": 48.8,
+         "new_hobby": 0.2,
+         "moved": 27.7
+        },
+        "event_counts": {
+         "empty_nest": 341,
+         "job_change": 236,
+         "promotion": 228,
+         "moved": 129,
+         "bereavement": 17,
+         "divorce": 2
+        }
+       }
+      }
+     }
+    }
+   },
+   "records_meta": {},
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "**Correction of premise:** In this dataset, mean annual vehicle spend for empty-nester households was actually *lower* in the 40s ($9,113) than in the 50s ($9,584) \u2014 a difference of $471 (trivial subtraction of the two given figures). So the question's premise does not hold for this segment.\n\n**Segment size:** This cohort represents 426 households (4.3% of the 10,000 households surveyed) \u2014 a small but trackable niche for targeted lifecycle marketing.\n\n**Opportunities (with figures):**\n1. **Empty-nest transition as a spend trigger** \u2014 80.0% of these 426 households recorded an \"empty_nest\" event during their 50s (vs. 14.3% in their 40s), coinciding with the higher $9,584 spend. Inference: the empty-nest milestone itself may be driving incremental purchases in the 50s, worth targeting with post-transition offers.\n2. **Replacement-cycle dominance** \u2014 \"replacement_cycle\" was the top purchase trigger in both decades (309 of purchases in 40s; 277 in 50s), suggesting a durable, non-life-event revenue base to build maintenance/upgrade campaigns around.\n3. **Job-change/promotion overlap** \u2014 Job-change events affected 50.9% of households (event share) in the 40s vs. 48.8% in the 50s, and promotion events were identical at 46.5% both decades \u2014 indicating career-stage marketing could work similarly across both age bands.\n\n**Data needed to strengthen this case:** Purchase-level price/vehicle-type breakdowns per decade, and event-level spend attribution (e.g., spend specifically tied to empty_nest vs. replacement_cycle events) are not available in this dataset but would clarify causal drivers behind the $471 spend gap.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 1438,
+     "output_tokens": 779,
+     "latency_ms": 9102.2,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 1
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 3481,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "id": "Q05",
+   "exposes": "false-premise explanation \u2014 mean spend is in fact lower in the 40s than the 50s (only the tercile cluster is higher); the grounded answer rejects the premise with numbers, the ungrounded one explains a pattern that does not exist"
+  },
+  {
+   "question": "Which life stage has the widest spending span \u2014 the biggest gap between its lowest and highest annual vehicle spend?",
+   "spec": {
+    "filters": {},
+    "group_by": "life_stage",
+    "metric": "spend_span",
+    "params": {}
+   },
+   "persona": "market_strategist",
+   "backend": "anthropic",
+   "model": "claude-sonnet-5",
+   "temperature": 0.3,
+   "pipeline_ms": 37.9,
+   "total_ms": 7128.8,
+   "stats": {
+    "metric": "spend_span",
+    "filters": {},
+    "group_by": "life_stage",
+    "params": {},
+    "n_total": 10000,
+    "n_matched": 10000,
+    "match_pct": 100.0,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "early_career": {
+      "n_households": 1980,
+      "mean_range_usd": 16443.0,
+      "median_range_usd": 13009.0,
+      "mean_min_usd": 279.0,
+      "mean_max_usd": 16723.0,
+      "mean_lifetime_spend_usd": 38511.0
+     },
+     "empty_nester": {
+      "n_households": 1371,
+      "mean_range_usd": 54433.0,
+      "median_range_usd": 53907,
+      "mean_min_usd": 118.0,
+      "mean_max_usd": 54551.0,
+      "mean_lifetime_spend_usd": 285471.0
+     },
+     "established_professional": {
+      "n_households": 2483,
+      "mean_range_usd": 46710.0,
+      "median_range_usd": 41155,
+      "mean_min_usd": 123.0,
+      "mean_max_usd": 46833.0,
+      "mean_lifetime_spend_usd": 171070.0
+     },
+     "parent_school_age": {
+      "n_households": 2106,
+      "mean_range_usd": 50458.0,
+      "median_range_usd": 48962.0,
+      "mean_min_usd": 111.0,
+      "mean_max_usd": 50569.0,
+      "mean_lifetime_spend_usd": 201384.0
+     },
+     "parent_young_children": {
+      "n_households": 1019,
+      "mean_range_usd": 45031.0,
+      "median_range_usd": 39679,
+      "mean_min_usd": 109.0,
+      "mean_max_usd": 45140.0,
+      "mean_lifetime_spend_usd": 132452.0
+     },
+     "retired": {
+      "n_households": 1041,
+      "mean_range_usd": 57705.0,
+      "median_range_usd": 58171,
+      "mean_min_usd": 52.0,
+      "mean_max_usd": 57756.0,
+      "mean_lifetime_spend_usd": 368809.0
+     }
+    }
+   },
+   "records_meta": {},
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "**Segment size & relevance:** Among 10,000 households, \"retired\" life-stage households (n=1,041) show the widest spending span, with a mean annual range of $57,705 (mean min $52 \u2192 mean max $57,756). This is notably larger than \"empty_nester\" ($54,433 mean range, n=1,371 households) and \"parent_school_age\" ($50,458 mean range, n=2,106 households). The retired segment also carries the highest mean lifetime spend of $368,809 per household \u2014 the largest of any group in this dataset.\n\n**Opportunities:**\n1. **High-ticket flexibility in retirement.** With a $57,705 mean spend range (retired group, n=1,041), this segment appears to swing between very low and very high annual outlays. Inference: this could suggest occasional large discretionary purchases (e.g., RVs, upgrades) worth targeting with premium or seasonal offers \u2014 though the dataset does not specify vehicle type or purchase timing.\n2. **Empty nesters as a secondary high-range segment.** Mean range of $54,433 (n=1,371 households) and mean lifetime spend of $285,471 suggest a household group with capacity for high-value transactions, second only to retirees in lifetime spend.\n3. **Established professionals as a volume opportunity.** With 2,483 households (the largest single group) and a mean range of $46,710, this segment offers scale, even though its span is narrower than retired or empty_nester groups.\n\n**Data to strengthen the case:** Purchase-level timing/frequency, vehicle type/price tier, and income data are not available in this JSON and would clarify what drives the wide spans in retired and empty_nester households.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 1270,
+     "output_tokens": 547,
+     "latency_ms": 7087.8,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 3005,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "id": "Q06",
+   "exposes": "two-stage aggregation: per-household range first, then group means; a single group-level min/max is wrong"
+  },
+  {
+   "question": "How many households moved more than once and changed their commute type after a move?",
+   "spec": {
+    "filters": {},
+    "metric": "sequence",
+    "params": {
+     "event": "moved",
+     "min_count": 2,
+     "attribute": "commute_type"
+    }
+   },
+   "persona": "market_strategist",
+   "backend": "anthropic",
+   "model": "claude-sonnet-5",
+   "temperature": 0.3,
+   "pipeline_ms": 35.1,
+   "total_ms": 7220.3,
+   "stats": {
+    "metric": "sequence",
+    "filters": {},
+    "group_by": null,
+    "params": {
+     "event": "moved",
+     "min_count": 2,
+     "attribute": "commute_type"
+    },
+    "n_total": 10000,
+    "n_matched": 10000,
+    "match_pct": 100.0,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "event": "moved",
+      "min_count": 2,
+      "attribute": "commute_type",
+      "n_households_total": 10000,
+      "n_households_with_min_events": 6670,
+      "n_changed_after": 6125,
+      "share_of_cohort_pct": 91.8,
+      "share_of_total_pct": 61.3
+     }
+    }
+   },
+   "records_meta": {},
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "**Segment size:** Among all 10,000 households in this dataset, 6,670 households moved 2 or more times, and of those, 6,125 households changed commute type after a move \u2014 representing 61.3% of all 10,000 households, and 91.8% of the 6,670 households that moved more than once. This is a large, high-relevance segment: nearly two-thirds of the entire household base has demonstrated both mobility and a behavioral shift in commute mode following that mobility.\n\n**Opportunity 1 \u2014 Mobility-triggered commute conversion.** With 91.8% of repeat-movers (6,125 of 6,670 households) changing commute type after a move, moving events are strong behavioral triggers. Inference: targeting messaging or offers around the moment of a move could capture this near-universal propensity to reconsider commute mode.\n\n**Opportunity 2 \u2014 Scale of addressable base.** 6,125 households represent 61.3% of the total 10,000-household dataset, meaning a majority-share audience already exhibits the exact behavior (move + commute change) that a mobility-linked product or service would target. Inference: this suggests a sizable addressable market for relocation-linked vehicle or commute-related offerings, though actual purchase intent isn't confirmed by this metric alone.\n\n**Opportunity 3 \u2014 High conversion rate within movers.** The 91.8% share_of_cohort_pct (6,125 of 6,670) indicates change-after-move is close to the norm within this cohort, not an edge case, strengthening confidence in the reliability of the trigger.\n\n**What would strengthen this case:** Data on which commute types households moved from/to, timing lag between move and change, and whether these changes correlate with vehicle purchases would sharpen targeting and quantify downstream revenue impact.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 742,
+     "output_tokens": 580,
+     "latency_ms": 7184.9,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 2044,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "id": "Q07",
+   "exposes": "compound condition with temporal order \u2014 'after' means the residence period following the move, per household"
+  },
+  {
+   "question": "What do recent graduates buy in their first three years after starting work?",
+   "spec": {
+    "filters": {
+     "had_event": {
+      "event": "graduation",
+      "since_year": 2020
+     }
+    },
+    "metric": "purchases_after_event",
+    "params": {
+     "event": "first_job",
+     "years": 3
+    }
+   },
+   "persona": "market_strategist",
+   "backend": "anthropic",
+   "model": "claude-sonnet-5",
+   "temperature": 0.3,
+   "pipeline_ms": 35.4,
+   "total_ms": 7189.6,
+   "stats": {
+    "metric": "purchases_after_event",
+    "filters": {
+     "had_event": {
+      "event": "graduation",
+      "since_year": 2020
+     }
+    },
+    "group_by": null,
+    "params": {
+     "event": "first_job",
+     "years": 3
+    },
+    "n_total": 10000,
+    "n_matched": 1179,
+    "match_pct": 11.8,
+    "answerable": true,
+    "unanswerable_reason": null,
+    "groups": {
+     "all": {
+      "event": "first_job",
+      "window_years": 3,
+      "n_households_with_event": 1179,
+      "n_purchases_in_window": 898,
+      "purchases_per_household": 0.76,
+      "body_type": {
+       "compact": 508,
+       "crossover": 96,
+       "sedan": 292,
+       "suv": 2
+      },
+      "powertrain": {
+       "ev": 148,
+       "gasoline": 540,
+       "hybrid": 210
+      },
+      "new_or_used": {
+       "new": 198,
+       "used": 700
+      },
+      "price_band": {
+       "1": 860,
+       "2": 29,
+       "3": 9
+      },
+      "mean_price_usd": 9526.0
+     }
+    }
+   },
+   "records_meta": {},
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "**Segment size:** 1,179 households (11.8% of 10,000 total) experienced a \"first_job\" event following graduation since 2020 \u2014 a meaningful segment for early-career acquisition strategies. Within their first three years post-job, these households made 898 total purchases (0.76 purchases per household).\n\n**Opportunity 1 \u2014 Compact vehicles dominate:** Of 898 purchases, 508 (56.6% of purchases) were compact body types, versus only 292 (32.5% of purchases) sedans and 96 (10.7% of purchases) crossovers. This signals compacts as the primary product-market fit for this segment; inventory and marketing investment could concentrate here.\n\n**Opportunity 2 \u2014 Used-vehicle channel is dominant:** 700 of 898 purchases (77.9% of purchases) were used vehicles, versus 198 (22.0% of purchases) new. This suggests (inference) affordability-driven demand \u2014 an opportunity for used-vehicle financing or certified pre-owned programs targeted at recent grads.\n\n**Opportunity 3 \u2014 Entry-level pricing with EV upside:** Mean price was $9,526 across purchases, and price band \"1\" (lowest) accounted for 860 of 898 purchases (95.8% of purchases). Notably, 148 of 898 purchases (16.5% of purchases) were EVs \u2014 a nontrivial share suggesting (inference) latent EV interest even at entry-level budgets, worth testing with low-cost EV offerings.\n\n**Data to strengthen the case:** Price-band dollar ranges (currently only labeled 1/2/3), income or credit data, and geographic breakdowns would sharpen targeting precision.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 888,
+     "output_tokens": 557,
+     "latency_ms": 7153.9,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 2327,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "id": "Q08",
+   "exposes": "event-anchored window; denominator is purchases inside the window, not households"
+  },
+  {
+   "question": "How does EV adoption in this dataset compare with the national average?",
+   "spec": {
+    "filters": {},
+    "metric": "unanswerable",
+    "params": {
+     "reason": "external_benchmark"
+    },
+    "also": {
+     "filters": {},
+     "metric": "share",
+     "params": {
+      "of": {
+       "ever_ev": true
+      }
+     }
+    }
+   },
+   "persona": "market_strategist",
+   "backend": "anthropic",
+   "model": "claude-sonnet-5",
+   "temperature": 0.3,
+   "pipeline_ms": 25.3,
+   "total_ms": 6932.4,
+   "stats": {
+    "metric": "unanswerable",
+    "filters": {},
+    "group_by": null,
+    "params": {
+     "reason": "external_benchmark"
+    },
+    "n_total": 10000,
+    "n_matched": 10000,
+    "match_pct": 100.0,
+    "answerable": false,
+    "unanswerable_reason": "The dataset contains no external or national benchmark. Only within-dataset figures can be reported; any comparison to a national rate would be invented.",
+    "groups": {},
+    "unanswerable_key": "external_benchmark",
+    "answerable_part": {
+     "metric": "share",
+     "filters": {},
+     "group_by": null,
+     "params": {
+      "of": {
+       "ever_ev": true
+      }
+     },
+     "n_total": 10000,
+     "n_matched": 10000,
+     "match_pct": 100.0,
+     "answerable": true,
+     "unanswerable_reason": null,
+     "groups": {
+      "all": {
+       "n_households": 10000,
+       "n_matching": 2694,
+       "share_pct": 26.9,
+       "of": {
+        "ever_ev": true
+       }
+      }
+     }
+    }
+   },
+   "records_meta": {},
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "This question cannot be answered as posed: the dataset contains no external or national benchmark, so any comparison to a national EV adoption rate would be invented. Reported reason: \"The dataset contains no external or national benchmark. Only within-dataset figures can be reported; any comparison to a national rate would be invented.\"\n\nWhat I can report: within this dataset, 2,694 of 10,000 households (26.9%) have ever owned an EV.\n\n**Opportunity read:**\n\n- **Segment size matters.** At 26.9% of households (2,694 of 10,000), EV-experienced households represent a substantial base already \u2014 over a quarter of the panel \u2014 making this a core segment rather than a niche one, worth prioritizing in product and marketing roadmaps.\n\n- **Opportunity 1 \u2014 Conversion/retention play.** With 2,694 households having EV experience, there's a sizeable pool for retention, trade-up, or accessory/service offers targeted at \"ever-EV\" owners, though the JSON does not break out *current* EV ownership vs. past-only ownership, so I can't size a retention-specific segment precisely.\n\n- **Opportunity 2 \u2014 Growth headroom (inference).** Since 73.1% of households (7,306 of 10,000) have never owned an EV, there is, *by inference*, a large non-adopter pool that could represent conversion potential \u2014 though the data doesn't tell us intent, interest, or barriers for this group.\n\n**To strengthen this case:** I'd want (1) a verified national EV adoption benchmark from an external source, (2) year-over-year EV share trends within the dataset, and (3) current (not just \"ever\") EV ownership status to distinguish active owners from past owners.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 866,
+     "output_tokens": 545,
+     "latency_ms": 6906.8,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 2346,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "id": "Q09",
+   "exposes": "external-knowledge trap \u2014 no national figure exists in the data; the correct answer reports the in-dataset rate and refuses the comparison"
+  },
+  {
+   "question": "What is the average household income of retired owners?",
+   "spec": {
+    "filters": {
+     "life_stage": "retired"
+    },
+    "metric": "unanswerable",
+    "params": {
+     "reason": "numeric_income"
+    },
+    "also": {
+     "filters": {
+      "life_stage": "retired"
+     },
+     "metric": "segment_profile",
+     "params": {}
+    }
+   },
+   "persona": "market_strategist",
+   "backend": "anthropic",
+   "model": "claude-sonnet-5",
+   "temperature": 0.3,
+   "pipeline_ms": 32.3,
+   "total_ms": 6446.3,
+   "stats": {
+    "metric": "unanswerable",
+    "filters": {
+     "life_stage": "retired"
+    },
+    "group_by": null,
+    "params": {
+     "reason": "numeric_income"
+    },
+    "n_total": 10000,
+    "n_matched": 1041,
+    "match_pct": 10.4,
+    "answerable": false,
+    "unanswerable_reason": "Income is recorded only as a bracket (lower / lower_middle / upper_middle / upper). No dollar income exists in the dataset, so an average income cannot be computed.",
+    "groups": {},
+    "unanswerable_key": "numeric_income",
+    "answerable_part": {
+     "metric": "segment_profile",
+     "filters": {
+      "life_stage": "retired"
+     },
+     "group_by": null,
+     "params": {},
+     "n_total": 10000,
+     "n_matched": 1041,
+     "match_pct": 10.4,
+     "answerable": true,
+     "unanswerable_reason": null,
+     "groups": {
+      "all": {
+       "n_households": 1041,
+       "avg_age": 68.9,
+       "age_group": {
+        "60s": 577,
+        "70s": 464
+       },
+       "life_stage": {
+        "retired": 1041
+       },
+       "household_composition": {
+        "partnered_no_children": 880,
+        "solo": 161
+       },
+       "income_bracket": {
+        "lower": 169,
+        "lower_middle": 384,
+        "upper_middle": 488
+       },
+       "area_type": {
+        "rural": 273,
+        "suburban": 495,
+        "urban": 273
+       },
+       "commute_type": {
+        "none": 1041
+       },
+       "primary_body_type": {
+        "compact": 160,
+        "crossover": 336,
+        "none": 19,
+        "sedan": 407,
+        "sports": 16,
+        "suv": 103
+       },
+       "primary_powertrain": {
+        "ev": 166,
+        "gasoline": 625,
+        "hybrid": 231,
+        "none": 19
+       },
+       "ever_ev_pct": 22.2,
+       "avg_current_vehicles": 1.0,
+       "avg_purchases_lifetime": 8.1,
+       "avg_price_per_purchase_usd": 26472.0,
+       "avg_annual_spend_5y_usd": 5615.0,
+       "rfm_cluster": {
+        "declining": 36,
+        "dormant": 28,
+        "high_stable": 80,
+        "high_volatile": 74,
+        "mid_stable": 769,
+        "rising": 54
+       },
+       "progression_type": {
+        "ascending": 184,
+        "descending": 42,
+        "stable": 19,
+        "volatile": 796
+       },
+       "top_trigger_events": {
+        "first_job": 901,
+        "new_child": 520,
+        "promotion": 245,
+        "job_change": 208,
+        "marriage": 142
+       },
+       "avg_job_changes": 2.01,
+       "avg_moves": 2.29
+      }
+     }
+    }
+   },
+   "records_meta": {},
+   "outputs": {
+    "pipeline_grounded": {
+     "text": "This question cannot be answered from this dataset. Reason: income is recorded only as a bracket (lower / lower_middle / upper_middle / upper), with no dollar-value income field, so an average cannot be computed.\n\n**What I can report instead (segment profile, retired households, n=1,041 of 10,000 total households, 10.4% of all households):**\n\nThis retired segment is sizable \u2014 1,041 households, or 10.4% of the 10,000-household sample \u2014 and warrants attention given its distinct income and vehicle-purchase behavior.\n\n**Opportunities (each figure from the retired subgroup of 1,041 households):**\n\n1. **Upper-middle income concentration**: 488 of 1,041 retired households (46.9%) fall in the upper_middle income bracket, versus only 169 (16.2%) in the lower bracket. Inference: this suggests retirees skew toward higher discretionary spending capacity, making them a viable target for premium offerings \u2014 though this is an inference since bracket data alone doesn't confirm spending intent.\n\n2. **EV adoption**: 166 of 1,041 retired households (16.0%) currently have EV as primary powertrain, and 22.2% (231 of 1,041, per ever_ev_pct) have ever owned an EV \u2014 an opportunity for EV-focused marketing to this segment.\n\n3. **High lifetime purchases**: Retired households average 8.1 lifetime purchases with an average price per purchase of $26,472, indicating repeat-purchase potential.\n\n**Data needed to strengthen this case:** Actual dollar-denominated income figures (not brackets) would allow precise income averages and correlation with purchase price/spend.",
+     "model": "claude-sonnet-5",
+     "backend": "anthropic",
+     "input_tokens": 1477,
+     "output_tokens": 542,
+     "latency_ms": 6413.7,
+     "stop_reason": "end_turn",
+     "error": null,
+     "meta": {
+      "sampling_applied": false,
+      "thinking": "adaptive",
+      "effort": "default",
+      "thinking_blocks": 0
+     },
+     "mode": "pipeline_grounded",
+     "context_chars": 3636,
+     "context_meta": {
+      "records": 0,
+      "stats": true,
+      "persona": "market_strategist"
+     },
+     "temperature": 0.3
+    }
+   },
+   "id": "Q10",
+   "exposes": "bracket-to-number trap \u2014 income is categorical; naive mode converts brackets to dollars and averages them"
+  }
+ ]
+}
