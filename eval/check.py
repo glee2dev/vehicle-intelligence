@@ -25,8 +25,8 @@ from dataclasses import asdict, dataclass, field
 # order matters: dollar and percent forms first so plain integers don't steal them
 _NUM = r"(?P<num>\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)"
 CLAIM_PATTERNS = [
-    ("usd", re.compile(r"(?:\$|USD\s?)\s?" + _NUM + r"\s?(?P<suffix>[kKmM])?(?!\s?%)")),
-    ("usd", re.compile(_NUM + r"\s?(?P<suffix>[kKmM])?\s?(?:USD|dollars)\b")),
+    ("usd", re.compile(r"(?:\$|USD\s?)\s?" + _NUM + r"\s?(?P<suffix>[kKmM](?![A-Za-z]))?(?!\s?%)")),
+    ("usd", re.compile(_NUM + r"\s?(?P<suffix>[kKmM](?![A-Za-z]))?\s?(?:USD|dollars)\b")),
     ("pct", re.compile(_NUM + r"\s?(?:%|percent(?:age)?\b(?!\s+points))")),
     ("pts", re.compile(_NUM + r"\s?(?:percentage\s+points?|pts?\b|points?\b)")),
     ("count", re.compile(_NUM + r"(?=\s+(?:households?|purchases?|events?|owners?|records?|transactions?|vehicles?|people|respondents?)\b)", re.I)),

@@ -12,7 +12,7 @@ Ten questions about a synthetic 10,000-household vehicle-ownership panel, each a
 | refused the two unanswerable questions | 0 / 2 | 2 / 2 | 2 / 2 |
 | input tokens per question | 615 | 284,807 | 1,106 |
 
-Model: Claude Sonnet 5, adaptive thinking, no sampling parameters. Full results in [`eval/RESULTS.md`](eval/RESULTS.md); every prompt and answer is committed under [`eval/runs/`](eval/runs/). The interactive version is the [site](https://glee2dev.github.io/vehicle-intelligence/).
+Model: Claude Sonnet 5, adaptive thinking, no sampling parameters, one run. Across eight runs and six model configurations (Sonnet 5 ×3, Gemini 3.1 Pro, GPT-5.4 with and without reasoning, Grok 4.6, Qwen 3.8) the pooled figures are 53% / 59% / **99.8%** — see [`eval/AGGREGATE.md`](eval/AGGREGATE.md). Full single-run results in [`eval/RESULTS.md`](eval/RESULTS.md); every prompt and answer is committed under [`eval/runs/`](eval/runs/). The interactive version is the [site](https://glee2dev.github.io/vehicle-intelligence/).
 
 ## The three findings
 
@@ -79,6 +79,7 @@ middleware/llm_client.py    mock + Anthropic backends (httpx, async)
 eval/queries.json           the ten questions and what each one exposes
 eval/verifier.py            claim extraction, matching, external-knowledge and refusal detection
 eval/score_run.py           scoreboard
+eval/aggregate.py           pooled table across every scored run
 eval/build_replay.py        bundle for the static site
 site/                       single-page site; built to docs/
 tests/                      engine, modes, verifier
@@ -86,7 +87,7 @@ tests/                      engine, modes, verifier
 
 ## Caveats
 
-Ten curated questions, one run each, one model. A synthetic panel has cleaner causal structure than a real one. The comparison is between modes, not between this data and yours.
+Ten curated questions. The headline table is one run of one model; the aggregate is eight runs across five model families, still ten questions each. A synthetic panel has cleaner causal structure than a real one. The comparison is between modes, not between this data and yours.
 
 —
 

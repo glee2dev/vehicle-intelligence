@@ -36,7 +36,7 @@ def scoreboard(scored: list[dict]) -> dict:
             "answered": sum(1 for s in S if s["answer_status"] == "answered"),
             "declined_no_numbers": sum(1 for s in S if s["answer_status"] == "declined"),
             "empty_truncated": sum(1 for s in S if s["answer_status"] == "empty"),
-            "hit_max_tokens": sum(1 for o in O if o.get("stop_reason") == "max_tokens"),
+            "hit_max_tokens": sum(1 for o in O if o.get("stop_reason") in ("max_tokens", "length")),   # anthropic / openai-compatible
             "claims_total": sum(s["n_claims"] for s in S),
             "verified": sum(s["n_verified"] for s in S),
             "derived_or_raw": sum(s["n_derived"] for s in S),
