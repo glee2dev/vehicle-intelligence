@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent / "eval"))
-from verifier import extract_claims, flatten_truth, match_claims, detect_external, detect_refusal, score_output
+from check import extract_claims, flatten_truth, match_claims, detect_external, detect_refusal, score_output
 
 STATS = {"n_total": 10000, "n_matched": 6251, "match_pct": 62.5, "answerable": True,
          "groups": {"all": {"n_households": 6251, "n_matching": 1817, "share_pct": 29.1}},

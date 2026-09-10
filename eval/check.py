@@ -1,5 +1,5 @@
 """
-Verifier: turns "we told the model not to hallucinate" into "we measured whether it did".
+The check: turns "we told the model not to hallucinate" into "we measured whether it did".
 
     extract_claims(text)          -> every number the answer asserts, with its span and kind
     flatten_truth(stats)          -> every number the pipeline actually produced, with its path

@@ -110,13 +110,63 @@ class AnthropicBackend:
                          meta=meta)
 
 
+class OpenAICompatBackend:
+    """Chat Completions API — OpenRouter, OpenAI, or any compatible server.
+    LLM_BASE_URL (default https://openrouter.ai/api/v1), LLM_API_KEY (or OPENROUTER_API_KEY), LLM_MODEL.
+    Reasoning models: LLM_REASONING=high|medium|low|none sets OpenRouter's reasoning effort; unset = provider default."""
+
+    def __init__(self):
+        self.base_url = os.getenv("LLM_BASE_URL", "https://openrouter.ai/api/v1").rstrip("/")
+        self.api_key = os.getenv("LLM_API_KEY") or os.getenv("OPENROUTER_API_KEY", "")
+        self.model = os.getenv("LLM_MODEL", "")
+        self.reasoning = os.getenv("LLM_REASONING", "")
+        self.name = "openrouter" if "openrouter" in self.base_url else "openai_compat"
+        if not self.api_key or not self.model:
+            raise ValueError("LLM_API_KEY (or OPENROUTER_API_KEY) and LLM_MODEL must be set for LLM_BACKEND=openai")
+        self._headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json",
+                         "HTTP-Referer": "https://gyunpyolee.com", "X-Title": "Who did the math?"}
+
+    async def generate(self, system: str, user: str, temperature: float, max_tokens: int, **_) -> LLMResult:
+        payload = {"model": self.model, "max_tokens": max_tokens,
+                   "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]}
+        meta = {"sampling_applied": False, "reasoning": self.reasoning or "provider default"}
+        if os.getenv("LLM_TEMPERATURE", "") != "":          # opt in; many reasoning models reject it
+            payload["temperature"] = float(os.getenv("LLM_TEMPERATURE")); meta["sampling_applied"] = True
+        if self.reasoning:
+            payload["reasoning"] = {"effort": self.reasoning} if self.reasoning != "none" else {"exclude": True}
+        t0 = time.perf_counter()
+        try:
+            async with httpx.AsyncClient(timeout=300.0) as client:
+                r = await client.post(f"{self.base_url}/chat/completions", headers=self._headers, json=payload)
+                r.raise_for_status()
+                d = r.json()
+        except httpx.HTTPStatusError as e:
+            return LLMResult(text="", model=self.model, backend=self.name, input_tokens=0, output_tokens=0,
+                             latency_ms=round((time.perf_counter() - t0) * 1000, 1), error=f"HTTP {e.response.status_code}: {e.response.text[:300]}")
+        except httpx.HTTPError as e:
+            return LLMResult(text="", model=self.model, backend=self.name, input_tokens=0, output_tokens=0,
+                             latency_ms=round((time.perf_counter() - t0) * 1000, 1), error=str(e))
+        if "error" in d and not d.get("choices"):
+            return LLMResult(text="", model=self.model, backend=self.name, input_tokens=0, output_tokens=0,
+                             latency_ms=round((time.perf_counter() - t0) * 1000, 1), error=str(d["error"])[:300])
+        ch = d["choices"][0]
+        text = ch["message"].get("content") or ""
+        usage = d.get("usage", {}) or {}
+        meta["reasoning_tokens"] = (usage.get("completion_tokens_details") or {}).get("reasoning_tokens")
+        return LLMResult(text=text, model=d.get("model", self.model), backend=self.name,
+                         input_tokens=usage.get("prompt_tokens", 0), output_tokens=usage.get("completion_tokens", 0),
+                         latency_ms=round((time.perf_counter() - t0) * 1000, 1), stop_reason=ch.get("finish_reason"), meta=meta)
+
+
 def make_backend(name: str | None = None):
     name = (name or os.getenv("LLM_BACKEND", "mock")).lower()
     if name == "mock":
         return MockBackend()
     if name == "anthropic":
         return AnthropicBackend()
-    raise ValueError(f"Unknown LLM_BACKEND {name!r}; use mock or anthropic")
+    if name in ("openai", "openrouter", "openai_compat"):
+        return OpenAICompatBackend()
+    raise ValueError(f"Unknown LLM_BACKEND {name!r}; use mock, anthropic, or openai")
 
 
 # ── Template narrator for the mock backend ─────────────────────────────────────

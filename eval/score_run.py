@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT / "eval")); sys.path.insert(0, str(ROOT / "pipeline"))
-from verifier import score_output
+from check import score_output
 from engine import run_query
 
 

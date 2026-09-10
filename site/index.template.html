@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Who did the math? — grounding an LLM analyst, measured</title>
-<meta name="description" content="Same question, same model, three ways of answering. Only the pipeline-grounded one survives verification.">
+<meta name="description" content="Same question, same model, three ways of answering. Only the pipeline-grounded one survives the check.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
@@ -92,7 +92,7 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
 <body>
 <nav><div class="wrap">
   <span class="brand"><a class="home" href="https://gyunpyolee.com">Gyunpyo Lee</a><span class="title">Who did the math?</span></span>
-  <a href="#data">Dataset</a><a href="#experiment">Experiment</a><a href="#how">How it works</a><a href="#scoreboard">Results</a><a href="#findings">Findings</a><a href="#console">Console</a><a id="repo-link" href="#" target="_blank" rel="noopener">Repo</a>
+  <a href="#data">Dataset</a><a href="#experiment">Experiment</a><a href="#how">How it works</a><a href="#scoreboard">Results</a><a href="#findings">Findings</a><a id="repo-link" href="#" target="_blank" rel="noopener">Repo</a>
 </div></nav>
 
 <section class="hero" id="top"><div class="wrap">
@@ -116,7 +116,7 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
 
 <section id="experiment"><div class="wrap">
   <h2>One question, three ways of answering</h2>
-  <p>Same model, same settings, same question. <b>Ungrounded</b> gets the schema only. <b>Naive-grounded</b> gets the raw records for the segment, pre-filtered by the pipeline, about two hundred households, and is asked to do the math. <b>Pipeline-grounded</b> gets the aggregated statistics the pipeline computed and is told to narrate nothing else. Then a verifier reads each answer and checks every number.</p>
+  <p>Same model, same settings, same question. <b>Ungrounded</b> gets the schema only. <b>Naive-grounded</b> gets the raw records for the segment, pre-filtered by the pipeline, about two hundred households, and is asked to do the math. <b>Pipeline-grounded</b> gets the aggregated statistics the pipeline computed and is told to narrate nothing else. Then every number in each answer is checked against the pipeline's output.</p>
   <div class="qlist" id="qlist"></div>
   <p class="exposes" id="exposes"></p>
   <div class="exp">
@@ -133,7 +133,7 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
 
 <section id="how"><div class="wrap">
   <h2>Raw records never reach the model</h2>
-  <p>A question becomes a structured query. The pipeline filters and aggregates deterministically and returns statistics with explicit denominators, or an explicit "not answerable" with the reason. The model sees only that. The verifier then extracts every number the model wrote and matches it back to the pipeline output.</p>
+  <p>A question becomes a structured query. The pipeline filters and aggregates deterministically and returns statistics with explicit denominators, or an explicit "not answerable" with the reason. The model sees only that. The check then takes every number the model wrote and looks for it in the pipeline output.</p>
   <div class="diagram" id="diagram"></div>
   <p class="small muted" style="margin-top:14px">Two servers: a data pipeline that never calls a model, and an orchestrator that never touches raw data. The pattern comes from analytics work I have done on real customer panels; this is an independent build from scratch, on synthetic data, with the argument made measurable.</p>
 </div></section>
@@ -143,7 +143,7 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
   <p id="score-lede"></p>
   <div class="tablewrap"><table id="score-table"></table></div>
   <div class="tablewrap"><table id="perq-table"></table></div>
-  <p class="small muted" style="margin-top:14px">How a number is checked: integer counts must be exact; percentages and dollar figures within 1.5% or half a unit at the stated precision. Every number the model wrote is looked up in the statistics the pipeline produced; if it is not there, and is not a simple difference or share of figures that are, it is marked as no match. Original text:  integer counts must be exact; percentages and dollar figures within 1.5% or half a unit at the stated precision. Calibrated to 58/58 on a template narrator that prints pipeline values only, then hand-checked on every unverified claim in this run.</p>
+  <p class="small muted" style="margin-top:14px">How a number is checked: integer counts must be exact; percentages and dollar figures within 1.5% or half a unit at the stated precision. Every number the model wrote is looked up in the statistics the pipeline produced; if it is not there, and is not a simple difference or share of figures that are, it is marked as no match.  integer counts must be exact; percentages and dollar figures within 1.5% or half a unit at the stated precision. Calibrated to 58/58 on a template narrator that prints pipeline values only, then hand-checked on every unverified claim in this run.</p>
 </div></section>
 
 <section id="findings"><div class="wrap">
@@ -157,25 +157,12 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
   <h3>Where the grounded mode still needs watching.</h3>
   <p>One of 219 numbers had no match: a share of a figure that was itself derived, correct on inspection but two steps of arithmetic away from the JSON. The narrator is allowed one. Both personas stayed inside the rules, but the strategist voice, prompted to find opportunities, pushed closer to the edge of what its statistics support. The check is what makes that visible.</p>
   <h3>Caveats.</h3>
-  <p>Ten curated questions, one run each, one model. The verifier is strict and was calibrated on real answers in three passes, each documented in the repo. A synthetic panel has cleaner causal structure than a real one, which makes the grounded mode's job easier and the naive mode's harder in equal measure; the comparison is between modes, not between this data and yours.</p>
+  <p>Ten curated questions, one run each, one model. The check is strict and was calibrated on real answers in three passes, each documented in the repo. A synthetic panel has cleaner causal structure than a real one, which makes the grounded mode's job easier and the naive mode's harder in equal measure; the comparison is between modes, not between this data and yours.</p>
 </div></section>
 
-<section id="console"><div class="wrap">
-  <h2>The product, as shipped</h2>
-  <p>This is the interface the argument was built for: an analyst asks in plain language, the pipeline answers with statistics, and one of two personas narrates them. Every number gets the same verification as the experiment above. Pick a question, or bring a key and ask it live.</p>
-  <div class="console">
-    <div class="head">
-      <span class="seg" id="persona-seg"><button aria-pressed="true" data-p="fleet_analyst">Fleet Analyst</button><button aria-pressed="false" data-p="market_strategist">Market Strategist</button></span>
-      <span class="muted small" id="console-status">Replaying recorded answers · switch the voice to hear the same statistics narrated differently</span>
-    </div>
-    <div class="thread" id="thread"><p class="muted" style="padding-top:40px;text-align:center">Pick a question below.</p></div>
-    <div class="chips" id="chips"></div>
-    <div class="inputrow"><input id="console-input" placeholder="Ask about the panel (live mode needs a key; questions are matched to the ten supported analyses)"><button class="btn" id="console-send">Ask</button></div>
-  </div>
-</div></section>
 
 <footer><div class="wrap">
-  <p>Built by <a href="https://gyunpyolee.com">Gyunpyo Lee</a>. Data generator, pipeline, three-mode orchestration, verifier, and this page are in the repo; the run files with every prompt and answer are committed as evidence. <span id="meta-line"></span></p>
+  <p>Built by <a href="https://gyunpyolee.com">Gyunpyo Lee</a>. Data generator, pipeline, three-mode orchestration, the check, and this page are in the repo; the run files with every prompt and answer are committed as evidence. <span id="meta-line"></span></p>
 </div></footer>
 
 <script id="replay" type="application/json">/*__REPLAY__*/</script>
@@ -289,7 +276,7 @@ $('#qlist').addEventListener('click', e=>{ const b=e.target.closest('button'); i
 renderExperiment();
 
 /* ── diagram ──────────────────────────────────────────────────────────────── */
-$('#diagram').innerHTML = `<svg viewBox="0 0 900 250" role="img" aria-label="Architecture: pipeline computes, model narrates, verifier checks">
+$('#diagram').innerHTML = `<svg viewBox="0 0 900 250" role="img" aria-label="Architecture: pipeline computes, model narrates, every number is checked">
 <style>.bx{fill:#fff;stroke:#1C2024;stroke-width:1.2}.t{font:500 13px "IBM Plex Sans",sans-serif;fill:#1C2024}.s{font:12px "IBM Plex Sans",sans-serif;fill:#6F767D}.ar{stroke:#1C2024;stroke-width:1.2;fill:none;marker-end:url(#ah)}</style>
 <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1C2024"/></marker></defs>
 <rect x="20" y="40" width="150" height="56" class="bx"/><text x="95" y="63" text-anchor="middle" class="t">Question</text><text x="95" y="82" text-anchor="middle" class="s">plain language</text>
@@ -301,7 +288,7 @@ $('#diagram').innerHTML = `<svg viewBox="0 0 900 250" role="img" aria-label="Arc
 <line x1="20" y1="138" x2="880" y2="138" stroke="#B4271F" stroke-width="1.5" stroke-dasharray="6 4"/><text x="880" y="132" text-anchor="end" font-size="12" fill="#B4271F" font-family="IBM Plex Sans,sans-serif">raw records never cross this line</text>
 <rect x="454" y="162" width="200" height="56" class="bx"/><text x="554" y="185" text-anchor="middle" class="t">Model narrates</text><text x="554" y="204" text-anchor="middle" class="s">statistics JSON only · two personas</text>
 <path d="M654,190 L714,190" class="ar"/>
-<rect x="716" y="162" width="164" height="56" class="bx"/><text x="798" y="185" text-anchor="middle" class="t">Verifier</text><text x="798" y="204" text-anchor="middle" class="s">every number matched back</text>
+<rect x="716" y="162" width="164" height="56" class="bx"/><text x="798" y="185" text-anchor="middle" class="t">The check</text><text x="798" y="204" text-anchor="middle" class="s">every number matched back</text>
 <path d="M798,162 L798,116 L654,116" class="ar" stroke-dasharray="3 3"/>
 </svg>`;
 
@@ -317,7 +304,7 @@ $('#diagram').innerHTML = `<svg viewBox="0 0 900 250" role="img" aria-label="Arc
   $('#perq-table').innerHTML = `<thead><tr><th>Question</th>${MODES.map(m=>`<th>${MODE_NAME[m]}</th>`).join('')}</tr></thead><tbody>`+R.queries.map(q=>`<tr><td>${q.id.replace('Q0','').replace('Q','')}. ${q.question}${q.stats.answerable?'':' <span class="muted">(unanswerable)</span>'}</td>${MODES.map(m=>{const sc=q.modes[m].score; return `<td class="${sc.answer_status==='answered'&&sc.n_unverified===0?'good':sc.n_unverified>3||sc.answer_status==='empty'?'poor':''}">${cell(sc)}</td>`;}).join('')}</tr>`).join('')+'</tbody>';
 })();
 
-/* ── JS verifier (port of eval/verifier.py, single-step rules) ───────────── */
+/* ── the check, in JS (port of eval/check.py, single-step rules) ───────────── */
 const V = (()=>{
   const NUM='(\\d{1,3}(?:,\\d{3})+(?:\\.\\d+)?|\\d+(?:\\.\\d+)?)';
   const PATS=[['usd',new RegExp('(?:\\$|USD\\s?)\\s?'+NUM+'\\s?([kKmM])?(?!\\s?%)','g')],['usd',new RegExp(NUM+'\\s?([kKmM])?\\s?(?:USD|dollars)\\b','g')],['pct',new RegExp(NUM+'\\s?(?:%|percent(?:age)?\\b(?!\\s+points))','g')],['pts',new RegExp(NUM+'\\s?(?:percentage\\s+points?|pts?\\b|points?\\b)','g')],['count',new RegExp(NUM+'(?=\\s+(?:households?|purchases?|events?|owners?|records?|transactions?|vehicles?|people|respondents?)\\b)','gi')],['plain',new RegExp('(?<![\\d.,$%])'+NUM+'(?![\\d.,%]|s\\b|\\s?%|\\s?(?:k|m)\\b|-?year)','gi')]];
@@ -355,7 +342,7 @@ const V = (()=>{
 
 /* ── live runs against Anthropic (BYOK) ───────────────────────────────────── */
 const keyEl=$('#apikey'), runBtn=$('#run-live');
-keyEl.addEventListener('input',()=>{runBtn.disabled=!keyEl.value.trim(); $('#console-status').textContent = keyEl.value.trim()?'Live: pipeline mode runs against your key':'Replaying recorded answers';});
+keyEl.addEventListener('input',()=>{runBtn.disabled=!keyEl.value.trim();});
 async function callModel(system,user,maxTokens=4000){
   const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'content-type':'application/json','x-api-key':keyEl.value.trim(),'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:R.meta.model,max_tokens:maxTokens,system,messages:[{role:'user',content:user}]})});
   const t0=performance.now(); const d=await r.json(); if(!r.ok) throw new Error(d.error?.message||`HTTP ${r.status}`);
@@ -373,28 +360,6 @@ runBtn.addEventListener('click', async()=>{
   runBtn.disabled=false; runBtn.textContent='Run live';
 });
 
-/* ── chat console ─────────────────────────────────────────────────────────── */
-let persona='fleet_analyst';
-let lastQ=null;
-$('#persona-seg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.dataset.p===persona)return;persona=b.dataset.p;document.querySelectorAll('#persona-seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));if(lastQ)ask(lastQ,true);});
-$('#chips').innerHTML = R.queries.map(q=>`<button data-id="${q.id}">${q.question}</button>`).join('');
-function stepsHtml(q){const sp=q.spec;const g=q.stats;return `<div class="step">Query: <code>${esc(JSON.stringify({filters:sp.filters,metric:sp.metric,group_by:sp.group_by||null}))}</code>${sp.also?` + comparison cohort`:''}</div><div class="step">Pipeline: ${fmt(g.n_matched)} of ${fmt(g.n_total)} households matched${g.answerable?'':' · <b>not answerable</b>: '+esc(g.unanswerable_reason)}${g.processing_ms?` · ${g.processing_ms} ms`:''}</div>`;}
-async function ask(q,revoice=false){
-  lastQ=q; const th=$('#thread'); if(th.querySelector('p.muted')) th.innerHTML='';
-  th.insertAdjacentHTML('beforeend',`<div class="msg user">${revoice?'<span class="muted">Same question, other voice — </span>':''}${esc(q.question)}</div>`);
-  const id='m'+Date.now(); th.insertAdjacentHTML('beforeend',`<div class="msg" id="${id}"><div class="who">${R.personas[persona].name}</div>${stepsHtml(q)}<div class="ans muted">…</div></div>`);
-  th.scrollTop=th.scrollHeight;
-  let rec = persona==='fleet_analyst'? q.modes.pipeline_grounded : q.strategist;
-  let live=null;
-  if(keyEl.value.trim()){ try{const b=buildPipeline(q,persona);const o=await callModel(b.sys,b.user);live={output:{...o,context_meta:b.ctx},score:V.score(o.text,q.stats)};}catch(e){alert('Live run failed: '+e.message);} }
-  const m=live||rec;
-  document.querySelector(`#${id} .ans`).outerHTML = `${verdict(m.score)}<div class="ans">${highlight(m.output.text,m.score)}</div><div class="trace">${live?'Live':'Recorded'} · ${fmt(m.output.input_tokens)} in · ${fmt(m.output.output_tokens)} out · ${(m.output.latency_ms/1000).toFixed(1)}s<details><summary>Statistics the narrator received</summary><pre>${esc(JSON.stringify(q.stats,null,1))}</pre></details></div>`;
-  th.scrollTop=th.scrollHeight;
-}
-$('#chips').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;ask(R.queries.find(q=>q.id===b.dataset.id));});
-function nearest(text){const w=new Set(text.toLowerCase().match(/[a-z]+/g)||[]);let best=null,bs=0;for(const q of R.queries){const qw=q.question.toLowerCase().match(/[a-z]+/g)||[];const s=qw.filter(x=>x.length>3&&w.has(x)).length;if(s>bs){bs=s;best=q;}}return bs>=2?best:null;}
-$('#console-send').addEventListener('click',()=>{const t=$('#console-input').value.trim();if(!t)return;const q=nearest(t);$('#console-input').value='';if(!q){$('#thread').insertAdjacentHTML('beforeend',`<div class="msg user">${esc(t)}</div><div class="msg"><div class="who">Pipeline</div><div class="ans muted">No supported analysis matches that question. The pipeline answers only what it can compute; pick one of the ten questions below or rephrase toward one of them.</div></div>`);return;}ask(q);});
-$('#console-input').addEventListener('keydown',e=>{if(e.key==='Enter')$('#console-send').click();});
 </script>
 </body>
 </html>

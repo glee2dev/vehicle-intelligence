@@ -34,7 +34,9 @@ async def main():
     backend = make_backend()
     sem = asyncio.Semaphore(args.concurrency)
 
-    out = Path(args.out) if args.out else ROOT / "eval/runs" / f"{backend.name}_{args.persona}_{datetime.now():%Y%m%d_%H%M%S}.json"
+    import re as _re
+    slug = _re.sub(r"[^a-z0-9]+", "-", str(getattr(backend, "model", "model")).lower()).strip("-")
+    out = Path(args.out) if args.out else ROOT / "eval/runs" / f"{backend.name}_{slug}_{args.persona}_{datetime.now():%Y%m%d_%H%M%S}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     partial = out.with_suffix(".partial.jsonl")          # one line per finished query — nothing is lost mid-run
     done = {}
