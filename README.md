@@ -7,12 +7,12 @@ Ten questions about a synthetic 10,000-household vehicle-ownership panel, each a
 | | ungrounded | naive-grounded | pipeline-grounded |
 |---|---:|---:|---:|
 | what the model receives | schema only | ~200 raw records, pre-filtered | aggregated statistics |
-| numbers verified | 33% | 64% | **99.5%** |
+| numbers verified | 31% | 69% | **99.3%** |
 | external-knowledge phrases | 5 | 1 | 0 |
 | refused the two unanswerable questions | 0 / 2 | 2 / 2 | 2 / 2 |
 | input tokens per question | 615 | 284,807 | 1,106 |
 
-Model: Claude Sonnet 5, adaptive thinking, no sampling parameters, one run. Across eight runs and six model configurations (Sonnet 5 ×3, Gemini 3.1 Pro, GPT-5.4 with and without reasoning, Grok 4.6, Qwen 3.8) the pooled figures are 53% / 59% / **99.8%** — see [`eval/AGGREGATE.md`](eval/AGGREGATE.md). Full single-run results in [`eval/RESULTS.md`](eval/RESULTS.md); every prompt and answer is committed under [`eval/runs/`](eval/runs/). The interactive version is the [site](https://glee2dev.github.io/vehicle-intelligence/).
+Model: Claude Sonnet 5, adaptive thinking, no sampling parameters, one run. Across eight runs and six model configurations (Sonnet 5 ×3, Gemini 3.1 Pro, GPT-5.4 with and without reasoning, Grok 4.6, Qwen 3.8) the pooled figures are 50% / 61% / **99.7%** — see [`eval/AGGREGATE.md`](eval/AGGREGATE.md). Full single-run results in [`eval/RESULTS.md`](eval/RESULTS.md); every prompt and answer is committed under [`eval/runs/`](eval/runs/). The interactive version is the [site](https://glee2dev.github.io/vehicle-intelligence/).
 
 ## The three findings
 
@@ -45,7 +45,7 @@ Every household is generated from one timeline (`tools/generate_dataset.py`): li
 - Same model, same settings, same question. Only the context differs.
 - Naive-grounded gets the *filtering* for free: the pipeline pre-selects the segment before sampling, so it is judged on the math alone. Two-cohort questions interleave records from both cohorts.
 - Naive-grounded is scored against ground truth recomputed on the exact records it received, not the population. Record citations (`$94,844, HH-9032, 2015`) are checked against the record.
-- The verifier is strict — integer counts exact, percentages within 1.5% — and was calibrated to 58/58 on a template narrator that prints pipeline values only, then hand-checked on every unverified claim.
+- The verifier is strict — integer counts exact, percentages within 1.5%, a number restated in one answer counted once — and was calibrated to 52/52 on a template narrator that prints pipeline values only, then hand-checked on every unverified claim across all eight runs.
 - No mode sees the generator's archetype labels.
 
 ## Run it

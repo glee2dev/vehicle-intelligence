@@ -10,18 +10,18 @@
    "declined_no_numbers": 0,
    "empty_truncated": 0,
    "hit_max_tokens": 0,
-   "claims_total": 137,
-   "verified": 37,
-   "derived_or_raw": 37,
-   "unverified": 63,
-   "grounding_rate_pooled": 0.54,
-   "grounding_rate_mean": 0.491,
-   "queries_fully_grounded": 0,
+   "claims_total": 74,
+   "verified": 15,
+   "derived_or_raw": 31,
+   "unverified": 28,
+   "grounding_rate_pooled": 0.622,
+   "grounding_rate_mean": 0.563,
+   "queries_fully_grounded": 2,
    "external_flags": 1,
    "queries_with_external": 1,
    "pct_with_denominator_mean": 0.667,
    "unanswerable_refused": "1/2",
-   "fabricated_on_unanswerable": 4,
+   "fabricated_on_unanswerable": 2,
    "input_tokens_mean": 195065.0,
    "output_tokens_mean": 4051.0,
    "latency_ms_mean": 81887.0,
@@ -33,15 +33,15 @@
    "declined_no_numbers": 0,
    "empty_truncated": 0,
    "hit_max_tokens": 0,
-   "claims_total": 208,
-   "verified": 199,
-   "derived_or_raw": 9,
+   "claims_total": 117,
+   "verified": 109,
+   "derived_or_raw": 8,
    "unverified": 0,
    "grounding_rate_pooled": 1.0,
    "grounding_rate_mean": 1.0,
    "queries_fully_grounded": 10,
-   "external_flags": 1,
-   "queries_with_external": 1,
+   "external_flags": 0,
+   "queries_with_external": 0,
    "pct_with_denominator_mean": 0.85,
    "unanswerable_refused": "2/2",
    "fabricated_on_unanswerable": 0,
@@ -56,18 +56,18 @@
    "declined_no_numbers": 1,
    "empty_truncated": 0,
    "hit_max_tokens": 0,
-   "claims_total": 27,
-   "verified": 15,
-   "derived_or_raw": 6,
-   "unverified": 6,
-   "grounding_rate_pooled": 0.778,
-   "grounding_rate_mean": 0.875,
-   "queries_fully_grounded": 7,
+   "claims_total": 19,
+   "verified": 10,
+   "derived_or_raw": 5,
+   "unverified": 4,
+   "grounding_rate_pooled": 0.789,
+   "grounding_rate_mean": 0.911,
+   "queries_fully_grounded": 8,
    "external_flags": 2,
    "queries_with_external": 1,
    "pct_with_denominator_mean": 0.875,
    "unanswerable_refused": "1/2",
-   "fabricated_on_unanswerable": 4,
+   "fabricated_on_unanswerable": 3,
    "input_tokens_mean": 412.0,
    "output_tokens_mean": 609.0,
    "latency_ms_mean": 9783.0,
@@ -411,12 +411,12 @@
     },
     "naive_grounded": {
      "mode": "naive_grounded",
-     "n_claims": 16,
+     "n_claims": 8,
      "n_verified": 1,
      "n_derived": 0,
-     "n_unverified": 15,
-     "grounding_rate": 0.062,
-     "unverified_rate": 0.938,
+     "n_unverified": 7,
+     "grounding_rate": 0.125,
+     "unverified_rate": 0.875,
      "n_external_flags": 0,
      "pct_claims": 4,
      "pct_with_denominator": 1.0,
@@ -469,7 +469,7 @@
        "start": 222,
        "end": 224,
        "context": "d in 2025 or 2026** (**46.8% of households**). - Of those **94 households**:   - **48 households** had the child in **2025",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": null
@@ -505,7 +505,7 @@
        "start": 299,
        "end": 301,
        "context": "  - **48 households** had the child in **2025** (**51.1% of 94**)   - **46 households** had the child in **2026** (**48.9%",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": null
@@ -541,7 +541,7 @@
        "start": 365,
        "end": 367,
        "context": "  - **46 households** had the child in **2026** (**48.9% of 94**)  But the data only run through **2026**, so: - the **46 ",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": null
@@ -553,7 +553,7 @@
        "start": 424,
        "end": 426,
        "context": " 94**)  But the data only run through **2026**, so: - the **46 households with a 2026 child** have **0 post-child years** ",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": null
@@ -565,7 +565,7 @@
        "start": 505,
        "end": 507,
        "context": "2026 child** have **0 post-child years** available, - the **48 households with a 2025 child** have only **1 post-child yea",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": null
@@ -577,7 +577,7 @@
        "start": 606,
        "end": 608,
        "context": "ly **1 post-child year** available (**2026**), - and **0 of 94 households** have the full **2 years after** needed (**0.0%",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": null
@@ -601,7 +601,7 @@
        "start": 1050,
        "end": 1052,
        "context": "mparison**: 1. **1 year after vs 2 years before** for the **48 households** with a 2025 child, or   2. **event year + next",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": null
@@ -613,7 +613,7 @@
        "start": 1152,
        "end": 1154,
        "context": " **event year + next year vs prior 2 years** for the full **94-household** group.",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": null
@@ -624,8 +624,8 @@
     },
     "pipeline_grounded": {
      "mode": "pipeline_grounded",
-     "n_claims": 26,
-     "n_verified": 25,
+     "n_claims": 10,
+     "n_verified": 9,
      "n_derived": 1,
      "n_unverified": 0,
      "grounding_rate": 1.0,
@@ -694,7 +694,7 @@
        "start": 147,
        "end": 150,
        "context": "2024; these contributed **598 scored events**.  For these **598 events**, mean annual vehicle spend on a **total (running +",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_events_scored",
        "matched_value": 598.0,
        "denominator_stated": null
@@ -742,7 +742,7 @@
        "start": 419,
        "end": 426,
        "context": "el means**.  Key figures: - **Mean annual spend before:** **$11,298** per year, denominator **598 events** - **Mean annual spen",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.mean_annual_spend_before_usd",
        "matched_value": 11298.0,
        "denominator_stated": null
@@ -754,7 +754,7 @@
        "start": 453,
        "end": 456,
        "context": " annual spend before:** **$11,298** per year, denominator **598 events** - **Mean annual spend after:** **$17,435** per yea",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_events_scored",
        "matched_value": 598.0,
        "denominator_stated": null
@@ -766,7 +766,7 @@
        "start": 499,
        "end": 506,
        "context": "denominator **598 events** - **Mean annual spend after:** **$17,435** per year, denominator **598 events** - **Change in means:",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.mean_annual_spend_after_usd",
        "matched_value": 17435.0,
        "denominator_stated": null
@@ -778,7 +778,7 @@
        "start": 533,
        "end": 536,
        "context": "n annual spend after:** **$17,435** per year, denominator **598 events** - **Change in means:** **54.3%**, denominator **59",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_events_scored",
        "matched_value": 598.0,
        "denominator_stated": null
@@ -790,7 +790,7 @@
        "start": 571,
        "end": 576,
        "context": "r year, denominator **598 events** - **Change in means:** **54.3%**, denominator **598 events** - **Median per-household chan",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.delta_pct_of_means",
        "matched_value": 54.3,
        "denominator_stated": false
@@ -802,7 +802,7 @@
        "start": 594,
        "end": 597,
        "context": "98 events** - **Change in means:** **54.3%**, denominator **598 events** - **Median per-household change:** **15.2%**, deno",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_events_scored",
        "matched_value": 598.0,
        "denominator_stated": null
@@ -826,7 +826,7 @@
        "start": 667,
        "end": 670,
        "context": "- **Median per-household change:** **15.2%**, denominator **577 households** - **Share with an increase:** **64.9% of 598 e",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_matched",
        "matched_value": 577.0,
        "denominator_stated": null
@@ -850,7 +850,7 @@
        "start": 725,
        "end": 728,
        "context": "**577 households** - **Share with an increase:** **64.9% of 598 events**  Observations: 1. In this dataset, spending was hi",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_events_scored",
        "matched_value": 598.0,
        "denominator_stated": null
@@ -862,7 +862,7 @@
        "start": 814,
        "end": 821,
        "context": ". In this dataset, spending was higher after a new child: **$17,435 after vs $11,298 before** per year, a **trivial difference o",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.mean_annual_spend_after_usd",
        "matched_value": 17435.0,
        "denominator_stated": null
@@ -874,7 +874,7 @@
        "start": 831,
        "end": 838,
        "context": ", spending was higher after a new child: **$17,435 after vs $11,298 before** per year, a **trivial difference of $6,137** on the",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.mean_annual_spend_before_usd",
        "matched_value": 11298.0,
        "denominator_stated": null
@@ -898,7 +898,7 @@
        "start": 975,
        "end": 980,
        "context": "ns. 2. The increase was not universal, but it was common: **64.9% of 598 events** showed an increase in annual vehicle spend.",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.share_of_events_with_increase_pct",
        "matched_value": 64.9,
        "denominator_stated": true
@@ -910,7 +910,7 @@
        "start": 984,
        "end": 987,
        "context": "e increase was not universal, but it was common: **64.9% of 598 events** showed an increase in annual vehicle spend. 3. The",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_events_scored",
        "matched_value": 598.0,
        "denominator_stated": null
@@ -922,7 +922,7 @@
        "start": 1081,
        "end": 1086,
        "context": "nual vehicle spend. 3. The **median per-household delta was 15.2% across 577 households**, which is smaller than the **54.3% ",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.median_per_household_delta_pct",
        "matched_value": 15.2,
        "denominator_stated": false
@@ -934,7 +934,7 @@
        "start": 1094,
        "end": 1097,
        "context": "spend. 3. The **median per-household delta was 15.2% across 577 households**, which is smaller than the **54.3% event-level",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_matched",
        "matched_value": 577.0,
        "denominator_stated": null
@@ -946,7 +946,7 @@
        "start": 1140,
        "end": 1145,
        "context": " 15.2% across 577 households**, which is smaller than the **54.3% event-level change in means**.",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.delta_pct_of_means",
        "matched_value": 54.3,
        "denominator_stated": false
@@ -1386,12 +1386,12 @@
     },
     "naive_grounded": {
      "mode": "naive_grounded",
-     "n_claims": 10,
-     "n_verified": 7,
-     "n_derived": 2,
+     "n_claims": 4,
+     "n_verified": 2,
+     "n_derived": 1,
      "n_unverified": 1,
-     "grounding_rate": 0.9,
-     "unverified_rate": 0.1,
+     "grounding_rate": 0.75,
+     "unverified_rate": 0.25,
      "n_external_flags": 0,
      "pct_claims": 0,
      "pct_with_denominator": null,
@@ -1444,7 +1444,7 @@
        "start": 318,
        "end": 320,
        "context": "ches** to an SUV/minivan   - **Replacement cycle:** **17 of 87 switches**   - **Promotion:** **9 of 87 switches**   - **Jo",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.groups.all.by_event[0].held_within_window_pct",
        "matched_value": 86.5,
        "denominator_stated": null
@@ -1456,7 +1456,7 @@
        "start": 358,
        "end": 360,
        "context": "nt cycle:** **17 of 87 switches**   - **Promotion:** **9 of 87 switches**   - **Job change:** **5 of 87 switches**   - **M",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.groups.all.by_event[0].held_within_window_pct",
        "matched_value": 86.5,
        "denominator_stated": null
@@ -1468,7 +1468,7 @@
        "start": 399,
        "end": 401,
        "context": "romotion:** **9 of 87 switches**   - **Job change:** **5 of 87 switches**   - **Marriage:** **2 of 87 switches**   - **Car",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.groups.all.by_event[0].held_within_window_pct",
        "matched_value": 86.5,
        "denominator_stated": null
@@ -1480,7 +1480,7 @@
        "start": 438,
        "end": 440,
        "context": "Job change:** **5 of 87 switches**   - **Marriage:** **2 of 87 switches**   - **Career change:** **2 of 87 switches**  So ",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.groups.all.by_event[0].held_within_window_pct",
        "matched_value": 86.5,
        "denominator_stated": null
@@ -1492,7 +1492,7 @@
        "start": 482,
        "end": 484,
        "context": "riage:** **2 of 87 switches**   - **Career change:** **2 of 87 switches**  So the life event followed most often by a swit",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.groups.all.by_event[0].held_within_window_pct",
        "matched_value": 86.5,
        "denominator_stated": null
@@ -1504,7 +1504,7 @@
        "start": 792,
        "end": 794,
        "context": "ody type, then **`new_child` and `replacement_cycle` tie at 52 of 143 acquisitions each**. But for an actual **switch to**",
-       "status": "derived",
+       "status": "ignored",
        "matched_path": "|sample.groups.all.by_event[6].n_events - sample.groups.all.by_event[8].lift_pts|",
        "matched_value": 52.5,
        "denominator_stated": null
@@ -1527,9 +1527,9 @@
     },
     "pipeline_grounded": {
      "mode": "pipeline_grounded",
-     "n_claims": 18,
-     "n_verified": 15,
-     "n_derived": 3,
+     "n_claims": 14,
+     "n_verified": 12,
+     "n_derived": 2,
      "n_unverified": 0,
      "grounding_rate": 1.0,
      "unverified_rate": 0.0,
@@ -1717,7 +1717,7 @@
        "start": 866,
        "end": 871,
        "context": "n this dataset**: highest **within-window holding rate** (**87.1% of events**) and highest **lift** (**49.2 points**). 2. **M",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.by_event[0].held_within_window_pct",
        "matched_value": 87.1,
        "denominator_stated": true
@@ -1729,7 +1729,7 @@
        "start": 909,
        "end": 920,
        "context": "olding rate** (**87.1% of events**) and highest **lift** (**49.2 points**). 2. **Marriage** shows a strong shift into SUV/minivan o",
-       "status": "derived",
+       "status": "ignored",
        "matched_path": "|groups.all.by_event[0].held_before_pct - groups.all.by_event[0].held_within_window_pct|",
        "matched_value": 49.2,
        "denominator_stated": null
@@ -1741,7 +1741,7 @@
        "start": 1031,
        "end": 1035,
        "context": "minivan ownership because the starting point is very low: **0.2% before** to **43.3% within 2 years**. 3. This JSON reports ",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.by_event[1].held_before_pct",
        "matched_value": 0.2,
        "denominator_stated": false
@@ -1753,7 +1753,7 @@
        "start": 1050,
        "end": 1055,
        "context": "ecause the starting point is very low: **0.2% before** to **43.3% within 2 years**. 3. This JSON reports **SUV and minivan to",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.by_event[1].held_within_window_pct",
        "matched_value": 43.3,
        "denominator_stated": false
@@ -2267,10 +2267,10 @@
     },
     "naive_grounded": {
      "mode": "naive_grounded",
-     "n_claims": 8,
+     "n_claims": 6,
      "n_verified": 0,
      "n_derived": 0,
-     "n_unverified": 8,
+     "n_unverified": 6,
      "grounding_rate": 0.0,
      "unverified_rate": 1.0,
      "n_external_flags": 0,
@@ -2361,7 +2361,7 @@
        "start": 505,
        "end": 510,
        "context": "ve switched to an EV than owners with **no job changes** (**23.4% vs. 4.2%**, denominator = households).  If you want, I can ",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": false
@@ -2373,7 +2373,7 @@
        "start": 515,
        "end": 519,
        "context": "d to an EV than owners with **no job changes** (**23.4% vs. 4.2%**, denominator = households).  If you want, I can also give",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": false
@@ -2384,8 +2384,8 @@
     },
     "pipeline_grounded": {
      "mode": "pipeline_grounded",
-     "n_claims": 17,
-     "n_verified": 16,
+     "n_claims": 7,
+     "n_verified": 6,
      "n_derived": 1,
      "n_unverified": 0,
      "grounding_rate": 1.0,
@@ -2478,7 +2478,7 @@
        "start": 360,
        "end": 365,
        "context": "n that segment.  Key comparison: - The EV-switch share is **29.1% of 6,251 households** for owners with **2+ job changes**. -",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.share_pct",
        "matched_value": 29.1,
        "denominator_stated": true
@@ -2490,7 +2490,7 @@
        "start": 369,
        "end": 374,
        "context": "gment.  Key comparison: - The EV-switch share is **29.1% of 6,251 households** for owners with **2+ job changes**. - The EV-s",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_matched",
        "matched_value": 6251.0,
        "denominator_stated": null
@@ -2502,7 +2502,7 @@
        "start": 451,
        "end": 456,
        "context": " owners with **2+ job changes**. - The EV-switch share is **16.8% of 714 households** for owners with **0 job changes**. - Th",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.groups.all.share_pct",
        "matched_value": 16.8,
        "denominator_stated": true
@@ -2514,7 +2514,7 @@
        "start": 460,
        "end": 463,
        "context": "ith **2+ job changes**. - The EV-switch share is **16.8% of 714 households** for owners with **0 job changes**. - That is a",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.n_matched",
        "matched_value": 714.0,
        "denominator_stated": null
@@ -2538,7 +2538,7 @@
        "start": 631,
        "end": 636,
        "context": "**2+ job-change** group than the **no job-change** group (**29.1% minus 16.8%**, trivial difference from the JSON figures).  ",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.share_pct",
        "matched_value": 29.1,
        "denominator_stated": false
@@ -2550,7 +2550,7 @@
        "start": 643,
        "end": 648,
        "context": "nge** group than the **no job-change** group (**29.1% minus 16.8%**, trivial difference from the JSON figures).  Observations",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.groups.all.share_pct",
        "matched_value": 16.8,
        "denominator_stated": false
@@ -2562,7 +2562,7 @@
        "start": 776,
        "end": 781,
        "context": "**2+ job-change** segment is much larger in this dataset: **6,251 households**, versus **714 households** with no job changes",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_matched",
        "matched_value": 6251.0,
        "denominator_stated": null
@@ -2574,7 +2574,7 @@
        "start": 805,
        "end": 808,
        "context": "much larger in this dataset: **6,251 households**, versus **714 households** with no job changes. - In count terms, **1,817",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.n_matched",
        "matched_value": 714.0,
        "denominator_stated": null
@@ -2586,7 +2586,7 @@
        "start": 863,
        "end": 868,
        "context": "**714 households** with no job changes. - In count terms, **1,817 households** in the **2+ job-change** group had ever switch",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_matching",
        "matched_value": 1817.0,
        "denominator_stated": null
@@ -2598,7 +2598,7 @@
        "start": 957,
        "end": 960,
        "context": "-change** group had ever switched to an EV, compared with **120 households** in the **no job-change** group.",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.groups.all.n_matching",
        "matched_value": 120.0,
        "denominator_stated": null
@@ -3031,12 +3031,12 @@
     },
     "naive_grounded": {
      "mode": "naive_grounded",
-     "n_claims": 14,
-     "n_verified": 5,
-     "n_derived": 6,
+     "n_claims": 9,
+     "n_verified": 3,
+     "n_derived": 3,
      "n_unverified": 3,
-     "grounding_rate": 0.786,
-     "unverified_rate": 0.214,
+     "grounding_rate": 0.667,
+     "unverified_rate": 0.333,
      "n_external_flags": 0,
      "pct_claims": 0,
      "pct_with_denominator": null,
@@ -3089,7 +3089,7 @@
        "start": 247,
        "end": 249,
        "context": "se transactions = $22,641 per purchase**     Denominator: **45 purchases** (from **10 households** I tallied)  - **30s dua",
-       "status": "derived",
+       "status": "ignored",
        "matched_path": "|sample.groups.all.avg_purchases_per_household - sample.groups.all.price_band_distribution.4|",
        "matched_value": 45.45,
        "denominator_stated": null
@@ -3149,7 +3149,7 @@
        "start": 420,
        "end": 422,
        "context": "se transactions = $18,508 per purchase**     Denominator: **31 purchases** (from **10 households** I tallied)  So the gap ",
-       "status": "derived",
+       "status": "ignored",
        "matched_path": "|sample.groups.all.price_band_distribution.5 - sample.answerable_part.groups.all.price_band_distribution.3|",
        "matched_value": 31.0,
        "denominator_stated": null
@@ -3161,7 +3161,7 @@
        "start": 443,
        "end": 445,
        "context": "08 per purchase**     Denominator: **31 purchases** (from **10 households** I tallied)  So the gap in the tallied records ",
-       "status": "derived",
+       "status": "ignored",
        "matched_path": "|sample.groups.all.price_band_distribution.1 - sample.answerable_part.groups.all.price_band_distribution.1|",
        "matched_value": 10.0,
        "denominator_stated": null
@@ -3173,7 +3173,7 @@
        "start": 514,
        "end": 521,
        "context": "ds** I tallied)  So the gap in the tallied records is:  - **$22,641 \u2212 $18,508 = $4,133 more per purchase** for the single 40s / ",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.answerable_part.groups.all.mean_of_household_means_usd",
        "matched_value": 22756.0,
        "denominator_stated": null
@@ -3185,7 +3185,7 @@
        "start": 524,
        "end": 531,
        "context": "lied)  So the gap in the tallied records is:  - **$22,641 \u2212 $18,508 = $4,133 more per purchase** for the single 40s / never-marr",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.groups.all.median_price_per_purchase_usd",
        "matched_value": 18266.0,
        "denominator_stated": null
@@ -3220,8 +3220,8 @@
     },
     "pipeline_grounded": {
      "mode": "pipeline_grounded",
-     "n_claims": 18,
-     "n_verified": 16,
+     "n_claims": 14,
+     "n_verified": 12,
      "n_derived": 2,
      "n_unverified": 0,
      "grounding_rate": 1.0,
@@ -3302,7 +3302,7 @@
        "start": 354,
        "end": 359,
        "context": "igures: - **Mean price per purchase:** **$25,981** across **4,817 purchases** for single 40s never-married households, versus",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_purchases",
        "matched_value": 4817.0,
        "denominator_stated": null
@@ -3326,7 +3326,7 @@
        "start": 441,
        "end": 446,
        "context": "e 40s never-married households, versus **$24,361** across **3,196 purchases** for 30s dual-income parent households. That is ",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.groups.all.n_purchases",
        "matched_value": 3196.0,
        "denominator_stated": null
@@ -3398,7 +3398,7 @@
        "start": 890,
        "end": 895,
        "context": "rence). - **Mean of household means:** **$25,530** across **1,043 households** for the single 40s group, versus **$23,977** a",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_matched",
        "matched_value": 1043.0,
        "denominator_stated": null
@@ -3422,7 +3422,7 @@
        "start": 963,
        "end": 966,
        "context": "lds** for the single 40s group, versus **$23,977** across **876 households** for the 30s dual-income parent group.  Two obs",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.n_matched",
        "matched_value": 876.0,
        "denominator_stated": null
@@ -3830,9 +3830,9 @@
    "scores": {
     "ungrounded": {
      "mode": "ungrounded",
-     "n_claims": 7,
+     "n_claims": 6,
      "n_verified": 2,
-     "n_derived": 5,
+     "n_derived": 4,
      "n_unverified": 0,
      "grounding_rate": 1.0,
      "unverified_rate": 0.0,
@@ -3924,7 +3924,7 @@
        "start": 480,
        "end": 482,
        "context": "ase rates per **100 empty-nester household-years**.    - If 40-something empty nesters had more purchase events, their ave",
-       "status": "derived",
+       "status": "ignored",
        "matched_path": "|groups.all.per_decade.40s.cluster_distribution.1 - groups.all.per_decade.40s.cluster_distribution.2|",
        "matched_value": 40.0,
        "denominator_stated": null
@@ -3935,12 +3935,12 @@
     },
     "naive_grounded": {
      "mode": "naive_grounded",
-     "n_claims": 19,
-     "n_verified": 1,
-     "n_derived": 11,
-     "n_unverified": 7,
-     "grounding_rate": 0.632,
-     "unverified_rate": 0.368,
+     "n_claims": 9,
+     "n_verified": 0,
+     "n_derived": 9,
+     "n_unverified": 0,
+     "grounding_rate": 1.0,
+     "unverified_rate": 0.0,
      "n_external_flags": 0,
      "pct_claims": 2,
      "pct_with_denominator": 0.0,
@@ -3950,30 +3950,6 @@
      "truth_basis": "sample",
      "answer_status": "answered",
      "claims": [
-      {
-       "text": "2145",
-       "value": 2145.0,
-       "kind": "plain",
-       "start": 462,
-       "end": 466,
-       "context": "ften** or **downsized**.  Examples from the records: - **HH-2145** at age 44 (2008): total vehicle spend was **$82,870**, wi",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
-       "denominator_stated": null
-      },
-      {
-       "text": "44",
-       "value": 44.0,
-       "kind": "plain",
-       "start": 476,
-       "end": 478,
-       "context": "wnsized**.  Examples from the records: - **HH-2145** at age 44 (2008): total vehicle spend was **$82,870**, with **$78,007",
-       "status": "verified",
-       "matched_path": "sample.groups.all.per_decade.50s.cluster_distribution.1",
-       "matched_value": 44.0,
-       "denominator_stated": null
-      },
       {
        "text": "$82,870",
        "value": 82870.0,
@@ -4005,7 +3981,7 @@
        "start": 549,
        "end": 556,
        "context": "tal vehicle spend was **$82,870**, with **$78,007 capital / $82,870 total = 94.1%**. - **HH-0433** at age 45 (2012): **$66,004 c",
-       "status": "raw_verified",
+       "status": "ignored",
        "matched_path": "record:HH-2145",
        "matched_value": 82870.0,
        "denominator_stated": null
@@ -4021,30 +3997,6 @@
        "matched_path": "100 - sample.groups.all.per_decade.40s.share_of_households_with_event_in_decade_pct.new_hobby",
        "matched_value": 93.6,
        "denominator_stated": false
-      },
-      {
-       "text": "0433",
-       "value": 433.0,
-       "kind": "plain",
-       "start": 581,
-       "end": 585,
-       "context": "*, with **$78,007 capital / $82,870 total = 94.1%**. - **HH-0433** at age 45 (2012): **$66,004 capital / $70,923 total = 93.",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
-       "denominator_stated": null
-      },
-      {
-       "text": "45",
-       "value": 45.0,
-       "kind": "plain",
-       "start": 595,
-       "end": 597,
-       "context": "007 capital / $82,870 total = 94.1%**. - **HH-0433** at age 45 (2012): **$66,004 capital / $70,923 total = 93.1%**. - **HH",
-       "status": "derived",
-       "matched_path": "sample.groups.all.per_decade.40s.event_counts.new_hobby / sample.groups.all.per_decade.50s.top_purchase_trigger.promotion * 100",
-       "matched_value": 44.44,
-       "denominator_stated": null
       },
       {
        "text": "$66,004",
@@ -4083,42 +4035,6 @@
        "denominator_stated": false
       },
       {
-       "text": "4648",
-       "value": 4648.0,
-       "kind": "plain",
-       "start": 658,
-       "end": 662,
-       "context": "(2012): **$66,004 capital / $70,923 total = 93.1%**. - **HH-4648** at age 34/1998 was earlier, but the same pattern holds la",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
-       "denominator_stated": null
-      },
-      {
-       "text": "34",
-       "value": 34.0,
-       "kind": "plain",
-       "start": 672,
-       "end": 674,
-       "context": "004 capital / $70,923 total = 93.1%**. - **HH-4648** at age 34/1998 was earlier, but the same pattern holds later: when ca",
-       "status": "derived",
-       "matched_path": "|sample.groups.all.per_decade.40s.cluster_distribution.0 - sample.groups.all.per_decade.40s.event_counts.moved|",
-       "matched_value": 34.0,
-       "denominator_stated": null
-      },
-      {
-       "text": "6221",
-       "value": 6221.0,
-       "kind": "plain",
-       "start": 854,
-       "end": 858,
-       "context": "st years often show cheaper or smaller replacements: - **HH-6221** empty nest: bought a **used sedan for $8,468**. - **HH-22",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
-       "denominator_stated": null
-      },
-      {
        "text": "$8,468",
        "value": 8468.0,
        "kind": "usd",
@@ -4131,39 +4047,15 @@
        "denominator_stated": null
       },
       {
-       "text": "2206",
-       "value": 2206.0,
-       "kind": "plain",
-       "start": 916,
-       "end": 920,
-       "context": "21** empty nest: bought a **used sedan for $8,468**. - **HH-2206** empty nest: bought a **used compact hybrid for $7,225**. ",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
-       "denominator_stated": null
-      },
-      {
        "text": "$7,225",
        "value": 7225.0,
        "kind": "usd",
        "start": 970,
        "end": 976,
        "context": " **HH-2206** empty nest: bought a **used compact hybrid for $7,225**. - **HH-1646** empty nest: bought a **sedan for $25,047**",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
-       "denominator_stated": null
-      },
-      {
-       "text": "1646",
-       "value": 1646.0,
-       "kind": "plain",
-       "start": 987,
-       "end": 991,
-       "context": "y nest: bought a **used compact hybrid for $7,225**. - **HH-1646** empty nest: bought a **sedan for $25,047** after selling ",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
+       "status": "raw_derived",
+       "matched_path": "record:HH-2206:arith",
+       "matched_value": 7225.0,
        "denominator_stated": null
       },
       {
@@ -4184,8 +4076,8 @@
     },
     "pipeline_grounded": {
      "mode": "pipeline_grounded",
-     "n_claims": 18,
-     "n_verified": 17,
+     "n_claims": 16,
+     "n_verified": 15,
      "n_derived": 1,
      "n_unverified": 0,
      "grounding_rate": 1.0,
@@ -4398,7 +4290,7 @@
        "start": 1149,
        "end": 1153,
        "context": "n the 50s, while purchase frequency was nearly unchanged (**1.58** vs **1.56**).",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.per_decade.40s.mean_purchases",
        "matched_value": 1.58,
        "denominator_stated": null
@@ -4410,7 +4302,7 @@
        "start": 1161,
        "end": 1165,
        "context": "hile purchase frequency was nearly unchanged (**1.58** vs **1.56**).",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.per_decade.50s.mean_purchases",
        "matched_value": 1.56,
        "denominator_stated": null
@@ -4868,12 +4760,12 @@
     },
     "naive_grounded": {
      "mode": "naive_grounded",
-     "n_claims": 22,
-     "n_verified": 6,
-     "n_derived": 12,
-     "n_unverified": 4,
-     "grounding_rate": 0.818,
-     "unverified_rate": 0.182,
+     "n_claims": 9,
+     "n_verified": 1,
+     "n_derived": 8,
+     "n_unverified": 0,
+     "grounding_rate": 1.0,
+     "unverified_rate": 0.0,
      "n_external_flags": 0,
      "pct_claims": 0,
      "pct_with_denominator": null,
@@ -4908,18 +4800,6 @@
        "denominator_stated": null
       },
       {
-       "text": "8917",
-       "value": 8917.0,
-       "kind": "plain",
-       "start": 272,
-       "end": 276,
-       "context": "Highest annual vehicle spend:** **$97,435**     - from **HH-8917** in **2020**: running **$9,540** + capital **$87,895** - *",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
-       "denominator_stated": null
-      },
-      {
        "text": "$9,540",
        "value": 9540.0,
        "kind": "usd",
@@ -4950,7 +4830,7 @@
        "start": 347,
        "end": 354,
        "context": "0**: running **$9,540** + capital **$87,895** - **Span:** **$97,435**  For comparison, the next-largest spans in the provided r",
-       "status": "derived",
+       "status": "ignored",
        "matched_path": "|sample.groups.parent_young_children.mean_range_usd - sample.groups.parent_young_children.mean_lifetime_spend_usd|",
        "matched_value": 98264.0,
        "denominator_stated": null
@@ -4974,7 +4854,7 @@
        "start": 482,
        "end": 484,
        "context": "re:  - **established_professional:** **$94,844** span     - $0 to **$94,844** (HH-9032, 2015) - **retired:** **$86,037** sp",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.groups.empty_nester.mean_min_usd",
        "matched_value": 0.0,
        "denominator_stated": null
@@ -4986,7 +4866,7 @@
        "start": 490,
        "end": 497,
        "context": "*established_professional:** **$94,844** span     - $0 to **$94,844** (HH-9032, 2015) - **retired:** **$86,037** span     - $0 ",
-       "status": "derived",
+       "status": "ignored",
        "matched_path": "|sample.groups.parent_young_children.median_range_usd - sample.groups.parent_young_children.mean_lifetime_spend_usd|",
        "matched_value": 95779.0,
        "denominator_stated": null
@@ -4998,9 +4878,9 @@
        "start": 533,
        "end": 540,
        "context": "an     - $0 to **$94,844** (HH-9032, 2015) - **retired:** **$86,037** span     - $0 to **$86,037** (HH-9498, 2009) - **parent_s",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
+       "status": "raw_verified",
+       "matched_path": "record:uncited",
+       "matched_value": 86037.0,
        "denominator_stated": null
       },
       {
@@ -5010,7 +4890,7 @@
        "start": 554,
        "end": 556,
        "context": "844** (HH-9032, 2015) - **retired:** **$86,037** span     - $0 to **$86,037** (HH-9498, 2009) - **parent_school_age:** **$8",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.groups.empty_nester.mean_min_usd",
        "matched_value": 0.0,
        "denominator_stated": null
@@ -5022,7 +4902,7 @@
        "start": 562,
        "end": 569,
        "context": "H-9032, 2015) - **retired:** **$86,037** span     - $0 to **$86,037** (HH-9498, 2009) - **parent_school_age:** **$85,965** span",
-       "status": "raw_verified",
+       "status": "ignored",
        "matched_path": "record:HH-9498",
        "matched_value": 86037.0,
        "denominator_stated": null
@@ -5034,9 +4914,9 @@
        "start": 615,
        "end": 622,
        "context": "0 to **$86,037** (HH-9498, 2009) - **parent_school_age:** **$85,965** span     - $0 to **$85,965** (HH-3982, 2018) - **empty_ne",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
+       "status": "raw_verified",
+       "matched_path": "record:uncited",
+       "matched_value": 85965.0,
        "denominator_stated": null
       },
       {
@@ -5046,7 +4926,7 @@
        "start": 636,
        "end": 638,
        "context": "9498, 2009) - **parent_school_age:** **$85,965** span     - $0 to **$85,965** (HH-3982, 2018) - **empty_nester:** **$80,805",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.groups.empty_nester.mean_min_usd",
        "matched_value": 0.0,
        "denominator_stated": null
@@ -5058,7 +4938,7 @@
        "start": 644,
        "end": 651,
        "context": "09) - **parent_school_age:** **$85,965** span     - $0 to **$85,965** (HH-3982, 2018) - **empty_nester:** **$80,805** span     ",
-       "status": "raw_verified",
+       "status": "ignored",
        "matched_path": "record:HH-3982",
        "matched_value": 85965.0,
        "denominator_stated": null
@@ -5070,9 +4950,9 @@
        "start": 692,
        "end": 699,
        "context": "  - $0 to **$85,965** (HH-3982, 2018) - **empty_nester:** **$80,805** span     - $0 to **$80,805** (HH-1472, 2008) - **early_ca",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
+       "status": "raw_verified",
+       "matched_path": "record:uncited",
+       "matched_value": 80805.0,
        "denominator_stated": null
       },
       {
@@ -5082,7 +4962,7 @@
        "start": 713,
        "end": 715,
        "context": " (HH-3982, 2018) - **empty_nester:** **$80,805** span     - $0 to **$80,805** (HH-1472, 2008) - **early_career:** **$38,486",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.groups.empty_nester.mean_min_usd",
        "matched_value": 0.0,
        "denominator_stated": null
@@ -5094,7 +4974,7 @@
        "start": 721,
        "end": 728,
        "context": "2, 2018) - **empty_nester:** **$80,805** span     - $0 to **$80,805** (HH-1472, 2008) - **early_career:** **$38,486** span     ",
-       "status": "raw_verified",
+       "status": "ignored",
        "matched_path": "record:HH-1472",
        "matched_value": 80805.0,
        "denominator_stated": null
@@ -5118,7 +4998,7 @@
        "start": 790,
        "end": 792,
        "context": " (HH-1472, 2008) - **early_career:** **$38,486** span     - $0 to **$38,486** (HH-4243, 2025)  So, based strictly on the pr",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.groups.empty_nester.mean_min_usd",
        "matched_value": 0.0,
        "denominator_stated": null
@@ -5130,7 +5010,7 @@
        "start": 798,
        "end": 805,
        "context": "2, 2008) - **early_career:** **$38,486** span     - $0 to **$38,486** (HH-4243, 2025)  So, based strictly on the provided recor",
-       "status": "derived",
+       "status": "ignored",
        "matched_path": "|sample.groups.early_career.mean_max_usd - sample.groups.retired.mean_max_usd|",
        "matched_value": 38856.0,
        "denominator_stated": null
@@ -5142,7 +5022,7 @@
        "start": 962,
        "end": 969,
        "context": "iggest gap between lowest and highest annual vehicle spend: $97,435**.",
-       "status": "derived",
+       "status": "ignored",
        "matched_path": "|sample.groups.parent_young_children.mean_range_usd - sample.groups.parent_young_children.mean_lifetime_spend_usd|",
        "matched_value": 98264.0,
        "denominator_stated": null
@@ -5153,8 +5033,8 @@
     },
     "pipeline_grounded": {
      "mode": "pipeline_grounded",
-     "n_claims": 25,
-     "n_verified": 24,
+     "n_claims": 14,
+     "n_verified": 13,
      "n_derived": 1,
      "n_unverified": 0,
      "grounding_rate": 1.0,
@@ -5211,7 +5091,7 @@
        "start": 273,
        "end": 278,
        "context": " life stage in this dataset.  Key figures: - **Retired:** **1,041 households**; **mean range $57,705** - **Empty nester:** **",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.retired.n_households",
        "matched_value": 1041.0,
        "denominator_stated": null
@@ -5223,7 +5103,7 @@
        "start": 306,
        "end": 313,
        "context": " figures: - **Retired:** **1,041 households**; **mean range $57,705** - **Empty nester:** **1,371 households**; **mean range $5",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.retired.mean_range_usd",
        "matched_value": 57705.0,
        "denominator_stated": null
@@ -5355,7 +5235,7 @@
        "start": 713,
        "end": 720,
        "context": "nge $16,443**  Observations: 1. **Retired** is highest at **$57,705** across **1,041 households**, ahead of **empty nester** at",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.retired.mean_range_usd",
        "matched_value": 57705.0,
        "denominator_stated": null
@@ -5367,7 +5247,7 @@
        "start": 732,
        "end": 737,
        "context": "rvations: 1. **Retired** is highest at **$57,705** across **1,041 households**, ahead of **empty nester** at **$54,433** acro",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.retired.n_households",
        "matched_value": 1041.0,
        "denominator_stated": null
@@ -5379,7 +5259,7 @@
        "start": 783,
        "end": 790,
        "context": "across **1,041 households**, ahead of **empty nester** at **$54,433** across **1,371 households**. 2. The gap between the top t",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.empty_nester.mean_range_usd",
        "matched_value": 54433.0,
        "denominator_stated": null
@@ -5391,7 +5271,7 @@
        "start": 802,
        "end": 807,
        "context": "eholds**, ahead of **empty nester** at **$54,433** across **1,371 households**. 2. The gap between the top two life stages is",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.empty_nester.n_households",
        "matched_value": 1371.0,
        "denominator_stated": null
@@ -5415,7 +5295,7 @@
        "start": 917,
        "end": 924,
        "context": " stages is **$3,272** (a trivial difference computed from **$57,705 - $54,433**). 3. **Early career** has the smallest span at *",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.retired.mean_range_usd",
        "matched_value": 57705.0,
        "denominator_stated": null
@@ -5427,7 +5307,7 @@
        "start": 927,
        "end": 934,
        "context": " **$3,272** (a trivial difference computed from **$57,705 - $54,433**). 3. **Early career** has the smallest span at **$16,443*",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.empty_nester.mean_range_usd",
        "matched_value": 54433.0,
        "denominator_stated": null
@@ -5439,7 +5319,7 @@
        "start": 986,
        "end": 993,
        "context": " $54,433**). 3. **Early career** has the smallest span at **$16,443** across **1,980 households**, far below the retired segmen",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.early_career.mean_range_usd",
        "matched_value": 16443.0,
        "denominator_stated": null
@@ -5451,7 +5331,7 @@
        "start": 1005,
        "end": 1010,
        "context": "arly career** has the smallest span at **$16,443** across **1,980 households**, far below the retired segment\u2019s **$57,705**.",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.early_career.n_households",
        "matched_value": 1980.0,
        "denominator_stated": null
@@ -5463,7 +5343,7 @@
        "start": 1059,
        "end": 1066,
        "context": "oss **1,980 households**, far below the retired segment\u2019s **$57,705**.",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.retired.mean_range_usd",
        "matched_value": 57705.0,
        "denominator_stated": null
@@ -5816,8 +5696,8 @@
    "scores": {
     "ungrounded": {
      "mode": "ungrounded",
-     "n_claims": 4,
-     "n_verified": 4,
+     "n_claims": 1,
+     "n_verified": 1,
      "n_derived": 0,
      "n_unverified": 0,
      "grounding_rate": 1.0,
@@ -5850,7 +5730,7 @@
        "start": 147,
        "end": 153,
        "context": "ds.  Best definition for this metric:  - **Denominator:** **10,000 households** - **Numerator:** households that:   1. **Moved",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_total",
        "matched_value": 10000.0,
        "denominator_stated": null
@@ -5862,7 +5742,7 @@
        "start": 1030,
        "end": 1036,
        "context": "e = true`  So the result would be:  - **X households out of 10,000 households** - or **X% of households (X / 10,000)**  If you",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_total",
        "matched_value": 10000.0,
        "denominator_stated": null
@@ -5874,7 +5754,7 @@
        "start": 1079,
        "end": 1085,
        "context": "lds out of 10,000 households** - or **X% of households (X / 10,000)**  If you want, I can also write the exact SQL or pandas c",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_total",
        "matched_value": 10000.0,
        "denominator_stated": null
@@ -5885,12 +5765,12 @@
     },
     "naive_grounded": {
      "mode": "naive_grounded",
-     "n_claims": 8,
+     "n_claims": 4,
      "n_verified": 1,
      "n_derived": 0,
-     "n_unverified": 7,
-     "grounding_rate": 0.125,
-     "unverified_rate": 0.875,
+     "n_unverified": 3,
+     "grounding_rate": 0.25,
+     "unverified_rate": 0.75,
      "n_external_flags": 0,
      "pct_claims": 1,
      "pct_with_denominator": 1.0,
@@ -5919,7 +5799,7 @@
        "start": 301,
        "end": 303,
        "context": "different `commute_type` than before that move).  That is **85 of 130 households (65.4%)** in the records shown.  Examples",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": null
@@ -5949,42 +5829,6 @@
        "denominator_stated": true
       },
       {
-       "text": "7962",
-       "value": 7962.0,
-       "kind": "plain",
-       "start": 419,
-       "end": 423,
-       "context": "ples that qualify: **HH-6312, HH-6891, HH-0664, HH-8377, HH-7962**.   Examples that do **not** qualify:   - only moved once:",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
-       "denominator_stated": null
-      },
-      {
-       "text": "4105",
-       "value": 4105.0,
-       "kind": "plain",
-       "start": 507,
-       "end": 511,
-       "context": "*not** qualify:   - only moved once: **HH-4243, HH-8269, HH-4105**   - moved more than once but no commute-type change after",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
-       "denominator_stated": null
-      },
-      {
-       "text": "7291",
-       "value": 7291.0,
-       "kind": "plain",
-       "start": 608,
-       "end": 612,
-       "context": "mmute-type change after those moves: **HH-6635, HH-1787, HH-7291**  I\u2019m answering from the records visible in your prompt. I",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
-       "denominator_stated": null
-      },
-      {
        "text": "173",
        "value": 173.0,
        "kind": "plain",
@@ -6002,8 +5846,8 @@
     },
     "pipeline_grounded": {
      "mode": "pipeline_grounded",
-     "n_claims": 15,
-     "n_verified": 15,
+     "n_claims": 5,
+     "n_verified": 5,
      "n_derived": 0,
      "n_unverified": 0,
      "grounding_rate": 1.0,
@@ -6048,7 +5892,7 @@
        "start": 126,
        "end": 131,
        "context": "e 6,670 households with more than one move.  Key figures: - 6,670 households had at least 2 move events, out of 10,000 househ",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_households_with_min_events",
        "matched_value": 6670.0,
        "denominator_stated": null
@@ -6072,7 +5916,7 @@
        "start": 205,
        "end": 210,
        "context": "d at least 2 move events, out of 10,000 households total. - 6,125 households changed commute type after a move. - That is 91.",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_changed_after",
        "matched_value": 6125.0,
        "denominator_stated": null
@@ -6096,7 +5940,7 @@
        "start": 280,
        "end": 285,
        "context": "s changed commute type after a move. - That is 91.8% of the 6,670-household multi-move cohort. - It is also 61.3% of all 10,0",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_households_with_min_events",
        "matched_value": 6670.0,
        "denominator_stated": null
@@ -6120,7 +5964,7 @@
        "start": 341,
        "end": 347,
        "context": ",670-household multi-move cohort. - It is also 61.3% of all 10,000 households.  Observations: - The relevant segment is the 6,",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_total",
        "matched_value": 10000.0,
        "denominator_stated": null
@@ -6132,7 +5976,7 @@
        "start": 405,
        "end": 410,
        "context": "00 households.  Observations: - The relevant segment is the 6,670 households with at least 2 moves; within that group, 6,125 ",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_households_with_min_events",
        "matched_value": 6670.0,
        "denominator_stated": null
@@ -6144,7 +5988,7 @@
        "start": 464,
        "end": 469,
        "context": " 6,670 households with at least 2 moves; within that group, 6,125 had a commute-type change after a move. - Most households i",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_changed_after",
        "matched_value": 6125.0,
        "denominator_stated": null
@@ -6156,7 +6000,7 @@
        "start": 588,
        "end": 593,
        "context": "in the multi-move cohort changed commute type after a move: 91.8% of 6,670 households. - In the full dataset, these household",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.share_of_cohort_pct",
        "matched_value": 91.8,
        "denominator_stated": true
@@ -6168,7 +6012,7 @@
        "start": 597,
        "end": 602,
        "context": "lti-move cohort changed commute type after a move: 91.8% of 6,670 households. - In the full dataset, these households account",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_households_with_min_events",
        "matched_value": 6670.0,
        "denominator_stated": null
@@ -6180,7 +6024,7 @@
        "start": 667,
        "end": 672,
        "context": "eholds. - In the full dataset, these households account for 61.3% of 10,000 households.",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.share_of_total_pct",
        "matched_value": 61.3,
        "denominator_stated": true
@@ -6192,7 +6036,7 @@
        "start": 676,
        "end": 682,
        "context": " In the full dataset, these households account for 61.3% of 10,000 households.",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_total",
        "matched_value": 10000.0,
        "denominator_stated": null
@@ -6707,12 +6551,12 @@
    "scores": {
     "ungrounded": {
      "mode": "ungrounded",
-     "n_claims": 2,
+     "n_claims": 1,
      "n_verified": 1,
      "n_derived": 0,
-     "n_unverified": 1,
-     "grounding_rate": 0.5,
-     "unverified_rate": 0.5,
+     "n_unverified": 0,
+     "grounding_rate": 1.0,
+     "unverified_rate": 0.0,
      "n_external_flags": 0,
      "pct_claims": 0,
      "pct_with_denominator": null,
@@ -6729,7 +6573,7 @@
        "start": 71,
        "end": 72,
        "context": "l **what they buy** from the schema alone, because it has **0 records** and **0 computed statistics** attached.  To answe",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": null
@@ -6752,12 +6596,12 @@
     },
     "naive_grounded": {
      "mode": "naive_grounded",
-     "n_claims": 14,
-     "n_verified": 4,
-     "n_derived": 0,
-     "n_unverified": 10,
-     "grounding_rate": 0.286,
-     "unverified_rate": 0.714,
+     "n_claims": 13,
+     "n_verified": 3,
+     "n_derived": 5,
+     "n_unverified": 5,
+     "grounding_rate": 0.615,
+     "unverified_rate": 0.385,
      "n_external_flags": 0,
      "pct_claims": 0,
      "pct_with_denominator": null,
@@ -6798,7 +6642,7 @@
        "start": 168,
        "end": 171,
        "context": "79 matching households**, not the full segment.  From the **347 sampled households**, the pattern is clear: recent graduate",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.n_total",
        "matched_value": 347.0,
        "denominator_stated": null
@@ -6882,9 +6726,9 @@
        "start": 898,
        "end": 905,
        "context": "n the sample, those step-up purchases include examples at **$15,767** (hybrid crossover), **$24,401** (EV crossover lease), **$",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
+       "status": "raw_verified",
+       "matched_path": "record:uncited",
+       "matched_value": 15767.0,
        "denominator_stated": null
       },
       {
@@ -6894,9 +6738,9 @@
        "start": 930,
        "end": 937,
        "context": "hases include examples at **$15,767** (hybrid crossover), **$24,401** (EV crossover lease), **$33,480** (EV sedan), and **$35,5",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
+       "status": "raw_verified",
+       "matched_path": "record:uncited",
+       "matched_value": 24401.0,
        "denominator_stated": null
       },
       {
@@ -6906,9 +6750,9 @@
        "start": 964,
        "end": 971,
        "context": "7** (hybrid crossover), **$24,401** (EV crossover lease), **$33,480** (EV sedan), and **$35,576** (gasoline compact). Family-st",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
+       "status": "raw_verified",
+       "matched_path": "record:uncited",
+       "matched_value": 33480.0,
        "denominator_stated": null
       },
       {
@@ -6918,9 +6762,9 @@
        "start": 992,
        "end": 999,
        "context": "4,401** (EV crossover lease), **$33,480** (EV sedan), and **$35,576** (gasoline compact). Family-stage changes can also shift t",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
+       "status": "raw_verified",
+       "matched_path": "record:uncited",
+       "matched_value": 35576.0,
        "denominator_stated": null
       },
       {
@@ -6930,9 +6774,9 @@
        "start": 1095,
        "end": 1102,
        "context": "changes can also shift the choice: one household bought a **$10,754 gasoline SUV** when a **new child** arrived.  So, in short: ",
-       "status": "unverified",
-       "matched_path": null,
-       "matched_value": null,
+       "status": "raw_verified",
+       "matched_path": "record:uncited",
+       "matched_value": 10754.0,
        "denominator_stated": null
       }
      ],
@@ -6941,8 +6785,8 @@
     },
     "pipeline_grounded": {
      "mode": "pipeline_grounded",
-     "n_claims": 33,
-     "n_verified": 33,
+     "n_claims": 15,
+     "n_verified": 15,
      "n_derived": 0,
      "n_unverified": 0,
      "grounding_rate": 1.0,
@@ -7005,25 +6849,13 @@
        "denominator_stated": null
       },
       {
-       "text": "0.76",
-       "value": 0.76,
-       "kind": "count",
-       "start": 216,
-       "end": 220,
-       "context": " job**, these households made **898 purchases** total, or **0.76 purchases per household**.  Key figures, in this dataset: -",
-       "status": "verified",
-       "matched_path": "groups.all.purchases_per_household",
-       "matched_value": 0.76,
-       "denominator_stated": null
-      },
-      {
        "text": "898",
        "value": 898.0,
        "kind": "count",
        "start": 294,
        "end": 297,
        "context": " household**.  Key figures, in this dataset: - **Body type (898 purchases):** **508 compact**, **292 sedan**, **96 crossove",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_purchases_in_window",
        "matched_value": 898.0,
        "denominator_stated": null
@@ -7071,7 +6903,7 @@
        "start": 388,
        "end": 391,
        "context": " **292 sedan**, **96 crossover**, **2 SUV** - **Powertrain (898 purchases):** **540 gasoline**, **210 hybrid**, **148 EV** ",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_purchases_in_window",
        "matched_value": 898.0,
        "denominator_stated": null
@@ -7119,7 +6951,7 @@
        "start": 469,
        "end": 472,
        "context": "40 gasoline**, **210 hybrid**, **148 EV** - **New vs. used (898 purchases):** **700 used**, **198 new** - **Price band (898",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_purchases_in_window",
        "matched_value": 898.0,
        "denominator_stated": null
@@ -7155,7 +6987,7 @@
        "start": 529,
        "end": 532,
        "context": "898 purchases):** **700 used**, **198 new** - **Price band (898 purchases):** **860 in band 1**, **29 in band 2**, **9 in b",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_purchases_in_window",
        "matched_value": 898.0,
        "denominator_stated": null
@@ -7203,7 +7035,7 @@
        "start": 716,
        "end": 719,
        "context": " are concentrated in smaller vehicles: **compact leads with 508 of 898 purchases**, followed by **292 sedans**. Crossovers ",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.body_type.compact",
        "matched_value": 508.0,
        "denominator_stated": null
@@ -7215,7 +7047,7 @@
        "start": 723,
        "end": 726,
        "context": "ncentrated in smaller vehicles: **compact leads with 508 of 898 purchases**, followed by **292 sedans**. Crossovers are muc",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_purchases_in_window",
        "matched_value": 898.0,
        "denominator_stated": null
@@ -7227,7 +7059,7 @@
        "start": 754,
        "end": 757,
        "context": " **compact leads with 508 of 898 purchases**, followed by **292 sedans**. Crossovers are much lower at **96**, and SUVs are",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.body_type.sedan",
        "matched_value": 292.0,
        "denominator_stated": null
@@ -7239,7 +7071,7 @@
        "start": 799,
        "end": 801,
        "context": " followed by **292 sedans**. Crossovers are much lower at **96**, and SUVs are nearly absent at **2**. 2. Used vehicles do",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.body_type.crossover",
        "matched_value": 96.0,
        "denominator_stated": null
@@ -7251,7 +7083,7 @@
        "start": 871,
        "end": 874,
        "context": "Vs are nearly absent at **2**. 2. Used vehicles dominate: **700 of 898 purchases** were **used**, versus **198 new**. 3. Ga",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.new_or_used.used",
        "matched_value": 700.0,
        "denominator_stated": null
@@ -7263,7 +7095,7 @@
        "start": 878,
        "end": 881,
        "context": "nearly absent at **2**. 2. Used vehicles dominate: **700 of 898 purchases** were **used**, versus **198 new**. 3. Gasoline ",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_purchases_in_window",
        "matched_value": 898.0,
        "denominator_stated": null
@@ -7275,7 +7107,7 @@
        "start": 918,
        "end": 921,
        "context": " dominate: **700 of 898 purchases** were **used**, versus **198 new**. 3. Gasoline is the largest powertrain at **540 of 89",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.new_or_used.new",
        "matched_value": 198.0,
        "denominator_stated": null
@@ -7287,7 +7119,7 @@
        "start": 972,
        "end": 975,
        "context": "sus **198 new**. 3. Gasoline is the largest powertrain at **540 of 898 purchases**, but electrified options are present: **",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.powertrain.gasoline",
        "matched_value": 540.0,
        "denominator_stated": null
@@ -7299,7 +7131,7 @@
        "start": 979,
        "end": 982,
        "context": "98 new**. 3. Gasoline is the largest powertrain at **540 of 898 purchases**, but electrified options are present: **210 hyb",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_purchases_in_window",
        "matched_value": 898.0,
        "denominator_stated": null
@@ -7311,7 +7143,7 @@
        "start": 1035,
        "end": 1038,
        "context": " of 898 purchases**, but electrified options are present: **210 hybrids** and **148 EVs**. Price-wise, nearly all purchases",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.powertrain.hybrid",
        "matched_value": 210.0,
        "denominator_stated": null
@@ -7323,7 +7155,7 @@
        "start": 1055,
        "end": 1058,
        "context": " but electrified options are present: **210 hybrids** and **148 EVs**. Price-wise, nearly all purchases fall in **price ban",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.powertrain.ev",
        "matched_value": 148.0,
        "denominator_stated": null
@@ -7335,7 +7167,7 @@
        "start": 1123,
        "end": 1126,
        "context": "*. Price-wise, nearly all purchases fall in **price band 1 (860 of 898 purchases)**.",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.price_band.1",
        "matched_value": 860.0,
        "denominator_stated": null
@@ -7347,7 +7179,7 @@
        "start": 1130,
        "end": 1133,
        "context": "e-wise, nearly all purchases fall in **price band 1 (860 of 898 purchases)**.",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "groups.all.n_purchases_in_window",
        "matched_value": 898.0,
        "denominator_stated": null
@@ -7700,18 +7532,18 @@
    "scores": {
     "ungrounded": {
      "mode": "ungrounded",
-     "n_claims": 8,
-     "n_verified": 3,
+     "n_claims": 5,
+     "n_verified": 1,
      "n_derived": 0,
-     "n_unverified": 5,
-     "grounding_rate": 0.375,
-     "unverified_rate": 0.625,
+     "n_unverified": 4,
+     "grounding_rate": 0.2,
+     "unverified_rate": 0.8,
      "n_external_flags": 2,
      "pct_claims": 4,
      "pct_with_denominator": 0.75,
      "unanswerable_expected": true,
      "refusal_detected": false,
-     "fabricated_on_unanswerable": 4,
+     "fabricated_on_unanswerable": 3,
      "truth_basis": "population",
      "answer_status": "answered",
      "claims": [
@@ -7734,7 +7566,7 @@
        "start": 505,
        "end": 511,
        "context": " EV in their vehicle history as of 2026      Denominator: **10,000 households**  3. **EV share of acquisitions**      Numerato",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_total",
        "matched_value": 10000.0,
        "denominator_stated": null
@@ -7770,7 +7602,7 @@
        "start": 1116,
        "end": 1122,
        "context": "urce  So if, for example, your dataset showed: - **1,200 of 10,000 households** ever adopting an EV = **12% of households** - ",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_total",
        "matched_value": 10000.0,
        "denominator_stated": null
@@ -7806,7 +7638,7 @@
        "start": 1226,
        "end": 1228,
        "context": " households** - or **9% of purchases/leases** being EVs = **9% of acquisitions**  \u2026then it would be above national househo",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": true
@@ -7832,18 +7664,18 @@
     },
     "naive_grounded": {
      "mode": "naive_grounded",
-     "n_claims": 11,
-     "n_verified": 4,
+     "n_claims": 3,
+     "n_verified": 1,
      "n_derived": 0,
-     "n_unverified": 7,
-     "grounding_rate": 0.364,
-     "unverified_rate": 0.636,
+     "n_unverified": 2,
+     "grounding_rate": 0.333,
+     "unverified_rate": 0.667,
      "n_external_flags": 1,
      "pct_claims": 3,
      "pct_with_denominator": 1.0,
      "unanswerable_expected": true,
      "refusal_detected": true,
-     "fabricated_on_unanswerable": 3,
+     "fabricated_on_unanswerable": 1,
      "truth_basis": "sample",
      "answer_status": "answered",
      "claims": [
@@ -7890,7 +7722,7 @@
        "start": 268,
        "end": 270,
        "context": "r leased** at least one EV, which is **18.5% of households (32/173)**.  Examples include HH-7962, HH-9053, HH-1021, HH-161",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": null
@@ -7902,7 +7734,7 @@
        "start": 271,
        "end": 274,
        "context": "eased** at least one EV, which is **18.5% of households (32/173)**.  Examples include HH-7962, HH-9053, HH-1021, HH-1619, H",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.n_total",
        "matched_value": 173.0,
        "denominator_stated": null
@@ -7914,7 +7746,7 @@
        "start": 446,
        "end": 451,
        "context": "support this statement:  - **EV adoption in the sample:** **18.5% of households (32/173)**  But the records do **not** includ",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": true
@@ -7926,7 +7758,7 @@
        "start": 467,
        "end": 469,
        "context": "t:  - **EV adoption in the sample:** **18.5% of households (32/173)**  But the records do **not** include: - a U.S. nation",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": null
@@ -7938,7 +7770,7 @@
        "start": 470,
        "end": 473,
        "context": " - **EV adoption in the sample:** **18.5% of households (32/173)**  But the records do **not** include: - a U.S. national E",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.n_total",
        "matched_value": 173.0,
        "denominator_stated": null
@@ -7950,7 +7782,7 @@
        "start": 694,
        "end": 699,
        "context": "te answer is:  - **Within these records:** EV adoption is **18.5% of households (32/173)**. - **Compared with the national av",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": true
@@ -7962,7 +7794,7 @@
        "start": 715,
        "end": 717,
        "context": "thin these records:** EV adoption is **18.5% of households (32/173)**. - **Compared with the national average:** **cannot ",
-       "status": "unverified",
+       "status": "ignored",
        "matched_path": null,
        "matched_value": null,
        "denominator_stated": null
@@ -7974,7 +7806,7 @@
        "start": 718,
        "end": 721,
        "context": "n these records:** EV adoption is **18.5% of households (32/173)**. - **Compared with the national average:** **cannot be d",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.n_total",
        "matched_value": 173.0,
        "denominator_stated": null
@@ -8015,13 +7847,13 @@
     },
     "pipeline_grounded": {
      "mode": "pipeline_grounded",
-     "n_claims": 10,
-     "n_verified": 10,
+     "n_claims": 4,
+     "n_verified": 4,
      "n_derived": 0,
      "n_unverified": 0,
      "grounding_rate": 1.0,
      "unverified_rate": 0.0,
-     "n_external_flags": 1,
+     "n_external_flags": 0,
      "pct_claims": 4,
      "pct_with_denominator": 1.0,
      "unanswerable_expected": true,
@@ -8061,7 +7893,7 @@
        "start": 271,
        "end": 277,
        "context": "rate would be invented.\u201d**  Within this dataset, **2,694 of 10,000 households** had **ever adopted an EV**, which is **26.9% o",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_total",
        "matched_value": 10000.0,
        "denominator_stated": null
@@ -8085,7 +7917,7 @@
        "start": 439,
        "end": 444,
        "context": "able EV figure is a **household-level adoption measure**: **26.9% of 10,000 households** had **ever_ev = true**. - The datase",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.groups.all.share_pct",
        "matched_value": 26.9,
        "denominator_stated": true
@@ -8097,7 +7929,7 @@
        "start": 448,
        "end": 454,
        "context": "igure is a **household-level adoption measure**: **26.9% of 10,000 households** had **ever_ev = true**. - The dataset coverage",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_total",
        "matched_value": 10000.0,
        "denominator_stated": null
@@ -8109,7 +7941,7 @@
        "start": 547,
        "end": 553,
        "context": "e**. - The dataset coverage for this measure is complete: **10,000 matched out of 10,000 households**, or **100.0% of househol",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_total",
        "matched_value": 10000.0,
        "denominator_stated": null
@@ -8121,7 +7953,7 @@
        "start": 569,
        "end": 575,
        "context": "erage for this measure is complete: **10,000 matched out of 10,000 households**, or **100.0% of households**. - No national-av",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_total",
        "matched_value": 10000.0,
        "denominator_stated": null
@@ -8145,21 +7977,13 @@
        "start": 705,
        "end": 710,
        "context": "re is present, so **no comparison** between the dataset\u2019s **26.9% of households** and a national rate is available.",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.groups.all.share_pct",
        "matched_value": 26.9,
        "denominator_stated": true
       }
      ],
-     "external_flags": [
-      {
-       "phrase": "national rate",
-       "start": 733,
-       "end": 746,
-       "negated": false,
-       "context": "rison** between the dataset\u2019s **26.9% of households** and a national rate is available."
-      }
-     ],
+     "external_flags": [],
      "negated_mentions": [
       {
        "phrase": "benchmark",
@@ -8174,6 +7998,13 @@
        "end": 215,
        "negated": true,
        "context": "within-dataset figures can be reported; any comparison to a national rate would be invented.\u201d**  Within this dataset, **2,694 of 10,0"
+      },
+      {
+       "phrase": "national rate",
+       "start": 733,
+       "end": 746,
+       "negated": true,
+       "context": "rison** between the dataset\u2019s **26.9% of households** and a national rate is available."
       }
      ]
     }
@@ -8554,12 +8385,12 @@
     },
     "naive_grounded": {
      "mode": "naive_grounded",
-     "n_claims": 15,
-     "n_verified": 8,
-     "n_derived": 6,
+     "n_claims": 9,
+     "n_verified": 3,
+     "n_derived": 5,
      "n_unverified": 1,
-     "grounding_rate": 0.933,
-     "unverified_rate": 0.067,
+     "grounding_rate": 0.889,
+     "unverified_rate": 0.111,
      "n_external_flags": 0,
      "pct_claims": 4,
      "pct_with_denominator": 1.0,
@@ -8600,7 +8431,7 @@
        "start": 338,
        "end": 341,
        "context": " income-bracket distribution is:  - **Upper_middle:** 46 of 107 households = **43.0%** - **Lower_middle:** 40 of 107 househ",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.n_total",
        "matched_value": 107.0,
        "denominator_stated": null
@@ -8636,7 +8467,7 @@
        "start": 391,
        "end": 394,
        "context": " 46 of 107 households = **43.0%** - **Lower_middle:** 40 of 107 households = **37.4%** - **Lower:** 21 of 107 households = ",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.n_total",
        "matched_value": 107.0,
        "denominator_stated": null
@@ -8672,7 +8503,7 @@
        "start": 437,
        "end": 440,
        "context": "ddle:** 40 of 107 households = **37.4%** - **Lower:** 21 of 107 households = **19.6%** - **Upper:** 0 of 107 households = *",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.n_total",
        "matched_value": 107.0,
        "denominator_stated": null
@@ -8696,7 +8527,7 @@
        "start": 482,
        "end": 485,
        "context": "Lower:** 21 of 107 households = **19.6%** - **Upper:** 0 of 107 households = **0.0%**  So the best records-based summary is",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.n_total",
        "matched_value": 107.0,
        "denominator_stated": null
@@ -8720,7 +8551,7 @@
        "start": 593,
        "end": 595,
        "context": "d summary is:  - **Most common bracket:** `upper_middle` (**46/107 households**) - **Median bracket:** `lower_middle` (the",
-       "status": "derived",
+       "status": "ignored",
        "matched_path": "|sample.answerable_part.groups.all.avg_age - sample.answerable_part.groups.all.progression_type.ascending|",
        "matched_value": 46.0,
        "denominator_stated": null
@@ -8732,7 +8563,7 @@
        "start": 596,
        "end": 599,
        "context": "ummary is:  - **Most common bracket:** `upper_middle` (**46/107 households**) - **Median bracket:** `lower_middle` (the 54t",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "sample.n_total",
        "matched_value": 107.0,
        "denominator_stated": null
@@ -8755,8 +8586,8 @@
     },
     "pipeline_grounded": {
      "mode": "pipeline_grounded",
-     "n_claims": 28,
-     "n_verified": 28,
+     "n_claims": 18,
+     "n_verified": 18,
      "n_derived": 0,
      "n_unverified": 0,
      "grounding_rate": 1.0,
@@ -8813,7 +8644,7 @@
        "start": 342,
        "end": 347,
        "context": "annot be computed.**  What is available for retired owners (1,041 households): - Income bracket counts: **169 lower**, **384 ",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "n_matched",
        "matched_value": 1041.0,
        "denominator_stated": null
@@ -8921,7 +8752,7 @@
        "start": 634,
        "end": 637,
        "context": "eholds. - Area type: **495 suburban**, **273 rural**, and **273 urban** households. - Primary powertrain: **625 gasoline**,",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.groups.all.area_type.rural",
        "matched_value": 273.0,
        "denominator_stated": null
@@ -9017,7 +8848,7 @@
        "start": 1044,
        "end": 1047,
        "context": "ners are concentrated in the **upper_middle income bracket (488 households)**, ahead of **lower_middle (384 households)** a",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.groups.all.income_bracket.upper_middle",
        "matched_value": 488.0,
        "denominator_stated": null
@@ -9029,7 +8860,7 @@
        "start": 1088,
        "end": 1091,
        "context": "income bracket (488 households)**, ahead of **lower_middle (384 households)** and **lower (169 households)**. - The largest",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.groups.all.income_bracket.lower_middle",
        "matched_value": 384.0,
        "denominator_stated": null
@@ -9041,7 +8872,7 @@
        "start": 1119,
        "end": 1122,
        "context": "**, ahead of **lower_middle (384 households)** and **lower (169 households)**. - The largest household composition is **par",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.groups.all.income_bracket.lower",
        "matched_value": 169.0,
        "denominator_stated": null
@@ -9053,7 +8884,7 @@
        "start": 1204,
        "end": 1207,
        "context": "largest household composition is **partnered_no_children at 880 households**, versus **161 solo** households. - The most co",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.groups.all.household_composition.partnered_no_children",
        "matched_value": 880.0,
        "denominator_stated": null
@@ -9065,7 +8896,7 @@
        "start": 1231,
        "end": 1234,
        "context": "on is **partnered_no_children at 880 households**, versus **161 solo** households. - The most common primary powertrain is ",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.groups.all.household_composition.solo",
        "matched_value": 161.0,
        "denominator_stated": null
@@ -9077,7 +8908,7 @@
        "start": 1308,
        "end": 1311,
        "context": "olds. - The most common primary powertrain is **gasoline at 625 households**, compared with **231 hybrid** and **166 EV** h",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.groups.all.primary_powertrain.gasoline",
        "matched_value": 625.0,
        "denominator_stated": null
@@ -9089,7 +8920,7 @@
        "start": 1342,
        "end": 1345,
        "context": "wertrain is **gasoline at 625 households**, compared with **231 hybrid** and **166 EV** households.",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.groups.all.primary_powertrain.hybrid",
        "matched_value": 231.0,
        "denominator_stated": null
@@ -9101,7 +8932,7 @@
        "start": 1361,
        "end": 1364,
        "context": "ine at 625 households**, compared with **231 hybrid** and **166 EV** households.",
-       "status": "verified",
+       "status": "ignored",
        "matched_path": "answerable_part.groups.all.primary_powertrain.ev",
        "matched_value": 166.0,
        "denominator_stated": null

@@ -30,7 +30,7 @@ CLAIM_PATTERNS = [
     ("pct", re.compile(_NUM + r"\s?(?:%|percent(?:age)?\b(?!\s+points))")),
     ("pts", re.compile(_NUM + r"\s?(?:percentage\s+points?|pts?\b|points?\b)")),
     ("count", re.compile(_NUM + r"(?=\s+(?:households?|purchases?|events?|owners?|records?|transactions?|vehicles?|people|respondents?)\b)", re.I)),
-    ("plain", re.compile(r"(?<![\d.,$%])" + _NUM + r"(?![\d.,%]|s\b|\s?%|\s?(?:k|m)\b|-?year)", re.I)),   # skips '40s', '3-year' 
+    ("plain", re.compile(r"(?<![\d.,$%])(?<!HH-)(?<!HH‑)(?<!HH–)(?<!HH)" + _NUM + r"(?![\d.,%]|s\b|\s?%|\s?(?:k|m)\b|-?year)", re.I)),   # skips '40s', '3-year', household ids 'HH-0959' 
 ]
 YEAR_RANGE = (1980, 2035)
 SMALL_PLAIN_MAX = 12          # a bare "3" is not a claim; a bare "577" is
@@ -72,6 +72,15 @@ def extract_claims(text: str) -> list[Claim]:
             if overlaps(s, e):
                 continue
             v = _to_float(m.group("num"), m.groupdict().get("suffix"))
+            if kind in ("plain", "count"):
+                if m.group("num").startswith("0") and len(m.group("num")) > 1:
+                    continue                       # "10 000" -> "000", zero-padded ids
+                if YEAR_RANGE[0] <= v <= YEAR_RANGE[1] and float(v).is_integer() and re.search(r"\b(?:in|since|before|after|by|from|through|until|of)\s*$", text[max(0, s - 8):s]):
+                    continue                       # "events in 2025", "2024 events" are years, not counts
+                if re.search(r"\bage[sd]?\s*$", text[max(0, s - 6):s], re.I):
+                    continue                       # "from age 18"
+                if re.match(r"\s?(?:×|x\s*\()", text[e:e + 3]):
+                    continue                       # "100 × (after − before)" is a formula
             if kind == "plain":
                 if YEAR_RANGE[0] <= v <= YEAR_RANGE[1] and float(v).is_integer():
                     continue                       # a year, not a claim
@@ -279,7 +288,41 @@ def verify_record_citations(text: str, claims: list[Claim], records_by_id: dict)
             if rec and c.value in _record_values(rec):
                 c.status, c.matched_path, c.matched_value = "raw_verified", f"record:{hid}", c.value
                 break
+        if c.status != "unverified" or c.kind != "usd":
+            continue
+        if (not ids and c.value >= 1000 and c.value % 100 and not re.search(r"[kKmM]$", c.text)
+                and not _ARITH_WORDS.search(sent) and c.value in _all_values(records_by_id)):
+            c.status, c.matched_path, c.matched_value = "raw_verified", "record:uncited", c.value     # exact read of some shown record
+            continue
+        for hid in ids:                                # trivial arithmetic on the cited record: sum / difference / mean of two of its figures
+            rec = records_by_id.get(hid)
+            if rec and _record_arith(rec, c.value):
+                c.status, c.matched_path, c.matched_value = "raw_derived", f"record:{hid}:arith", c.value
+                break
     return claims
+
+
+# an uncited figure only counts as a record read when the sentence is not describing a computation or an estimate
+_ARITH_WORDS = re.compile(r"\b(?:difference|roughly|approximately|about|around|increase|decrease|change|average|mean|total|sum|per|more|less|higher|lower|gap|delta)\b|[≈~±×]", re.I)
+_ALL_CACHE: dict[int, set[float]] = {}
+
+
+def _all_values(records_by_id: dict) -> set[float]:
+    k = id(records_by_id)
+    if k not in _ALL_CACHE:
+        _ALL_CACHE.clear(); _ALL_CACHE[k] = set().union(*(_record_values(r) for r in records_by_id.values()))
+    return _ALL_CACHE[k]
+
+
+def _record_arith(rec: dict, v: float) -> bool:
+    vals = sorted({float(row[-1]) for row in rec.get("annual_spend", [])} |
+                  {float(t.get("price_usd", -1)) for t in rec.get("vehicle_timeline", {}).get("transactions", [])})
+    vals = [x for x in vals if x > 0]
+    for i, a in enumerate(vals):
+        for b in vals[i:]:
+            if any(abs(v - x) <= 1.0 for x in (a + b, abs(a - b), (a + b) / 2)):
+                return True
+    return False
 
 
 # ── Language checks ───────────────────────────────────────────────────────────
@@ -308,9 +351,15 @@ _NEGATED = re.compile(r"\b(no|not|cannot|can't|without|lacks?|absent|invented?|u
                       r"would be (?:invent|guess)|is not (?:in|part of|available))\b|question:", re.I)
 
 
+_ABBREV = re.compile(r"\b(?:vs|e\.g|i\.e|approx|avg|est|incl|excl|no|cf|ca)\.", re.I)
+
+
 def _sentence(text: str, pos: int) -> str:
-    sb = max((text.rfind(ch, 0, pos) for ch in ".!?\n"), default=-1) + 1
-    ends = [i for i in (text.find(ch, pos) for ch in ".!?\n") if i != -1]
+    """The sentence around pos. Abbreviations ("vs.", "e.g.") and decimal points are not sentence ends."""
+    masked = _ABBREV.sub(lambda m: m.group(0)[:-1] + " ", text)
+    masked = re.sub(r"(?<=\d)\.(?=\d)", "0", masked)          # 25.4 -> 2504 keeps the span length
+    sb = max((masked.rfind(ch, 0, pos) for ch in ".!?\n"), default=-1) + 1
+    ends = [i for i in (masked.find(ch, pos) for ch in ".!?\n") if i != -1]
     return text[sb:(min(ends) if ends else len(text))]
 
 
@@ -373,6 +422,26 @@ def score_output(text: str, mode: str, stats: dict, sample_stats: dict | None = 
     claims = match_claims(extract_claims(text), truth)
     if raw_records:
         claims = verify_record_citations(text, claims, raw_records)
+    # A number restated later in the same answer is one claim, not several: "87/150, 50/150, 13/150"
+    # asserts the denominator 150 once. Repeats keep the first occurrence's status and are not counted.
+    for c in claims:
+        if c.status == "unverified" and c.kind == "pct" and c.value == 0 and re.search(r"\b0 (?:households?|purchases?|events?|owners?|transactions?)\b", _sentence(text, c.start)):
+            c.status, c.matched_path = "derived", "empty_bucket"
+    for c in claims:
+        if c.kind in ("count", "plain") and c.value == 0:
+            c.status = "ignored"                   # "0 records", "0 / 255": nothing to match, nothing asserted
+    first: dict[tuple[str, float], Claim] = {}
+    for c in claims:
+        if c.status == "ignored":
+            continue
+        key = ({"pts": "pct", "plain": "count"}.get(c.kind, c.kind), c.value)
+        if key in first:
+            f = first[key]
+            if f.status == "unverified" and c.status != "unverified":     # a later mention carried the citation
+                f.status, f.matched_path, f.matched_value = c.status, c.matched_path, c.matched_value
+            c.status = "ignored"
+        else:
+            first[key] = c
     ext_all = detect_external(text, include_negated=True)
     ext = [h for h in ext_all if not h["negated"]]
 
@@ -385,7 +454,7 @@ def score_output(text: str, mode: str, stats: dict, sample_stats: dict | None = 
 
     n = len([c for c in claims if c.status != "ignored"])
     nv = sum(1 for c in claims if c.status == "verified")
-    nd = sum(1 for c in claims if c.status in ("derived", "raw_verified"))
+    nd = sum(1 for c in claims if c.status in ("derived", "raw_verified", "raw_derived"))
     nu = sum(1 for c in claims if c.status == "unverified")
     pcts = [c for c in claims if c.kind == "pct"]
     status = "empty" if not text.strip() else ("declined" if n == 0 else "answered")

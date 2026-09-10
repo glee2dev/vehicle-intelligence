@@ -28,7 +28,7 @@ nav .wrap{display:flex;gap:22px;align-items:center;height:52px;overflow-x:auto} 
 
 /* highlighted claims — the one visual idea on the page */
 mark{padding:0 .18em;border-radius:3px;font-weight:600;color:inherit}
-mark.verified{background:var(--ok-bg);color:var(--ok)} mark.derived,mark.raw_verified{background:var(--der-bg);color:var(--der)} mark.unverified{background:var(--bad-bg);color:var(--bad)}
+mark.verified{background:var(--ok-bg);color:var(--ok)} mark.derived,mark.raw_verified,mark.raw_derived{background:var(--der-bg);color:var(--der)} mark.unverified{background:var(--bad-bg);color:var(--bad)}
 u.ext{text-decoration:none;background:var(--ext-bg);color:var(--ext);padding:0 .15em;border-radius:3px}
 .legend{display:flex;flex-wrap:wrap;gap:14px 22px;font-size:14px;margin:12px 0 0} .legend span mark,.legend span u{margin-right:6px}
 
@@ -143,7 +143,7 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
   <p id="score-lede"></p>
   <div class="tablewrap"><table id="score-table"></table></div>
   <div class="tablewrap"><table id="perq-table"></table></div>
-  <p class="small muted" style="margin-top:14px">How a number is checked: integer counts must be exact; percentages and dollar figures within 1.5% or half a unit at the stated precision. Every number the model wrote is looked up in the statistics the pipeline produced; if it is not there, and is not a simple difference or share of figures that are, it is marked as no match.  integer counts must be exact; percentages and dollar figures within 1.5% or half a unit at the stated precision. Calibrated to 58/58 on a template narrator that prints pipeline values only, then hand-checked on every unverified claim in this run.</p>
+  <p class="small muted" style="margin-top:14px">How a number is checked: integer counts must be exact; percentages and dollar figures within 1.5% or half a unit at the stated precision. Every number the model wrote is looked up in the statistics the pipeline produced; if it is not there, and is not a simple difference or share of figures that are, it is marked as no match.  integer counts must be exact; percentages and dollar figures within 1.5% or half a unit at the stated precision. A number restated within one answer counts once. Calibrated to 52/52 on a template narrator that prints pipeline values only, then hand-checked on every unverified claim across all eight runs.</p>
 </div></section>
 
 <section id="findings"><div class="wrap">
