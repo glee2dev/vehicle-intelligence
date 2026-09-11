@@ -13,6 +13,7 @@ from check import score_output
 from modes import PERSONAS, GROUNDING_RULES, SCHEMA_SUMMARY, _TASK
 
 FAMILY = {"suv", "minivan"}
+MODES = ["ungrounded", "naive_grounded", "pipeline_grounded"]
 
 
 def slim_output(o: dict) -> dict:
@@ -115,7 +116,17 @@ def main():
             item["strategist"] = {"output": slim_output(se["outputs"]["pipeline_grounded"]), "score": slim_score(se["scores"]["pipeline_grounded"])}
         out_q.append(item)
 
+    agg_path = ROOT / "eval/aggregate.json"
+    agg = json.load(open(agg_path)) if agg_path.exists() else None
+    aggregate = None
+    if agg:   # the pooled claim the page leads with; the replayed run is one of these
+        aggregate = {"n_runs": agg["n_runs"], "n_models": agg["n_models"], "pooled": agg["pooled"],
+                     "models": {lab: {m: {k: M[m][k] for k in ("runs", "claims", "grounding_rate", "grounding_rate_min",
+                                                               "grounding_rate_max", "empty", "queries", "refused", "unanswerable")}
+                                      for m in MODES} for lab, M in agg["models"].items()}}
+
     bundle = {
+        "aggregate": aggregate,
         "meta": {"model": A["model"], "created": A["created"], "settings": {"thinking": "adaptive (model default)", "max_tokens": 20000, "sampling": "none (rejected by Sonnet 5)"},
                  "naive_budget": "~200 pre-filtered households, ~285k tokens", "repo": "https://github.com/glee2dev/vehicle-intelligence"},
         "scoreboard": A["scoreboard"],

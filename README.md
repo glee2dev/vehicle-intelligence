@@ -7,16 +7,21 @@ Ten questions about a synthetic 10,000-household vehicle-ownership panel, each a
 | | ungrounded | naive-grounded | pipeline-grounded |
 |---|---:|---:|---:|
 | what the model receives | schema only | ~200 raw records, pre-filtered | aggregated statistics |
-| numbers verified | 31% | 69% | **99.3%** |
-| external-knowledge phrases | 5 | 1 | 0 |
-| refused the two unanswerable questions | 0 / 2 | 2 / 2 | 2 / 2 |
-| input tokens per question | 615 | 284,807 | 1,106 |
+| numbers verified | 50% | 61% | **99.7%** |
+| questions where every number matches | 34 / 80 | 13 / 80 | 77 / 80 |
+| unanswerable questions refused | 7 / 16 | 10 / 16 | 16 / 16 |
+| figures invented on unanswerable questions | 22 | 13 | 0 |
+| input tokens per question | 531 | 244,930 | 975 |
 
-Model: Claude Sonnet 5, adaptive thinking, no sampling parameters, one run. Across eight runs and six model configurations (Sonnet 5 ×3, Gemini 3.1 Pro, GPT-5.4 with and without reasoning, Grok 4.6, Qwen 3.8) the pooled figures are 50% / 61% / **99.7%** — see [`eval/AGGREGATE.md`](eval/AGGREGATE.md). Full single-run results in [`eval/RESULTS.md`](eval/RESULTS.md); every prompt and answer is committed under [`eval/runs/`](eval/runs/). The interactive version is the [site](https://glee2dev.github.io/vehicle-intelligence/).
+Pooled over eight runs and six model configurations — Claude Sonnet 5 ×3 (adaptive thinking, no sampling parameters), Gemini 3.1 Pro, GPT-5.4 with and without reasoning, Grok 4.6, Qwen 3.8 — all through the same runner, same prompts, same questions. Per-model and per-run breakdown in [`eval/AGGREGATE.md`](eval/AGGREGATE.md). One run in full detail, claim by claim, in [`eval/RESULTS.md`](eval/RESULTS.md); every prompt and answer is committed under [`eval/runs/`](eval/runs/). The interactive version is the [site](https://glee2dev.github.io/vehicle-intelligence/).
 
-## The three findings
+## The findings
 
-**Reading records is fine; arithmetic across them is not.** Every individual household the naive-grounded model quoted was exact. Every aggregate it computed was wrong — 57 households where there were 73, 43 where there were 44 — and on three questions it thought for two minutes over 285k tokens and produced nothing.
+**Reading records is fine; arithmetic across them is not.** Every individual household the naive-grounded model quoted was exact. Every aggregate it computed was wrong — 57 households where there were 73, 43 where there were 44 — and on three questions it thought for two minutes over 285k tokens and produced nothing. Qwen 3.8 did that on nine of ten.
+
+**The run decides the number; the mode decides whether it is true.** Sonnet 5 run three times moved between 62.9% and 79.2% naive-grounded — a wider spread than the one between five different labs, 48.7% to 62.2%. Pipeline-grounded did not move: 100% on every model but Sonnet, which lost the same two claims in all three runs.
+
+**More thinking does not buy arithmetic.** GPT-5.4 at its provider default spends zero reasoning tokens and verified at 48.7%; at medium effort it took ten times as long and verified at 62.2%. Both were 100% pipeline-grounded.
 
 **Ungrounded declines, then does it anyway.** "I can't report an exact figure… nationally EVs are roughly 7–9% per Kelley Blue Book." Three sources, three fabricated numbers, on a question with no external answer.
 

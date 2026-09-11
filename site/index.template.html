@@ -103,6 +103,7 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
     <div class="cols" id="hero-cols"></div>
     <div class="stat3" id="hero-stats"></div>
   </div>
+  <p class="small muted" id="hero-note" style="margin-top:14px"></p>
   <div class="legend"><span><mark class="verified">29.1%</mark>matches the pipeline</span><span><mark class="derived">12.3 pts</mark>arithmetic on given figures, or a record read correctly</span><span><mark class="unverified">$14,885</mark>not in the data</span><span><u class="ext">typically</u>knowledge from outside the dataset</span></div>
 </div></section>
 
@@ -140,6 +141,10 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
 
 <section id="scoreboard"><div class="wrap">
   <h2>Results</h2>
+  <h3 style="margin-top:0">Every run, every model</h3>
+  <p id="agg-lede"></p>
+  <div class="tablewrap"><table id="agg-table"></table></div>
+  <h3>The run replayed on this page</h3>
   <p id="score-lede"></p>
   <div class="tablewrap"><table id="score-table"></table></div>
   <div class="tablewrap"><table id="perq-table"></table></div>
@@ -229,7 +234,10 @@ function column(mode, q, m){
   }).join('');
   const b=R.scoreboard;
   const pct1=x=>(x*100).toFixed(1).replace(/\.0$/,'');
-  $('#hero-stats').innerHTML = MODES.map(m=>`<div><b>${pct1(b[m].grounding_rate_pooled)}%</b><span>${MODE_NAME[m]}: numbers that match the data, across ten questions</span></div>`).join('');
+  const A=R.aggregate;
+  const src = A ? m=>A.pooled[m].grounding_rate : m=>b[m].grounding_rate_pooled;
+  $('#hero-stats').innerHTML = MODES.map(m=>`<div><b>${pct1(src(m))}%</b><span>${MODE_NAME[m]}: numbers that match the data</span></div>`).join('');
+  if(A) $('#hero-note').textContent = `Pooled over ${A.n_runs} runs and ${A.n_models} model configurations — ${A.pooled.pipeline_grounded.claims.toLocaleString()} checked numbers in pipeline-grounded mode alone. The answers replayed on this page are one of those runs, ${R.meta.model}, shown in full.`;
 })();
 
 /* ── dataset strips ───────────────────────────────────────────────────────── */
@@ -301,7 +309,18 @@ $('#diagram').innerHTML = `<svg viewBox="0 0 900 250" role="img" aria-label="Arc
 /* ── scoreboard ───────────────────────────────────────────────────────────── */
 (function scoreboard(){
   const b=R.scoreboard, s=R.strategist_scoreboard;
-  $('#score-lede').textContent = `Ten questions, ${R.meta.model}, ${R.meta.settings.thinking}, no sampling parameters. Naive-grounded received ${R.meta.naive_budget}.`;
+  const A=R.aggregate, pc=x=>(x*100).toFixed(1).replace(/\.0$/,'')+'%';
+  if(A){
+    $('#agg-lede').textContent = `The same ten questions, the same three modes, ${A.n_runs} runs across ${A.n_models} model configurations. A model run more than once shows the pooled figure with the range across its runs. Grounding rate counts numbers in answers that were produced: a model whose naive-grounded answers came back empty has few numbers to check, so read that column next to the empty column.`;
+    const rowsA=[['Pooled — numbers that match the data','rate'],['Questions where every number matches','fully'],['Answers that came back empty','empty'],['Unanswerable questions refused','refused'],['Figures invented on unanswerable questions','fab'],['Input tokens per question','tok']];
+    const P=A.pooled, cellP={rate:m=>pc(P[m].grounding_rate),fully:m=>`${P[m].fully_grounded_queries}/${P[m].queries}`,empty:m=>P[m].empty,refused:m=>`${P[m].refused}/${P[m].unanswerable}`,fab:m=>P[m].fabricated_on_unanswerable,tok:m=>P[m].input_tokens_mean.toLocaleString()};
+    let h=`<thead><tr><th>${A.n_runs} runs pooled</th>${MODES.map(m=>`<th>${MODE_NAME[m]}</th>`).join('')}</tr></thead><tbody>`;
+    h+=rowsA.map(([label,k])=>`<tr><td>${label}</td>${MODES.map(m=>{const v=cellP[k](m);const good=(k==='rate'&&P[m].grounding_rate>=.95)||((k==='fab'||k==='empty')&&v===0);const poor=(k==='rate'&&P[m].grounding_rate<.7)||(k==='fab'&&v>3);return `<td class="${good?'good':poor?'poor':''}">${v}</td>`;}).join('')}</tr>`).join('');
+    h+=`<tr><td colspan="4" style="padding-top:18px;border-bottom:0"><b>By model</b></td></tr>`;
+    h+=Object.entries(A.models).map(([lab,M])=>`<tr><td>${lab}${M.ungrounded.runs>1?` <span class="muted">(${M.ungrounded.runs} runs)</span>`:''}</td>${MODES.map(m=>{const c=M[m];const r=pc(c.grounding_rate)+(c.runs>1?` <span class="muted">${pc(c.grounding_rate_min)}–${pc(c.grounding_rate_max)}</span>`:'')+(m==='naive_grounded'&&c.empty?` <span class="muted">· ${c.empty}/${c.queries} empty</span>`:'');return `<td class="${c.grounding_rate>=.95?'good':c.grounding_rate<.7?'poor':''}">${r}</td>`;}).join('')}</tr>`).join('');
+    $('#agg-table').innerHTML=h+'</tbody>';
+  }
+  $('#score-lede').textContent = `One of those ${A?A.n_runs:8} runs in full: ten questions, ${R.meta.model}, ${R.meta.settings.thinking}, no sampling parameters. Naive-grounded received ${R.meta.naive_budget}. Every answer above and below is from this run; the per-question table and the highlighting replay it claim by claim.`;
   const rows=[['Answered with figures','answered'],['Declined (no figures)','declined_no_numbers'],['Empty: ran out of tokens','empty_truncated'],['Numbers stated','claims_total'],['Match the data','verified'],['Computed from given figures, or a record read correctly','derived_or_raw'],['No match in the data','unverified'],['Share of numbers that match','grounding_rate_pooled'],['Questions where every number matches','queries_fully_grounded'],['Phrases from outside the dataset','external_flags'],['Unanswerable questions, declined correctly','unanswerable_refused'],['Invented figures on unanswerable questions','fabricated_on_unanswerable'],['Percentages stating a denominator','pct_with_denominator_mean'],['Input tokens, mean','input_tokens_mean'],['Output tokens, mean','output_tokens_mean'],['Seconds, mean','latency_ms_mean']];
   const f=(k,v)=>v==null?'—':k==='latency_ms_mean'?(v/1000).toFixed(1):(k==='grounding_rate_pooled'||k==='pct_with_denominator_mean')?Math.round(v*100)+'%':typeof v==='number'?fmt(Math.round(v)):v;
   const cls=(k,m,v)=>{ if(k==='grounding_rate_pooled') return v>=0.95?'good':v<0.7?'poor':''; if(k==='unverified'||k==='external_flags'||k==='fabricated_on_unanswerable'||k==='empty_truncated') return v===0?'good':v>3?'poor':''; return ''; };
