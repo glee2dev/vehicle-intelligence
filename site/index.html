@@ -97,7 +97,7 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
 
 <section class="hero" id="top"><div class="wrap">
   <h1>When an LLM does the analysis, it invents the numbers. When it only narrates numbers you computed, it doesn't.</h1>
-  <p class="lede">Ten questions about a 10,000-household vehicle-ownership panel, each answered three ways by the same model with the same settings. The only thing that changes is what the model is given. Every number in every answer is checked against ground truth.</p>
+  <p class="lede">Ten questions about a 10,000-household vehicle-ownership panel, each answered three ways by the same model with the same settings. The only thing that changes is what the model is given. Every number in every answer is checked against ground truth. Eight runs across five labs say the same thing.</p>
   <div class="hero-demo">
     <div class="q" id="hero-q"></div>
     <div class="cols" id="hero-cols"></div>
@@ -116,7 +116,7 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
 
 <section id="experiment"><div class="wrap">
   <h2>One question, three ways of answering</h2>
-  <p>Same model, same settings, same question. <b>Ungrounded</b> gets the schema only. <b>Naive-grounded</b> gets the raw records for the segment, pre-filtered by the pipeline, about two hundred households, and is asked to do the math. <b>Pipeline-grounded</b> gets the aggregated statistics the pipeline computed and is told to narrate nothing else. Then every number in each answer is checked against the pipeline's output.</p>
+  <p>Same model, same settings, same question. The page replays Claude Sonnet 5; the same ten questions were also run on Gemini 3.1 Pro, GPT-5.4 with and without reasoning, Grok 4.6 and Qwen 3.8, and Sonnet three times over. <b>Ungrounded</b> gets the schema only. <b>Naive-grounded</b> gets the raw records for the segment, pre-filtered by the pipeline, about two hundred households, and is asked to do the math. <b>Pipeline-grounded</b> gets the aggregated statistics the pipeline computed and is told to narrate nothing else. Then every number in each answer is checked against the pipeline's output.</p>
   <div class="qlist" id="qlist"></div>
   <p class="exposes" id="exposes"></p>
   <div class="exp">
@@ -143,21 +143,27 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
   <p id="score-lede"></p>
   <div class="tablewrap"><table id="score-table"></table></div>
   <div class="tablewrap"><table id="perq-table"></table></div>
-  <p class="small muted" style="margin-top:14px">How a number is checked: integer counts must be exact; percentages and dollar figures within 1.5% or half a unit at the stated precision. Every number the model wrote is looked up in the statistics the pipeline produced; if it is not there, and is not a simple difference or share of figures that are, it is marked as no match.  integer counts must be exact; percentages and dollar figures within 1.5% or half a unit at the stated precision. A number restated within one answer counts once. Calibrated to 52/52 on a template narrator that prints pipeline values only, then hand-checked on every unverified claim across all eight runs.</p>
+  <p class="small muted" style="margin-top:14px">How a number is checked: integer counts must be exact; percentages and dollar figures within 1.5% or half a unit at the stated precision. Every number the model wrote is looked up in the statistics the pipeline produced; if it is not there, and is not a simple difference or share of figures that are, it is marked as no match. A number restated within one answer counts once. Calibrated to 52/52 on a template narrator that prints pipeline values only, then hand-checked on every unverified claim across all eight runs — that sweep found five places where the check was wrong, not the model. The figures here are the ones after the fix. Cross-model table in <a href="https://github.com/glee2dev/vehicle-intelligence/blob/main/eval/AGGREGATE.md">AGGREGATE.md</a>.</p>
 </div></section>
 
 <section id="findings"><div class="wrap">
-  <h2>What the run showed</h2>
+  <h2>What the runs showed</h2>
   <h3>Reading records is fine. Arithmetic across them is not.</h3>
-  <p>Every individual household the naive-grounded model quoted was exact: four <i>"$94,844, HH-9032, 2015"</i> citations, all correct. Every aggregate it computed was wrong. On the new-child question it chose a stricter window than the pipeline, a defensible reading, and then miscounted its own cohort: 57 households where there were 73, a before-mean of $9,456 where the truth was $9,733. On the EV question it counted 43 of 173 households; the answer was 44. On three questions it thought for over two minutes across 285k tokens, hit the output limit, and produced nothing.</p>
+  <p>Every individual household the naive-grounded model quoted was exact: four <i>"$94,844, HH-9032, 2015"</i> citations, all correct. Every aggregate it computed was wrong. On the new-child question it chose a stricter window than the pipeline, a defensible reading, and then miscounted its own cohort: 57 households where there were 73, a before-mean of $9,456 where the truth was $9,733. On the EV question it counted 43 of 173 households; the answer was 44. On three questions it thought for over two minutes across 285k tokens, hit the output limit, and produced nothing. Qwen 3.8 did that on nine questions out of ten.</p>
+  <h3>The run decides the number. The mode decides whether it is true.</h3>
+  <p>I ran Sonnet 5 three times to see how much of this was noise. Its naive-grounded rate moved between 62.9% and 79.2% — a spread wider than the one between five different labs, which sat between 48.7% and 62.2%. Pipeline-grounded did not move: 100% on every model except Sonnet, which lost the same two claims in all three runs. Swapping the lab changes the number less than running the same model again does. Changing what the model is given changes the answer.</p>
+  <h3>More thinking does not buy arithmetic.</h3>
+  <p>GPT-5.4 at its provider default spends zero reasoning tokens. It answered a 225-record aggregation in ten seconds and verified at 48.7%. Told to reason at medium effort, it took a hundred seconds and verified at 62.2%. Both were 100% pipeline-grounded. The gap between those two numbers is smaller than Sonnet's gap with itself, and neither is close to the mode that does not ask the model to compute at all.</p>
   <h3>Ungrounded declines, then does it anyway.</h3>
-  <p><i>"I don't have access to the records, so I can't report an exact figure. For context, nationally EVs have represented roughly 7–9% of new sales, per Cox Automotive and Kelley Blue Book."</i> Three external sources and three fabricated figures on a question that has no external answer. Asked how many households moved twice and changed commute, it estimated 3,000–4,500 citing "life-course research"; the answer was 6,125.</p>
+  <p><i>"I don't have access to the records, so I can't report an exact figure. For context, nationally EVs have represented roughly 7–9% of new sales, per Cox Automotive and Kelley Blue Book."</i> Three external sources and three fabricated figures on a question that has no external answer. Asked how many households moved twice and changed commute, it estimated 3,000–4,500 citing "life-course research"; the answer was 6,125. Across eight runs the ungrounded mode invented 22 figures on the two questions that have no answer. The pipeline-grounded mode invented none, and refused all sixteen.</p>
   <h3>The false premise is the realistic one.</h3>
   <p>One question asked why empty nesters spent more in their 40s than their 50s. They didn't; mean spend was lower. The pipeline-grounded answer said so with the numbers. The ungrounded answer accepted the premise and explained it: <i>"that stage typically generates more vehicle transactions."</i> That is the question an analyst actually asks, and the failure that actually ships.</p>
+  <h3>I checked the checker.</h3>
+  <p>A verifier that scores the architecture I built is not evidence until someone reads its mistakes, so I read all of them — every unverified claim across all eight runs. Five were the check's fault, not the model's: household ids parsed as quantities, <i>"$57,705 mean"</i> read as 57.7 billion, an abbreviation cutting a citation off from its household. Fixed, with regression tests, and every run rescored. Pipeline-grounded moved from 99.8% to 99.7% and naive-grounded moved up five points on the headline run. The numbers on this page are the ones after the fix.</p>
   <h3>Where the grounded mode still needs watching.</h3>
-  <p>One of 219 numbers had no match: a share of a figure that was itself derived, correct on inspection but two steps of arithmetic away from the JSON. The narrator is allowed one. Both personas stayed inside the rules, but the strategist voice, prompted to find opportunities, pushed closer to the edge of what its statistics support. The check is what makes that visible.</p>
+  <p>Three of 1,003 pipeline-grounded numbers had no match, all in Sonnet's runs, all correct on inspection: a share of a figure that was itself derived, two steps of arithmetic from the JSON. The narrator is allowed a step. Both personas stayed inside the rules, but the strategist voice, prompted to find opportunities, pushed closer to the edge of what its statistics support. The check is what makes that visible.</p>
   <h3>Caveats.</h3>
-  <p>Ten curated questions, one run each, one model. The check is strict and was calibrated on real answers in three passes, each documented in the repo. A synthetic panel has cleaner causal structure than a real one, which makes the grounded mode's job easier and the naive mode's harder in equal measure; the comparison is between modes, not between this data and yours.</p>
+  <p>Ten curated questions. Eight runs, six model configurations, one persona for the cross-model comparison. The check is strict and was calibrated on real answers, then audited claim by claim; every pass is in the repo. A synthetic panel has cleaner causal structure than a real one, which makes the grounded mode's job easier and the naive mode's harder in equal measure; the comparison is between modes, not between this data and yours.</p>
 </div></section>
 
 
