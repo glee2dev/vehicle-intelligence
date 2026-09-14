@@ -92,6 +92,8 @@ tests/                      engine, modes, verifier
 
 ## Caveats
 
+Nine of the ten `exposes` notes in `eval/queries.json` are unchanged since the commit that predates every run. Q05 is the exception: its question text and its note were rewritten in the same commit as the first run, so its false-premise framing is a finding from that run rather than a prior intent.
+
 Ten curated questions. The headline table is one run of one model; the aggregate is eight runs across five model families, still ten questions each. A synthetic panel has cleaner causal structure than a real one. The comparison is between modes, not between this data and yours.
 
 —

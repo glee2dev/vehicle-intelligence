@@ -289,7 +289,7 @@
  },
  "Q05": {
   "question": "For empty nesters, why was their vehicle spending higher during their 40s than during their 50s?",
-  "exposes": "cross-timeline explanation \u2014 requires correlating decade spend with what happened in that decade; ungrounded mode invents a story, naive mode can't align decades across households",
+  "exposes": "false-premise explanation \u2014 both measures are lower in the 40s, not higher: mean annual spend $9,113 vs $9,584 and mean tercile cluster 1.43 vs 1.50, over 426 empty-nester households; the grounded answer rejects the premise with numbers, the ungrounded one explains a pattern that does not exist",
   "result": {
    "metric": "decade_explain",
    "filters": {

@@ -9,10 +9,10 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F3F4F1; --ink:#1C2024; --muted:#6F767D; --rule:#D6D9D4; --panel:#FFFFFF;
-  --ok:#1E7A4C; --ok-bg:#DDF0E4; --bad:#B4271F; --bad-bg:#F6DCD9; --der:#2E5AAC; --der-bg:#DCE5F5; --ext:#8A5A00; --ext-bg:#F5EBD0;
+  --bg:#0D0908; --ink:#F1ECE8; --muted:#9A8F88; --rule:#2A2422; --panel:#141010;
+  --ok:#52C48A; --ok-bg:rgba(82,196,138,.18); --bad:#E8635A; --bad-bg:rgba(232,99,90,.18); --der:#6E9EE8; --der-bg:rgba(110,158,232,.18); --ext:#F2C069; --ext-bg:rgba(242,192,105,.18);
   --wide:1180px; --prose:72ch;
-  --dark:#0D0908; --dark2:#130E0C; --on-dark:#F1ECE8; --on-dark-muted:#9A8F88; --flame:#FF3B2F; --flame2:#FFD2A8;
+  --dark:#0D0908; --dark2:#141010; --on-dark:#F1ECE8; --on-dark-muted:#9A8F88; --flame:#FF3B2F; --flame2:#FFD2A8;
 }
 *{box-sizing:border-box} html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -27,13 +27,13 @@ nav{position:sticky;top:0;background:var(--dark);color:var(--on-dark);z-index:5;
 nav .wrap{display:flex;gap:22px;align-items:center;height:52px;overflow-x:auto} nav a{text-decoration:none;color:var(--on-dark-muted);white-space:nowrap} nav a:hover{color:var(--on-dark)} nav .brand{color:var(--on-dark);font-weight:600;margin-right:auto;display:flex;align-items:center;gap:14px} nav .brand .home{position:relative;padding-bottom:2px} nav .brand .home::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:44px;background:var(--flame)} nav .brand .title{color:var(--on-dark-muted);font-weight:400}
 
 /* highlighted claims — the one visual idea on the page */
-mark{padding:0 .18em;border-radius:3px;font-weight:600;color:inherit}
-mark.verified{background:var(--ok-bg);color:var(--ok)} mark.derived,mark.raw_verified,mark.raw_derived{background:var(--der-bg);color:var(--der)} mark.unverified{background:var(--bad-bg);color:var(--bad)}
+mark{padding:0 .18em;border-radius:3px;font-weight:600;color:inherit;background:var(--panel)}
+mark.verified,mark.raw_verified{background:var(--ok-bg);color:var(--ok)} mark.derived,mark.raw_verified,mark.derived,mark.raw_derived{background:var(--der-bg);color:var(--der)} mark.unverified{background:var(--bad-bg);color:var(--bad)}
 u.ext{text-decoration:none;background:var(--ext-bg);color:var(--ext);padding:0 .15em;border-radius:3px}
 .legend{display:flex;flex-wrap:wrap;gap:14px 22px;font-size:14px;margin:12px 0 0} .legend span mark,.legend span u{margin-right:6px}
 
 /* hero */
-.hero{padding-top:56px;background:var(--dark);color:var(--on-dark);padding-bottom:56px} .hero .lede{color:#D6CCC5} .hero .legend{color:var(--on-dark-muted)} .hero h1{color:var(--on-dark)}
+.hero{padding-top:56px;background:var(--dark);color:var(--on-dark);padding-bottom:56px} .hero .lede{color:var(--on-dark-muted)} .hero .legend{color:var(--on-dark-muted)} .hero h1{color:var(--on-dark)}
 .hero-demo{margin-top:36px;border:1px solid #2A1C18;background:var(--panel);color:var(--ink)}
 .hero-demo .q{padding:14px 18px;border-bottom:1px solid var(--rule);font-weight:500}
 .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:0} .cols>div{padding:16px 18px;border-left:1px solid var(--rule);min-width:0} .cols>div:first-child{border-left:0}
@@ -160,9 +160,10 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
   <h3>I checked the checker.</h3>
   <p>A verifier that scores the architecture I built is not evidence until someone reads its mistakes, so I read all of them — every unverified claim across all eight runs. Five were the check's fault, not the model's: household ids parsed as quantities, <i>"$57,705 mean"</i> read as 57.7 billion, an abbreviation cutting a citation off from its household. Fixed, with regression tests, and every run rescored. Pipeline-grounded moved from 99.8% to 99.7% and naive-grounded moved up five points on the headline run. The numbers on this page are the ones after the fix.</p>
   <h3>Where the grounded mode still needs watching.</h3>
-  <p>Three of 1,003 pipeline-grounded numbers had no match, all in Sonnet's runs, all correct on inspection: a share of a figure that was itself derived, two steps of arithmetic from the JSON. The narrator is allowed a step. Both personas stayed inside the rules, but the strategist voice, prompted to find opportunities, pushed closer to the edge of what its statistics support. The check is what makes that visible.</p>
+  <p>Three of 1,003 pipeline-grounded numbers had no match, all in Sonnet's runs, none of them invented. Twice on Q07 the narrator reported the complement — 10,000 households less the 6,670 with a qualifying move count, given as 33.3% — and once on Q03 it wrote that one cohort was 8.8&times; the other, which is 6,251 &divide; 714. Every input to all three was verified; only the arithmetic laid on top had no field to match against. The narrator is allowed one step, and these are two. Both personas stayed inside the rules, but the strategist voice, prompted to find opportunities, pushed closer to the edge of what its statistics support. The check is what makes that visible.</p>
   <h3>Caveats.</h3>
   <p>Ten curated questions. Eight runs, six model configurations, one persona for the cross-model comparison. The check is strict and was calibrated on real answers, then audited claim by claim; every pass is in the repo. A synthetic panel has cleaner causal structure than a real one, which makes the grounded mode's job easier and the naive mode's harder in equal measure; the comparison is between modes, not between this data and yours.</p>
+  <p>The system prompts differ between modes because the tasks differ, and two counts inherit that. Pipeline and naive are both told not to use outside knowledge; ungrounded is not, so the external-knowledge counts are not a clean three-way comparison. The same holds for refusal, where the meaningful figure is 10 of 16 against 16 of 16, both instructed. And nine of the ten <code>exposes</code> notes are unchanged since the commit that predates every run: Q05 is the exception, its question and its note rewritten in the same commit as the first run, so the false-premise framing there is a finding rather than a prior intent.</p>
 </div></section>
 
 
@@ -251,13 +252,13 @@ function strip(p){
     return `<line x1="${cx}" y1="${up+4}" x2="${cx}" y2="88" stroke="#C7CBC5"/><circle cx="${cx}" cy="88" r="3.2" fill="#1C2024"/><text x="${cx}" y="${up}" font-size="9.5" text-anchor="middle" fill="#1C2024">${lab}</text>`;
   }).join('');
   const tx = p.transactions.filter(t=>t.type==='purchase'||t.type==='lease').map(t=>{
-    const trig = t.trigger==='replacement_cycle'?'':`<line x1="${x(t.year)}" y1="92" x2="${x(t.year)}" y2="108" stroke="#2E5AAC" stroke-width="1.4" marker-end="url(#a)"/>`;
-    return `${trig}<rect x="${x(t.year)-9}" y="108" width="18" height="18" rx="2" fill="${t.powertrain==='ev'?'#1E7A4C':t.powertrain==='hybrid'?'#7FAF8F':'#6F767D'}"><title>${t.year} ${t.type} ${t.body} ${t.powertrain} $${fmt(t.price_usd)}${t.trigger!=='replacement_cycle'?' — after '+(EV_LABEL[t.trigger]||t.trigger):''}</title></rect><text x="${x(t.year)}" y="120" font-size="8" text-anchor="middle" fill="#fff">${{compact:'C',sedan:'S',crossover:'X',suv:'SUV',minivan:'MV',pickup:'P',sports:'SP',motorcycle:'M'}[t.body]||'?'}</text>`;
+    const trig = t.trigger==='replacement_cycle'?'':`<line x1="${x(t.year)}" y1="92" x2="${x(t.year)}" y2="108" stroke="#6E9EE8" stroke-width="1.4" marker-end="url(#a)"/>`;
+    return `${trig}<rect x="${x(t.year)-9}" y="108" width="18" height="18" rx="2" fill="${t.powertrain==='ev'?'#1E7A4C':t.powertrain==='hybrid'?'#7FAF8F':'#6F767D'}"><title>${t.year} ${t.type} ${t.body} ${t.powertrain} $${fmt(t.price_usd)}${t.trigger!=='replacement_cycle'?' — after '+(EV_LABEL[t.trigger]||t.trigger):''}</title></rect><text x="${x(t.year)}" y="120" font-size="8" text-anchor="middle" fill="#F1ECE8">${{compact:'C',sedan:'S',crossover:'X',suv:'SUV',minivan:'MV',pickup:'P',sports:'SP',motorcycle:'M'}[t.body]||'?'}</text>`;
   }).join('');
   const decades = Object.entries(p.decades).map(([d,v])=>`${d}: ${['low','mid','high'][v.cluster]}`).join(' · ');
   return `<div class="strip"><h3>${ARCH[p.archetype]||p.archetype}, ${p.age}</h3><div class="sub">${p.household.replace(/_/g,' ')} · ${p.income_bracket.replace('_',' ')} income · ${p.area} · spend by decade ${decades} · ${p.progression.replace('_',' ')}</div>
   <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Life timeline of ${ARCH[p.archetype]}"><defs><marker id="a" markerWidth="6" markerHeight="6" refX="3" refY="5" orient="auto"><path d="M0,0 L6,0 L3,6 z" fill="#2E5AAC"/></marker></defs>
-  <path d="${area}" fill="#DCE5F5"/><line x1="${L}" y1="88" x2="${W-Rr}" y2="88" stroke="#1C2024" stroke-width="1"/>${evs}${tx}
+  <path d="${area}" fill="rgba(110,158,232,.22)"/><line x1="${L}" y1="88" x2="${W-Rr}" y2="88" stroke="#1C2024" stroke-width="1"/>${evs}${tx}
   <text x="${L}" y="176" font-size="10" fill="#6F767D">${y0} (age 18)</text><text x="${W-Rr}" y="176" font-size="10" text-anchor="end" fill="#6F767D">2026</text><text x="${L}" y="150" font-size="9" fill="#6F767D" dy="-64">annual spend</text></svg></div>`;
 }
 $('#strips').innerHTML = R.persona_strips.map(strip).join('');
