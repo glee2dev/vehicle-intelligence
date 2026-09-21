@@ -83,6 +83,7 @@ td.good{color:var(--ok);font-weight:600} td.poor{color:var(--bad)}
 .msg .step{font-size:13px;color:var(--muted);border-left:2px solid var(--rule);padding:4px 10px;margin:6px 0} .msg .step code{font-size:12px;background:var(--bg);padding:1px 4px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 16px} .chips button{font:inherit;font-size:13px;padding:5px 11px;border:1px solid var(--rule);background:var(--bg);border-radius:20px;cursor:pointer;text-align:left}
 .inputrow{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--rule)} .inputrow input{flex:1;font:inherit;font-size:15px;padding:9px 12px;border:1px solid var(--rule)}
+#contact h2{max-width:24ch} #contact .reach{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px} #contact .reach a{text-decoration:none;padding:10px 16px;border:1px solid var(--rule);border-radius:24px;font-size:15px} #contact .reach a:hover{border-color:var(--ink)}
 footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px solid var(--rule)} footer a{color:var(--ink)}
 :focus-visible{outline:2px solid var(--flame);outline-offset:2px}
 </style>
@@ -90,7 +91,7 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
 <body>
 <nav><div class="wrap">
   <span class="brand"><a class="home" href="/">Gyunpyo Lee</a><span class="title">Who did the math?</span></span>
-  <a href="#data">Dataset</a><a href="#experiment">Experiment</a><a href="#how">How it works</a><a href="#scoreboard">Results</a><a href="#findings">Findings</a><a id="repo-link" href="#" target="_blank" rel="noopener">Repo</a>
+  <a href="#data">Dataset</a><a href="#experiment">Experiment</a><a href="#how">How it works</a><a href="#scoreboard">Results</a><a href="#findings">Findings</a><a href="#contact">Contact</a><a id="repo-link" href="#" target="_blank" rel="noopener">Repo</a>
 </div></nav>
 
 <section class="hero" id="top"><div class="wrap">
@@ -166,6 +167,14 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
   <p>The system prompts differ between modes because the tasks differ, and two counts inherit that. Pipeline and naive are both told not to use outside knowledge; ungrounded is not, so the external-knowledge counts are not a clean three-way comparison. The same holds for refusal, where the meaningful figure is 10 of 16 against 16 of 16, both instructed. And nine of the ten <code>exposes</code> notes are unchanged since the commit that predates every run: Q05 is the exception, its question and its note rewritten in the same commit as the first run, so the false-premise framing there is a finding rather than a prior intent.</p>
 </div></section>
 
+
+<section id="contact"><div class="wrap">
+  <h2>The question for your team is not which model. It is who does the math.</h2>
+  <p>1,003 numbers narrated from computed statistics. Three had no match, none invented. The same models, handed the records and asked to compute: 549 numbers, 60.7% verified, and 21 of 80 answers came back empty. A team that lets an assistant answer questions over its own customer, sales or operations data is running the second setup unless someone built the first.</p>
+  <p>I build the first: a pipeline that computes and refuses, a model that only narrates, and a check that reads every number back. Conservative — a synthetic panel and ten curated questions; the comparison between modes transfers, the percentages do not.</p>
+  <p>If this is your problem, write to me.</p>
+  <div class="reach"><a href="mailto:gyunpyolee@gmail.com">gyunpyolee@gmail.com</a><a href="https://www.linkedin.com/in/gple2/">LinkedIn</a><a href="/#resume">Résumé</a></div>
+</div></section>
 
 <footer><div class="wrap">
   <p>Built by <a href="/">Gyunpyo Lee</a>. Data generator, pipeline, three-mode orchestration, the check, and this page are in the repo; the run files with every prompt and answer are committed as evidence. <span id="meta-line"></span></p>
