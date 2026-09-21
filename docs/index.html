@@ -48,7 +48,7 @@ u.ext{text-decoration:none;background:var(--ext-bg);color:var(--ext);padding:0 .
 .strips{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:28px} @media (max-width:900px){.strips{grid-template-columns:1fr}}
 .strip{border:1px solid var(--rule);background:var(--panel);padding:16px 18px}
 .strip h3{margin:0;font-size:17px} .strip .sub{font-size:14px;color:var(--muted);margin:2px 0 10px}
-.strip svg{width:100%;height:auto;display:block}
+.strip svg{width:100%;height:auto;display:block;overflow:visible}
 .dist{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px 40px;margin-top:32px;font-size:14px}
 .bar{display:grid;grid-template-columns:130px 1fr 44px;gap:8px;align-items:center;margin:4px 0} .bar i{display:block;height:9px;background:var(--ink);opacity:.8} .bar em{font-style:normal;color:var(--muted);text-align:right}
 
@@ -258,7 +258,7 @@ function strip(p){
     const lab=EV_LABEL[e.event]||e.event; const cx=x(e.year); const w=lab.length*5.4;
     let lane=laneEnd.findIndex(end=>cx-w/2>end+6); if(lane<0) lane=3; laneEnd[lane]=cx+w/2;
     const up=70-lane*15;
-    return `<line x1="${cx}" y1="${up+4}" x2="${cx}" y2="88" stroke="#C7CBC5"/><circle cx="${cx}" cy="88" r="3.2" fill="#1C2024"/><text x="${cx}" y="${up}" font-size="9.5" text-anchor="middle" fill="#1C2024">${lab}</text>`;
+    return `<line x1="${cx}" y1="${up+4}" x2="${cx}" y2="88" stroke="#5A524D"/><circle cx="${cx}" cy="88" r="3.2" fill="#F1ECE8"/><text x="${cx}" y="${up}" font-size="9.5" text-anchor="middle" fill="#F1ECE8">${lab}</text>`;
   }).join('');
   const tx = p.transactions.filter(t=>t.type==='purchase'||t.type==='lease').map(t=>{
     const trig = t.trigger==='replacement_cycle'?'':`<line x1="${x(t.year)}" y1="92" x2="${x(t.year)}" y2="108" stroke="#6E9EE8" stroke-width="1.4" marker-end="url(#a)"/>`;
@@ -266,9 +266,9 @@ function strip(p){
   }).join('');
   const decades = Object.entries(p.decades).map(([d,v])=>`${d}: ${['low','mid','high'][v.cluster]}`).join(' · ');
   return `<div class="strip"><h3>${ARCH[p.archetype]||p.archetype}, ${p.age}</h3><div class="sub">${p.household.replace(/_/g,' ')} · ${p.income_bracket.replace('_',' ')} income · ${p.area} · spend by decade ${decades} · ${p.progression.replace('_',' ')}</div>
-  <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Life timeline of ${ARCH[p.archetype]}"><defs><marker id="a" markerWidth="6" markerHeight="6" refX="3" refY="5" orient="auto"><path d="M0,0 L6,0 L3,6 z" fill="#2E5AAC"/></marker></defs>
-  <path d="${area}" fill="rgba(110,158,232,.22)"/><line x1="${L}" y1="88" x2="${W-Rr}" y2="88" stroke="#1C2024" stroke-width="1"/>${evs}${tx}
-  <text x="${L}" y="176" font-size="10" fill="#6F767D">${y0} (age 18)</text><text x="${W-Rr}" y="176" font-size="10" text-anchor="end" fill="#6F767D">2026</text><text x="${L}" y="150" font-size="9" fill="#6F767D" dy="-64">annual spend</text></svg></div>`;
+  <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Life timeline of ${ARCH[p.archetype]}"><defs><marker id="a" markerWidth="6" markerHeight="6" refX="3" refY="5" orient="auto"><path d="M0,0 L6,0 L3,6 z" fill="#6E9EE8"/></marker></defs>
+  <path d="${area}" fill="rgba(110,158,232,.22)"/><line x1="${L}" y1="88" x2="${W-Rr}" y2="88" stroke="#9A8F88" stroke-opacity=".6" stroke-width="1"/><text x="${L}" y="150" font-size="9" fill="#9A8F88" dy="-64" stroke="#141010" stroke-width="5" paint-order="stroke" stroke-linejoin="round">annual spend</text>${evs}${tx}
+  <text x="${L}" y="176" font-size="10" fill="#9A8F88">${y0} (age 18)</text><text x="${W-Rr}" y="176" font-size="10" text-anchor="end" fill="#9A8F88">2026</text></svg></div>`;
 }
 $('#strips').innerHTML = R.persona_strips.map(strip).join('');
 function bars(title, obj, top=8, suffix=''){
@@ -293,15 +293,15 @@ renderExperiment();
 
 /* ── diagram ──────────────────────────────────────────────────────────────── */
 $('#diagram').innerHTML = `<svg viewBox="0 0 900 250" role="img" aria-label="Architecture: pipeline computes, model narrates, every number is checked">
-<style>.bx{fill:#fff;stroke:#1C2024;stroke-width:1.2}.t{font:500 13px "IBM Plex Sans",sans-serif;fill:#1C2024}.s{font:12px "IBM Plex Sans",sans-serif;fill:#6F767D}.ar{stroke:#1C2024;stroke-width:1.2;fill:none;marker-end:url(#ah)}</style>
-<defs><marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1C2024"/></marker></defs>
+<style>.bx{fill:#0D0908;stroke:#9A8F88;stroke-opacity:.6;stroke-width:1.2}.t{font:500 13px "IBM Plex Sans",sans-serif;fill:#F1ECE8}.s{font:12px "IBM Plex Sans",sans-serif;fill:#9A8F88}.ar{stroke:#9A8F88;stroke-width:1.2;fill:none;marker-end:url(#ah)}</style>
+<defs><marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#9A8F88"/></marker></defs>
 <rect x="20" y="40" width="150" height="56" class="bx"/><text x="95" y="63" text-anchor="middle" class="t">Question</text><text x="95" y="82" text-anchor="middle" class="s">plain language</text>
 <path d="M170,68 L230,68" class="ar"/>
 <rect x="232" y="40" width="160" height="56" class="bx"/><text x="312" y="63" text-anchor="middle" class="t">Structured query</text><text x="312" y="82" text-anchor="middle" class="s">filters · metric · group_by</text>
 <path d="M392,68 L452,68" class="ar"/>
 <rect x="454" y="20" width="200" height="96" class="bx"/><text x="554" y="46" text-anchor="middle" class="t">Pipeline</text><text x="554" y="66" text-anchor="middle" class="s">10,000 records in memory</text><text x="554" y="83" text-anchor="middle" class="s">filter · aggregate · denominators</text><text x="554" y="100" text-anchor="middle" class="s">or "not answerable" + reason</text>
 <path d="M554,116 L554,160" class="ar"/>
-<line x1="20" y1="138" x2="880" y2="138" stroke="#B4271F" stroke-width="1.5" stroke-dasharray="6 4"/><text x="880" y="132" text-anchor="end" font-size="12" fill="#B4271F" font-family="IBM Plex Sans,sans-serif">raw records never cross this line</text>
+<line x1="20" y1="138" x2="880" y2="138" stroke="#FF3B2F" stroke-width="1.5" stroke-dasharray="6 4"/><text x="880" y="132" text-anchor="end" font-size="12" fill="#FF3B2F" font-family="IBM Plex Sans,sans-serif">raw records never cross this line</text>
 <rect x="454" y="162" width="200" height="56" class="bx"/><text x="554" y="185" text-anchor="middle" class="t">Model narrates</text><text x="554" y="204" text-anchor="middle" class="s">statistics JSON only · two personas</text>
 <path d="M654,190 L714,190" class="ar"/>
 <rect x="716" y="162" width="164" height="56" class="bx"/><text x="798" y="185" text-anchor="middle" class="t">The check</text><text x="798" y="204" text-anchor="middle" class="s">every number matched back</text>
