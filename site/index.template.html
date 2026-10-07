@@ -85,6 +85,11 @@ td.good{color:var(--ok);font-weight:600} td.poor{color:var(--bad)}
 .inputrow{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--rule)} .inputrow input{flex:1;font:inherit;font-size:15px;padding:9px 12px;border:1px solid var(--rule)}
 footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px solid var(--rule)} footer a{color:var(--ink)}
 :focus-visible{outline:2px solid var(--flame);outline-offset:2px}
+/* sketched explainer: one light card pinned into the dark hero */
+.sketch{margin:32px 0 6px;max-width:880px}
+.sketch video{display:block;width:100%;aspect-ratio:16/9;background:#F2F3F0;border:1px solid #2A1C18}
+.sketch video.tall{aspect-ratio:9/16;max-height:78vh;width:auto;max-width:100%;margin:0 auto}
+.sketch figcaption{margin-top:10px;font-size:14px;color:var(--on-dark-muted)}
 </style>
 </head>
 <body>
@@ -96,6 +101,13 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
 <section class="hero" id="top"><div class="wrap">
   <h1>When an LLM does the analysis, it invents the numbers. When it only narrates numbers you computed, it doesn't.</h1>
   <p class="lede">Ten questions about a 10,000-household vehicle-ownership panel, each answered three ways by the same model with the same settings. The only thing that changes is what the model is given. Every number in every answer is checked against ground truth. Eight runs across five labs say the same thing.</p>
+  <figure class="sketch">
+    <video id="sketch-video" controls playsinline preload="none" poster="media/who-did-the-math-poster-16x9.jpg">
+      <source src="media/who-did-the-math-16x9.mp4" type="video/mp4">
+    </video>
+    <figcaption>The 50-second version. The evidence is below.</figcaption>
+  </figure>
+  <script>(function(){var v=document.getElementById('sketch-video');if(window.matchMedia&&matchMedia('(max-width:600px)').matches){v.poster='media/who-did-the-math-poster-9x16.jpg';v.querySelector('source').src='media/who-did-the-math-9x16.mp4';v.classList.add('tall');v.load()}})();</script>
   <div class="hero-demo">
     <div class="q" id="hero-q"></div>
     <div class="cols" id="hero-cols"></div>
