@@ -143,7 +143,8 @@ footer{padding:40px 0 60px;font-size:14px;color:var(--muted);border-top:1px soli
   <div class="tablewrap"><table id="score-table"></table></div>
   <div class="tablewrap"><table id="perq-table"></table></div>
   <p class="small muted" style="margin-top:14px">How a number is checked: integer counts must be exact; percentages and dollar figures within 1.5% or half a unit at the stated precision. Every number the model wrote is looked up in the statistics the pipeline produced; if it is not there, and is not a simple difference or share of figures that are, it is marked as no match. A number restated within one answer counts once. Calibrated to 52/52 on a template narrator that prints pipeline values only, then hand-checked on every unverified claim across all eight runs — that sweep found five places where the check was wrong, not the model. The figures here are the ones after the fix. Cross-model table in <a href="https://github.com/glee2dev/vehicle-intelligence/blob/main/eval/AGGREGATE.md">AGGREGATE.md</a>.</p>
-</div></section>
+
+  <p style="margin-top:18px"><b>The check runs on its own now.</b> <a href="https://gyunpyolee.com/readback/">readback</a> takes any AI answer and the figures it should have come from, and puts every number on a tolerance gauge: matched, derived, or no match, with the distance and the reason. The 30 answers replayed here are loaded as examples; paste your own and it runs in the browser. <a href="https://github.com/glee2dev/readback">Source</a>.</p></div></section>
 
 <section id="findings"><div class="wrap">
   <h2>What the runs showed</h2>
